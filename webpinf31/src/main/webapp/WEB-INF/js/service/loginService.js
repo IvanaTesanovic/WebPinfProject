@@ -1,7 +1,7 @@
-app.factory("HomePageService", function($http) {
+app.factory("LoginService", function($http) {
 	return {
-	    getDrzave: function(callback) {
-			$http.get('login').success(callback);
+	    getString: function(callback) {
+			$http.get('api/login').success(callback);
 	    }
     };       
 });

@@ -17,10 +17,9 @@
 	<tx:annotation-driven/>
 	<task:annotation-driven />
 	
-<!-- 	<import resource="classpath:/spring/spring-security.xml" /> -->
+	<import resource="classpath:/spring/spring-security.xml" />
 	<import resource="classpath:/spring/spring-data.xml" />
 	<import resource="classpath:/spring/spring-mvc.xml" />
-	<import resource="classpath:/spring/spring-rest.xml" />
 
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource"

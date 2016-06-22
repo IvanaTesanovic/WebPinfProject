@@ -2,6 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee web-app_3_0.xsd" version="3.0">
   <display-name>webpinf31</display-name>
   <distributable/>
+  
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>classpath:applicationContext.xml</param-value>
@@ -10,6 +11,7 @@
     <param-name>defaultHtmlEscape</param-name>
     <param-value>true</param-value>
   </context-param>
+  
   <listener>
     <description>Cleans up references to classes loaded after the listener is loaded. This MUST be the first listener
 			defined according to the documentation for it to work properly.
@@ -26,30 +28,21 @@
   <listener>
     <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
   </listener>
-  <servlet>
-    <servlet-name>web</servlet-name>
-    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-    <init-param>
-      <param-name>contextConfigLocation</param-name>
-      <param-value>classpath:spring/spring-mvc.xml</param-value>
-    </init-param>
-  </servlet>
-  <servlet>
-    <servlet-name>rest</servlet-name>
-    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-    <init-param>
-      <param-name>contextConfigLocation</param-name>
-      <param-value>classpath:spring/spring-rest.xml</param-value>
-    </init-param>
-  </servlet>
+  
+	<servlet>
+		<servlet-name>web</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value></param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
   <servlet-mapping>
     <servlet-name>web</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>rest</servlet-name>
-    <url-pattern>/api/</url-pattern>
-  </servlet-mapping>
+  
   <error-page>
     <error-code>500</error-code>
     <location>/WEB-INF/error/40x.jsp</location>
@@ -66,8 +59,10 @@
     <error-code>404</error-code>
     <location>/WEB-INF/error/40x.jsp</location>
   </error-page>
+  
   <session-config>
     <session-timeout>30</session-timeout>
     <tracking-mode>COOKIE</tracking-mode>
   </session-config>
+  
 </web-app>

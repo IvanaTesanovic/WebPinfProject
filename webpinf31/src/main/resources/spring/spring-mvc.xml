@@ -15,6 +15,16 @@
         <property name="suffix" value=".jsp"/>
         <property name="order" value="2" />
 	</bean>
+	
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="jsonMessageConverter"/>
+            </list>
+        </property>
+    </bean>
+     
+    <bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
 
 	<context:component-scan base-package="controller"/>
 	<context:component-scan base-package="service"/>

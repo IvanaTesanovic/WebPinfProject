@@ -10,7 +10,7 @@
 	
 </head>
 <body>
-	
+	index
 	<div class="container" id="appContainer">
 		
 		<div data-ng-view>
@@ -35,6 +35,7 @@
 	
 	<!-- SERVICES -->
 	<script type="text/javascript" src="<spring:url value='${version}/js/service/homePageService.js' />"></script>
+	<script type="text/javascript" src="<spring:url value='${version}/js/service/loginService.js' />"></script>
 
 	<!-- CSS -->
 	<script type="text/javascript" src="<spring:url value='${version}/resources/css/bootstrap.min.css' />"></script>
