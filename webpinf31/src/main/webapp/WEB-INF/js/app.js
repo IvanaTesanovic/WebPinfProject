@@ -1,6 +1,10 @@
 var app = angular.module('WebPinf31',['ngRoute', 'ui.bootstrap'])
 	.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider){
 		$routeProvider
+			.when('/login', {
+				templateUrl: 'pages/login.html',
+				controller: 'LoginController'
+			})
 			.when('/homepage', {
 				templateUrl: 'pages/homepage.html',
 				controller: 'HomePageController'
@@ -13,7 +17,5 @@ var app = angular.module('WebPinf31',['ngRoute', 'ui.bootstrap'])
 				templateUrl: 'pages/drzava.html',
 				controller: 'DrzaveController'
 			}) 
-			.otherwise({
-				redirectTo: '/homepage'
-			}); 
+			.otherwise('/login');
 	}]);
