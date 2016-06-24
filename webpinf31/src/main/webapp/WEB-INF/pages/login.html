@@ -1,2 +1,10 @@
-login
-{{string}}
+<div data-ng-controller="LoginController">
+{{retVal}}
+
+<form data-ng-submit="submitUser()">
+<input data-ng-model="korisnickoIme"/>
+<input data-ng-model="lozinka"/>
+<button type="submit">Login</button>
+</form>
+
+</div>

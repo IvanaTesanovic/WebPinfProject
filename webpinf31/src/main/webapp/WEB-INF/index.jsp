@@ -31,7 +31,6 @@
 	<!-- CONTROLLERS -->
 	<script type="text/javascript" src="<spring:url value='${version}/js/controllers/homePageController.js' />"></script>
 	<script type="text/javascript" src="<spring:url value='${version}/js/controllers/loginController.js' />"></script>
-	<script type="text/javascript" src="<spring:url value='${version}/js/controllers/defaultController.js' />"></script>
 	
 	<!-- SERVICES -->
 	<script type="text/javascript" src="<spring:url value='${version}/js/service/homePageService.js' />"></script>

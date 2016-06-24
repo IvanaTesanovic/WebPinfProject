@@ -1,19 +1,15 @@
 app.controller("LoginController", function($scope, $http, LoginService) {
 	
-	$scope.string = {};
+	$scope.retVal = {};
 	
-	$scope.getString = function() {
-		LoginService.getString(function(data){
-			if(angular.isObject(data)) {
-				$scope.string = data;
-			}
+	$scope.submitUser = function() {
+		
+		var korisnickoIme = $scope.korisnickoIme;
+		var lozinka = $scope.lozinka;
+		
+		LoginService.submitUser(korisnickoIme, lozinka, function(response) {
+			retVal = reponse;
 		});
 	};
-	
-	$scope.init = function() {
-		$scope.getString();
-	};
-	
-	$scope.init();
 	
 });
