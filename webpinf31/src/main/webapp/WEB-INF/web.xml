@@ -29,20 +29,35 @@
     <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
   </listener>
   
+	<!-- Servlets -->
 	<servlet>
 		<servlet-name>web</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value></param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:spring/spring-mvc.xml</param-value>
+        </init-param>
 	</servlet>
-  <servlet-mapping>
-    <servlet-name>web</servlet-name>
-    <url-pattern>/</url-pattern>
-  </servlet-mapping>
+	<servlet>
+		<servlet-name>rest</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:spring/spring-rest.xml</param-value>
+        </init-param>
+	</servlet>
+
+	<!-- Servlet mapping -->
+	<servlet-mapping>
+		<servlet-name>web</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>rest</servlet-name>
+		<url-pattern>/api/</url-pattern>
+	</servlet-mapping>
   
+  <!-- Error pages -->
   <error-page>
     <error-code>500</error-code>
     <location>/WEB-INF/error/40x.jsp</location>

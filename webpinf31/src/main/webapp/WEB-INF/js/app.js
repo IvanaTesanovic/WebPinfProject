@@ -22,4 +22,6 @@ var app = angular.module('WebPinf31',['ngRoute', 'ui.bootstrap'])
 				redirectTo: '/login'
 			});
 		
+		$httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+		
 	}]);
