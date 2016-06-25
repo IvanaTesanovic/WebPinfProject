@@ -5,16 +5,39 @@
 
 <ul>
 <li><button data-ng-click="openTable('drzave')">Drzave</button></li>
+<li><button data-ng-click="openTable('naseljenaMesta')">Naseljena mesta</button></li>
+<li><button data-ng-click="openTable('banke')">Banke</button></li>
+<li><button data-ng-click="openTable('rtgs')">RTGS</button></li>
+<li><button data-ng-click="openTable('kliring')">Kliring</button></li>
+<li><button data-ng-click="openTable('klijenti')">Klijenti</button></li>
+<li><button data-ng-click="openTable('kursnaLista')">Kursna lista</button></li>
 </ul>
+
+<div data-ng-show="nameTable === 'drzave'">
+<table border="2">
+	<tr><th>ID</th><th>Naziv</th></tr>
+	<tr data-ng-repeat="t in table"><td>{{t.id}}</td><td>{{t.naziv}}</td></tr>
+</table>
+</div>
+
+<div data-ng-show="nameTable === 'naseljenaMesta'">
+<table border="2">
+	<tr><th>ID</th><th>Naziv</th></tr>
+	<tr data-ng-repeat="t in table"><td>{{t.id}}</td><td>{{t.naziv}}</td></tr>
+</table>
+</div>
+
+<div data-ng-show="nameTable === 'banke'">
+<table border="2">
+	<tr><th>ID</th><th>Naziv</th><th>PIB</th></tr>
+	<tr data-ng-repeat="t in table"><td>{{t.id}}</td><td>{{t.naziv}}</td><td>{{t.pib}}</td></tr>
+</table>
+</div>
+
 
 {{rezim}}
 <button data-ng-click="rezim = 1">Izmena</button>
 <button data-ng-click="rezim = 2">Dodavanje</button>
 <button data-ng-click="rezim = 3">Pretraga</button>
-
-<!-- ng-show="customerType.type == 'new'" -->
-<ul><li data-ng-repeat="t in table">{{t.naziv}}</li></ul>
-
-
 </div>
 </body>
