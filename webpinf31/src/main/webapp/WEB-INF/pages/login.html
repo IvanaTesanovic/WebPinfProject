@@ -1,10 +1,21 @@
+<head>
+</head>
+
+<body>
 <div data-ng-controller="LoginController">
-return: {{retVal}}
 
 <form data-ng-submit="submitUser()">
-<input data-ng-model="korisnickoIme"/>
-<input data-ng-model="lozinka"/>
-<button type="submit">Login</button>
+<label for="korisnickoIme">Korisnicko ime:</label><input data-ng-model="korisnickoIme"/>
+<label for="lozinka">Lozinka:</label><input data-ng-model="lozinka"/>
+<button type="submit">Uloguj se</button>
 </form>
+<div data-ng-show="!authenticated">
+	<p>Login to see your greeting</p>
+</div>
+<div data-ng-show="authenticated">
+	<p>all good</p>
+</div>
 
 </div>
+
+</body>

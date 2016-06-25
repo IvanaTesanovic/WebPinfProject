@@ -1,5 +1,7 @@
 package controller.api;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,13 +28,13 @@ public class LoginAPIController {
 		return "logfdgfgin";
 	}
 	
-	@RequestMapping(method = RequestMethod.POST/*, produces = MimeTypes.APPLICATION_JSON, consumes = MimeTypes.APPLICATION_JSON*/)
-	public ResponseEntity<Korisnik> loginUser(@RequestBody KorisnikDTO korisnikDTO) {
+	@RequestMapping(method = RequestMethod.POST, produces = MimeTypes.APPLICATION_JSON, consumes = MimeTypes.APPLICATION_JSON)
+	public Korisnik loginUser(@RequestBody KorisnikDTO korisnikDTO, HttpServletResponse response) {
 
 		if(korisnikService.findByKorisnickoIme(korisnikDTO.getKorisnickoIme()) != null)
-			return new ResponseEntity<>(HttpStatus.OK);
+			return new Korisnik(korisnikDTO.getKorisnickoIme(), korisnikDTO.getLozinka());
 		else
-			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+			return null;
 	}
 
 }

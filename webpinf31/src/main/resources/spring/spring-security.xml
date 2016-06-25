@@ -6,17 +6,17 @@
        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
        
     	<security:http auto-config='true' >
-			<security:intercept-url pattern="/homepage" access="ROLE_ZAPOSLEN" />
-			<security:form-login login-page="/login"
-			 			default-target-url="/homepage"
+			<security:intercept-url pattern="/api/homepage" access="ROLE_ZAPOSLEN" />
+			<security:form-login login-page="/api/login"
+			 			default-target-url="/api/homepage"
 						authentication-failure-url="/loginError" />
-			<security:logout logout-success-url="/login" />
+			<security:logout logout-success-url="/api/login" />
 		</security:http>
 		
 		<security:authentication-manager alias="authenticationManager">
 			<security:authentication-provider>
 				<security:jdbc-user-service data-source-ref="dataSource"
-					authorities-by-username-query="select k.korisnicko_ime, u.uloga from klijent k, uloga u   
+					authorities-by-username-query="select k.korisnicko_ime, u.uloga from korisnik k, uloga u   
         										   where k.id = u.id_korisnika and k.korisnicko_ime =?"
 					users-by-username-query="select korisncko_ime, lozinka, true from korisnik where korisnicko_ime=?" />
 			</security:authentication-provider>

@@ -1,4 +1,4 @@
-app.factory("LoginService", function($http) {
+app.factory("LoginService", function($http, $location) {
 	return {
 	    getString: function(callback) {
 			$http.get('api/login').success(callback);
@@ -13,11 +13,11 @@ app.factory("LoginService", function($http) {
                     "Content-Type": "application/json",
                     "Accept": "text/plain, application/json"
                 }
-			}).then(function (response) {
-				
-			}, function(errorResponse) {
-				
-			});
+			}).then(function(callbackSuccess) {
+				//ovo ne treba ovako, on uvek ode na homepage
+				$location.path('/homepage');
+			}
+			);
 		}
     };       
 });

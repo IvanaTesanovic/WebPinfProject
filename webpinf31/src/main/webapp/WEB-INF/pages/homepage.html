@@ -1,15 +1,19 @@
-<div id="home">home page</div>
-<div class="nenad">
-	
-	<ul>
-  		<li data-ng-repeat="b in banke">
-    	{{ b.naziv }}
-  		</li>
-	</ul>
-</div>
+<div data-ng-controller="HomePageController">
 
-<table>
-  <tr data-ng-repeat="d in drzave">
-    <td>{{ d.naziv }}</td>
-  </tr>
-</table>
+<ul>
+<li>
+<button data-ng-click="openTable('drzave')">Drzave</button>
+</li>
+<li>
+<button data-ng-click="openTable('naseljenaMesta')">Naseljena mesta</button>
+</li>
+<li>
+<button data-ng-click="openTable('banke')">Banke</button>
+</li>
+</ul>
+<ul>
+<li data-ng-repeat="d in tabela">d.dr_naziv
+</li>
+</ul>
+
+</div>

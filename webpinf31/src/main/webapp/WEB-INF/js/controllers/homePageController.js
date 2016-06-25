@@ -3,6 +3,17 @@ app.controller("HomePageController", function($scope, $http, HomePageService) {
 	$scope.drzave = {};
 	$scope.banke = {};
 	
+	$scope.tabela = {};
+	$scope.tableName = 'table';
+	
+	$scope.openTable = function(tn) {
+		 HomePageService.openTable(tn, function(data) {
+			 if(angular.isObject(data)) {
+					$scope.tabela = data;
+				}
+		 });
+	}
+	
 	/** Load data */
 	$scope.getDrzave = function() {
 		HomePageService.getDrzave(function(data){
