@@ -14,13 +14,13 @@ import javax.persistence.Table;
 @Table(name = "valuta")
 public class Valuta extends AbstractEntity {
 
-	@Column(name = "va_sifra")
+	@Column(nullable = false)
 	private String sifra;
 	
-	@Column(name = "va_naziv")
+	@Column(nullable = false)
 	private String naziv;
 	
-	@Column(name = "va_domicilna")
+	@Column(nullable = false)
 	private Boolean domicilna;
 	
 	@ManyToOne(fetch = FetchType.EAGER)

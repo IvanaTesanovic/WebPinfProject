@@ -15,20 +15,20 @@ import javax.persistence.Table;
 @Table(name = "dnevno_stanje_racuna")
 public class DnevnoStanjeRacuna extends AbstractEntity {
 
-	@Column(name = "datum_prometa")
-	private Date datumprometa;
+	@Column(nullable = false)
+	private Date datum_prometa;
 	
-	@Column(name = "dsr_ukorist")
-	private Double uKorist;
+	@Column(nullable = false)
+	private Double promet_u_korist;
 	
-	@Column(name = "dsr_prethodno")
-	private Double prethodno;
+	@Column(nullable = false)
+	private Double prethodno_stanje;
 	
-	@Column(name = "dsr_nateret")
-	private Double naTeret;
+	@Column(nullable = false)
+	private Double promet_na_Teret;
 	
-	@Column(name = "dsr_novo_stanje")
-	private Double novoStanje;
+	@Column(nullable = false)
+	private Double novo_stanje;
 	
 	/** STRANI KLJUCEVI **/
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -41,45 +41,79 @@ public class DnevnoStanjeRacuna extends AbstractEntity {
 	
 	public DnevnoStanjeRacuna() {}
 
-	public Date getDatumprometa() {
-		return datumprometa;
+
+
+	public Date getDatum_prometa() {
+		return datum_prometa;
 	}
 
-	public void setDatumprometa(Date datumprometa) {
-		this.datumprometa = datumprometa;
+
+
+	public void setDatum_prometa(Date datum_prometa) {
+		this.datum_prometa = datum_prometa;
 	}
 
-	public Double getuKorist() {
-		return uKorist;
+
+
+	public Double getPromet_u_korist() {
+		return promet_u_korist;
 	}
 
-	public void setuKorist(Double uKorist) {
-		this.uKorist = uKorist;
+
+
+	public void setPromet_u_korist(Double promet_u_korist) {
+		this.promet_u_korist = promet_u_korist;
 	}
 
-	public Double getPrethodno() {
-		return prethodno;
+
+
+	public Double getPrethodno_stanje() {
+		return prethodno_stanje;
 	}
 
-	public void setPrethodno(Double prethodno) {
-		this.prethodno = prethodno;
+
+
+	public void setPrethodno_stanje(Double prethodno_stanje) {
+		this.prethodno_stanje = prethodno_stanje;
 	}
 
-	public Double getNaTeret() {
-		return naTeret;
+
+
+	public Double getPromet_na_Teret() {
+		return promet_na_Teret;
 	}
 
-	public void setNaTeret(Double naTeret) {
-		this.naTeret = naTeret;
+
+
+	public void setPromet_na_Teret(Double promet_na_Teret) {
+		this.promet_na_Teret = promet_na_Teret;
 	}
 
-	public Double getNovoStanje() {
-		return novoStanje;
+
+
+	public Double getNovo_stanje() {
+		return novo_stanje;
 	}
 
-	public void setNovoStanje(Double novoStanje) {
-		this.novoStanje = novoStanje;
+
+
+	public void setNovo_stanje(Double novo_stanje) {
+		this.novo_stanje = novo_stanje;
 	}
+
+
+
+	public List<AnalitikaIzvoda> getAnalitikeIzvoda() {
+		return analitikeIzvoda;
+	}
+
+
+
+	public void setAnalitikeIzvoda(List<AnalitikaIzvoda> analitikeIzvoda) {
+		this.analitikeIzvoda = analitikeIzvoda;
+	}
+
+
 
 	public Racun getRacun() {
 		return racun;

@@ -11,13 +11,13 @@ import javax.persistence.Table;
 @Table(name = "kurs_u_valuti")
 public class KursUValuti extends AbstractEntity {
 	
-	@Column(name = "kupovni")
+	@Column(nullable = false)
 	private Double kupovni;
 	
-	@Column(name = "srednji")
+	@Column(nullable = false)
 	private Double srednji;
 	
-	@Column(name = "prodajni")
+	@Column(nullable = false)
 	private Double prodajni;
 	
 	@ManyToOne(fetch = FetchType.EAGER)

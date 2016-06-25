@@ -14,7 +14,7 @@ import model.AbstractEntity;
 @Table(name = "drzava")
 public class Drzava extends AbstractEntity {
 	
-	@Column(name = "dr_naziv")
+	@Column(nullable = false)
 	private String naziv;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "drzava")

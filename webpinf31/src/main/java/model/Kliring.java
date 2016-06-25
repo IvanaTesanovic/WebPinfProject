@@ -13,32 +13,32 @@ import javax.persistence.Table;
 @Table(name = "kliring")
 public class Kliring extends AbstractEntity {
 	
-	@Column(name = "klir_id_poruke")
-	private String idPoruke;
+	@Column(nullable = false)
+	private String id_poruke;
 	
-	@Column(name = "klir_swift_duznika")
-	private String swiftBankeDuznika;
+	@Column(nullable = true)
+	private String swift_banke_duznika;
 	
-	@Column(name = "klir_obracunski_duznika")
-	private String obracunskiBankeDuznika;
+	@Column(nullable = true)
+	private String obracunski_racun_banke_duznika;
 	
-	@Column(name = "klir_swift_poverioca")
-	private String swiftBankePoverioca;
+	@Column(nullable = true)
+	private String swift_banke_poverioca;
 	
-	@Column(name = "klir_obracunski_poverioca")
-	private String obracunskiBankePoverioca;
+	@Column(nullable = true)
+	private String obracunski_racun_banke_poverioca;
 	
-	@Column(name = "klir_datum_naloga")
-	private Date datumNaloga;
+	@Column(nullable = false)
+	private Date datum_naloga;
 	
-	@Column(name = "klir_sifra_valute")
-	private String sifraValute;
+	@Column(nullable = true)
+	private String sifra_valute;
 	
-	@Column(name = "klir_datum_valute")
-	private Date datumValute;
+	@Column(nullable = false)
+	private Date datum_valute;
 	
-	@Column(name = "klir_ukupan_iznos")
-	private Double ukupanIznos;
+	@Column(nullable = false)
+	private Double ukupan_iznos;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "klir_gi_id")
@@ -46,77 +46,98 @@ public class Kliring extends AbstractEntity {
 	
 	public Kliring() {}
 
-	public String getIdPoruke() {
-		return idPoruke;
+	
+	public String getId_poruke() {
+		return id_poruke;
 	}
 
-	public void setIdPoruke(String idPoruke) {
-		this.idPoruke = idPoruke;
+
+	public void setId_poruke(String id_poruke) {
+		this.id_poruke = id_poruke;
 	}
 
-	public String getSwiftBankeDuznika() {
-		return swiftBankeDuznika;
+
+	public String getSwift_banke_duznika() {
+		return swift_banke_duznika;
 	}
 
-	public void setSwiftBankeDuznika(String swiftBankeDuznika) {
-		this.swiftBankeDuznika = swiftBankeDuznika;
+
+	public void setSwift_banke_duznika(String swift_banke_duznika) {
+		this.swift_banke_duznika = swift_banke_duznika;
 	}
 
-	public String getObracunskiBankeDuznika() {
-		return obracunskiBankeDuznika;
+
+	public String getObracunski_racun_banke_duznika() {
+		return obracunski_racun_banke_duznika;
 	}
 
-	public void setObracunskiBankeDuznika(String obracunskiBankeDuznika) {
-		this.obracunskiBankeDuznika = obracunskiBankeDuznika;
+
+	public void setObracunski_racun_banke_duznika(
+			String obracunski_racun_banke_duznika) {
+		this.obracunski_racun_banke_duznika = obracunski_racun_banke_duznika;
 	}
 
-	public String getSwiftBankePoverioca() {
-		return swiftBankePoverioca;
+
+	public String getSwift_banke_poverioca() {
+		return swift_banke_poverioca;
 	}
 
-	public void setSwiftBankePoverioca(String swiftBankePoverioca) {
-		this.swiftBankePoverioca = swiftBankePoverioca;
+
+	public void setSwift_banke_poverioca(String swift_banke_poverioca) {
+		this.swift_banke_poverioca = swift_banke_poverioca;
 	}
 
-	public String getObracunskiBankePoverioca() {
-		return obracunskiBankePoverioca;
+
+	public String getObracunski_racun_banke_poverioca() {
+		return obracunski_racun_banke_poverioca;
 	}
 
-	public void setObracunskiBankePoverioca(String obracunskiBankePoverioca) {
-		this.obracunskiBankePoverioca = obracunskiBankePoverioca;
+
+	public void setObracunski_racun_banke_poverioca(
+			String obracunski_racun_banke_poverioca) {
+		this.obracunski_racun_banke_poverioca = obracunski_racun_banke_poverioca;
 	}
 
-	public Date getDatumNaloga() {
-		return datumNaloga;
+
+	public Date getDatum_naloga() {
+		return datum_naloga;
 	}
 
-	public void setDatumNaloga(Date datumNaloga) {
-		this.datumNaloga = datumNaloga;
+
+	public void setDatum_naloga(Date datum_naloga) {
+		this.datum_naloga = datum_naloga;
 	}
 
-	public String getSifraValute() {
-		return sifraValute;
+
+	public String getSifra_valute() {
+		return sifra_valute;
 	}
 
-	public void setSifraValute(String sifraValute) {
-		this.sifraValute = sifraValute;
+
+	public void setSifra_valute(String sifra_valute) {
+		this.sifra_valute = sifra_valute;
 	}
 
-	public Date getDatumValute() {
-		return datumValute;
+
+	public Date getDatum_valute() {
+		return datum_valute;
 	}
 
-	public void setDatumValute(Date datumValute) {
-		this.datumValute = datumValute;
+
+	public void setDatum_valute(Date datum_valute) {
+		this.datum_valute = datum_valute;
 	}
 
-	public Double getUkupanIznos() {
-		return ukupanIznos;
+
+	public Double getUkupan_iznos() {
+		return ukupan_iznos;
 	}
 
-	public void setUkupanIznos(Double ukupanIznos) {
-		this.ukupanIznos = ukupanIznos;
+
+	public void setUkupan_iznos(Double ukupan_iznos) {
+		this.ukupan_iznos = ukupan_iznos;
 	}
+
 
 	public GrupaIzvoda getGrupaIzvoda() {
 		return grupaIzvoda;
