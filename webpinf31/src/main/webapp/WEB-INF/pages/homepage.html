@@ -1,19 +1,20 @@
+<head></head>
+
+<body>
 <div data-ng-controller="HomePageController">
 
 <ul>
-<li>
-<button data-ng-click="openTable('drzave')">Drzave</button>
-</li>
-<li>
-<button data-ng-click="openTable('naseljenaMesta')">Naseljena mesta</button>
-</li>
-<li>
-<button data-ng-click="openTable('banke')">Banke</button>
-</li>
-</ul>
-<ul>
-<li data-ng-repeat="d in tabela">d.dr_naziv
-</li>
+<li><button data-ng-click="openTable('drzave')">Drzave</button></li>
 </ul>
 
+{{rezim}}
+<button data-ng-click="rezim = 1">Izmena</button>
+<button data-ng-click="rezim = 2">Dodavanje</button>
+<button data-ng-click="rezim = 3">Pretraga</button>
+
+<!-- ng-show="customerType.type == 'new'" -->
+<ul><li data-ng-repeat="t in table">{{t.naziv}}</li></ul>
+
+
 </div>
+</body>

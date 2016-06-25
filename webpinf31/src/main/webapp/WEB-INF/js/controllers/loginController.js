@@ -1,6 +1,6 @@
 app.controller("LoginController", function($scope, $http, $location, LoginService) {
 	
-	$scope.retVal = {}
+	$scope.login = "sonja";
 	
 	$scope.submitUser = function() {
 		

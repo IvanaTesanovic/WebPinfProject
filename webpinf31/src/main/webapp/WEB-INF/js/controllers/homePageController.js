@@ -1,41 +1,18 @@
-app.controller("HomePageController", function($scope, $http, HomePageService) {
+app.controller("HomePageController", function($scope, HomePageService) {
 	
-	$scope.drzave = {};
-	$scope.banke = {};
+	$scope.rezim = "Trenutno nema rezima";
+	$scope.table = {};
+
+	$scope.izvrsiAkciju = function() {
+		var rez = $scope.rezim;
+		HomePageService.izvrsiAkciju(rez);
+	};
 	
-	$scope.tabela = {};
-	$scope.tableName = 'table';
-	
-	$scope.openTable = function(tn) {
-		 HomePageService.openTable(tn, function(data) {
-			 if(angular.isObject(data)) {
-					$scope.tabela = data;
-				}
-		 });
-	}
-	
-	/** Load data */
-	$scope.getDrzave = function() {
-		HomePageService.getDrzave(function(data){
-			if(angular.isObject(data)) {
-				$scope.drzave = data;
-			}
+	$scope.openTable = function(tableName) {
+		HomePageService.openTable(tableName, function(data) {
+			if(angular.isObject(data))
+				$scope.table = data;
 		});
 	};
-	
-	$scope.getBanke = function() {
-		HomePageService.getBanke(function(data){
-			if(angular.isObject(data)) {
-				$scope.banke = data;
-			}
-		});
-	};
-	
-	$scope.init = function(){
-		$scope.getDrzave();
-		$scope.getBanke();
-	};
-	
-	$scope.init();
 	
 });
