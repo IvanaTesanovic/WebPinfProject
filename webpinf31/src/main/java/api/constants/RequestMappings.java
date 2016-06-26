@@ -13,6 +13,8 @@ public final class RequestMappings {
 	public static final String NASELJENA_MESTA = "/naseljenaMesta";
 	public static final String BANKE = "/banke";
 	
+	public static final String OBRISI = "/obrisi/";
+	
 	public RequestMappings() {}
 	
 }

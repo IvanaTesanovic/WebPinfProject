@@ -11,6 +11,19 @@ app.factory("HomePageService", function($http) {
 	    },*/
 	    openTable: function(tableName, callback) {
 	    	$http.get('api/homepage/' + tableName).success(callback);
-	    }
+	    },	    
+	    deleteRow: function(rowId) {
+			$http({
+				method: 'DELETE',
+                url: 'api/homepage/drzave/obrisi/' + rowId,
+                data: rowId,
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "text/plain, application/json"
+                }
+			}).then(function(callbackSuccess) {
+			}
+			);
+		}
     };       
 });

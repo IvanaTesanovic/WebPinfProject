@@ -17,4 +17,10 @@ app.controller("HomePageController", function($scope, HomePageService) {
 		});
 	};
 	
+	$scope.deleteRow = function(tIndex) {
+		HomePageService.deleteRow(tIndex);
+//		openTable(nameTable);
+		$scope.table.splice(tIndex - 1, 1);
+	};
+	
 });

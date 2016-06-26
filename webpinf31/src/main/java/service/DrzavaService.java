@@ -22,4 +22,7 @@ public class DrzavaService {
 		return drzavaRepo.findByNaziv(naziv);
 	}
 
+	public void deleteRow(Long id) {
+		drzavaRepo.delete(id);
+	}
 }

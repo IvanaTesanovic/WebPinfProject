@@ -14,9 +14,15 @@
 </ul>
 
 <div data-ng-show="nameTable === 'drzave'">
-<table border="2">
-	<tr><th>ID</th><th>Naziv</th></tr>
-	<tr data-ng-repeat="t in table"><td>{{t.id}}</td><td>{{t.naziv}}</td></tr>
+<table class="table table-bordered table-hover">
+	<tr>
+		<th>ID</th><th>Naziv</th>
+	</tr>
+	<tr data-ng-repeat="t in table">
+		<td>{{t.id}}</td>
+		<td>{{t.naziv}}</td>
+		<td><a data-ng-click="deleteRow(t.id)" class = "btn btn-primary">obrisi</a></td>
+	</tr>
 </table>
 </div>
 
