@@ -12,11 +12,10 @@ app.factory("HomePageService", function($http) {
 	    openTable: function(tableName, callback) {
 	    	$http.get('api/homepage/' + tableName).success(callback);
 	    },	    
-	    deleteRow: function(rowId) {
+	    deleteRow: function(tableName, rowId) {
 			$http({
 				method: 'DELETE',
-                url: 'api/homepage/drzave/obrisi/' + rowId,
-                data: rowId,
+                url: 'api/homepage/' + tableName + '/obrisi/' + rowId,
                 headers: {
                     "Content-Type": "application/json",
                     "Accept": "text/plain, application/json"

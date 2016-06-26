@@ -18,4 +18,8 @@ public class NaseljenoMestoService {
 		return (List<NaseljenoMesto>) nasMestoRepo.findAll();
 	}
 	
+	public void deleteRow(Long id) {
+		nasMestoRepo.delete(id);
+	}
+	
 }
