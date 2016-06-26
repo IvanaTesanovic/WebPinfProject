@@ -15,13 +15,13 @@ import javax.persistence.Table;
 @Table(name = "racun")
 public class Racun extends AbstractEntity {
 	
-	@Column(nullable = false)
-	private String broj_racuna;
+	@Column(name = "broj_racuna")
+	private String brojRacuna;
 	
-	@Column(nullable = false)
-	private Date datum_otvaranja;
+	@Column(name = "datum_otvaranja_racuna")
+	private Date datumOtvaranja;
 	
-	@Column(nullable = false)
+	@Column(name = "vazeci")
 	private Boolean vazeci;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -49,22 +49,20 @@ public class Racun extends AbstractEntity {
 		this.dnevnaStanjaRacuna = dnevnaStanjaRacuna;
 	}
 
-
-
-	public String getBroj_racuna() {
-		return broj_racuna;
+	public String getBrojRacuna() {
+		return brojRacuna;
 	}
 
-	public void setBroj_racuna(String broj_racuna) {
-		this.broj_racuna = broj_racuna;
+	public void setBrojRacuna(String brojRacuna) {
+		this.brojRacuna = brojRacuna;
 	}
 
-	public Date getDatum_otvaranja() {
-		return datum_otvaranja;
+	public Date getDatumOtvaranja() {
+		return datumOtvaranja;
 	}
 
-	public void setDatum_otvaranja(Date datum_otvaranja) {
-		this.datum_otvaranja = datum_otvaranja;
+	public void setDatumOtvaranja(Date datumOtvaranja) {
+		this.datumOtvaranja = datumOtvaranja;
 	}
 
 	public Boolean getVazeci() {

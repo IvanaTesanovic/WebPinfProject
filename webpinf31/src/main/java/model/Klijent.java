@@ -12,59 +12,59 @@ import javax.persistence.Table;
 @Table(name = "klijent")
 public class Klijent extends AbstractEntity {
 
-	@Column(nullable = false)
-	private Boolean fizicko_lice;
+	@Column(name = "fizicko_lice")
+	private Boolean fizickoLice;
 	
-	@Column(nullable = true)
+	@Column(name = "jmbg")
 	private String jmbg;
 	
-	@Column(nullable = true)
+	@Column(name = "ime")
 	private String ime;
 	
-	@Column(nullable = true)
+	@Column(name = "prezime")
 	private String prezime;
 	
-	@Column(nullable = false)
+	@Column(name = "adresa")
 	private String adresa;
 	
-	@Column(nullable = false)
+	@Column(name = "telefon")
 	private String telefon;
 	
-	@Column(nullable = false)
+	@Column(name = "email")
 	private String email;
 	
-	@Column(nullable = true)
-	private String naziv_klijenta;
+	@Column(name = "naziv_klijenta")
+	private String naziv;
 	
-	@Column(nullable = true)
+	@Column(name = "pib")
 	private String pib;
 	
-	@Column(nullable = true)
+	@Column(name = "fax")
 	private String fax;
 	
-	@Column(nullable = true)
+	@Column(name = "sajt")
 	private String sajt;
 	
-	@Column(nullable = true)
-	private String sifra_delatnosti;
+	@Column(name = "sifra_delatnosti")
+	private String sifraDelatnosti;
 	
-	@Column(nullable = true)
-	private String naziv_delatnosti;
+	@Column(name = "naziv_delatnosti")
+	private String nazivDelatnosti;
 	
-	@Column(nullable = true)
-	private String odgovorno_lice;
+	@Column(name = "odgovorno_lice")
+	private String odgovornoLice;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "klijent")
 	private List<Racun> racuni;
 	
 	public Klijent() {}
 
-	public Boolean getFizicko_lice() {
-		return fizicko_lice;
+	public Boolean getFizickoLice() {
+		return fizickoLice;
 	}
 
-	public void setFizicko_lice(Boolean fizicko_lice) {
-		this.fizicko_lice = fizicko_lice;
+	public void setFizickoLice(Boolean fizickoLice) {
+		this.fizickoLice = fizickoLice;
 	}
 
 	public String getJmbg() {
@@ -115,12 +115,12 @@ public class Klijent extends AbstractEntity {
 		this.email = email;
 	}
 
-	public String getNaziv_klijenta() {
-		return naziv_klijenta;
+	public String getNaziv() {
+		return naziv;
 	}
 
-	public void setNaziv_klijenta(String naziv_klijenta) {
-		this.naziv_klijenta = naziv_klijenta;
+	public void setNaziv(String naziv) {
+		this.naziv = naziv;
 	}
 
 	public String getPib() {
@@ -147,37 +147,28 @@ public class Klijent extends AbstractEntity {
 		this.sajt = sajt;
 	}
 
-	public String getSifra_delatnosti() {
-		return sifra_delatnosti;
+	public String getSifraDelatnosti() {
+		return sifraDelatnosti;
 	}
 
-	public void setSifra_delatnosti(String sifra_delatnosti) {
-		this.sifra_delatnosti = sifra_delatnosti;
+	public void setSifraDelatnosti(String sifraDelatnosti) {
+		this.sifraDelatnosti = sifraDelatnosti;
 	}
 
-	public String getNaziv_delatnosti() {
-		return naziv_delatnosti;
+	public String getNazivDelatnosti() {
+		return nazivDelatnosti;
 	}
 
-	public void setNaziv_delatnosti(String naziv_delatnosti) {
-		this.naziv_delatnosti = naziv_delatnosti;
+	public void setNazivDelatnosti(String nazivDelatnosti) {
+		this.nazivDelatnosti = nazivDelatnosti;
 	}
 
-	public String getOdgovorno_lice() {
-		return odgovorno_lice;
+	public String getOdgovornoLice() {
+		return odgovornoLice;
 	}
 
-	public void setOdgovorno_lice(String odgovorno_lice) {
-		this.odgovorno_lice = odgovorno_lice;
+	public void setOdgovornoLice(String odgovornoLice) {
+		this.odgovornoLice = odgovornoLice;
 	}
-
-	public List<Racun> getRacuni() {
-		return racuni;
-	}
-
-	public void setRacuni(List<Racun> racuni) {
-		this.racuni = racuni;
-	}
-
-
+	
 }

@@ -16,59 +16,59 @@ import javax.persistence.Table;
 @Table(name = "rtgs")
 public class RTGS extends AbstractEntity {
 	
-	@Column(nullable = false)
-	private String id_poruke;
+	@Column(name = "rtgs_id_poruke")
+	private String idPoruke;
 	
-	@Column(nullable = true)
-	private String swift_banke_duznika;
+	@Column(name = "rtgs_swift_duznika")
+	private String swiftBankeDuznika;
 	
-	@Column(nullable = false)
+	@Column(name = "rtgs_duznik")
 	private String duznik;
 	
-	@Column(nullable = false)
-	private String racun_duznika;
+	@Column(name = "rtgs_racun_duznika")
+	private String racunDuznika;
 	
-	@Column(nullable = true)
-	private String obracunski_racun_banke_duznika;
+	@Column(name = "rtgs_obracunski_duznika")
+	private String obracunskiBankeDuznika;
 	
-	@Column(nullable = true)
-	private String swift_banke_poverioca;
+	@Column(name = "rtgs_swift_poverioca")
+	private String swiftBankePoverioca;
 	
-	@Column(nullable = false)
+	@Column(name = "rtgs_poverilac")
 	private String poverilac;
 	
-	@Column(nullable = false)
-	private String racun_poverioca;
+	@Column(name = "rtgs_racun_poverioca")
+	private String racunPoverioca;
 	
-	@Column(nullable = true)
-	private String obracunski_recun_banke_poverioca;
+	@Column(name = "rtgs_obracunski_poverioca")
+	private String obracunskiBankePoverioca;
 
-	@Column(nullable = true)
-	private String model_zaduzenja;
+	@Column(name = "rtgs_model_zaduzenja")
+	private String modelZaduzenja;
 	
-	@Column(nullable = true)
-	private String poziv_na_broj_zaduzenja;
+	@Column(name = "rtgs_poziv_zaduzenja")
+	private String pozivZaduzenja;
 	
-	@Column(nullable = true)
-	private String model_odobrenja;
+	@Column(name = "rtgs_model_odobrenja")
+	private String modelOdobrenja;
 	
-	@Column(nullable = true)
-	private String poziv_na_broj_odobrenja;
+	@Column(name = "rtgs_poziv_odobrenja")
+	private String pozivOdobrenja;
 	
-	@Column(nullable = true)
-	private String svrha_placanja;
+	@Column(name = "rtgs_svrha_placanja")
+	private String svrhaPlacanja;
 	
-	@Column(nullable = false)
-	private Date datum_naloga;
+	@Column(name = "rtgs_datum_naloga")
+	private Date datumNaloga;
 	
-	@Column(nullable = true)
-	private String sifra_valute;
+	@Column(name = "rtgs_sifra_valute")
+	private String sifraValute;
 	
-	@Column(nullable = false)
-	private Date datum_valute;
+	@Column(name = "rtgs_datum_valute")
+	private Date datumValute;
 	
-	@Column(nullable = false)
-	private Double ukupan_iznos;
+	@Column(name = "rtgs_ukupan_iznos")
+	private Double ukupanIznos;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "rtgs_ai_id")
@@ -76,20 +76,20 @@ public class RTGS extends AbstractEntity {
 	
 	public RTGS() {}
 
-	public String getId_poruke() {
-		return id_poruke;
+	public String getIdPoruke() {
+		return idPoruke;
 	}
 
-	public void setId_poruke(String id_poruke) {
-		this.id_poruke = id_poruke;
+	public void setIdPoruke(String idPoruke) {
+		this.idPoruke = idPoruke;
 	}
 
-	public String getSwift_banke_duznika() {
-		return swift_banke_duznika;
+	public String getSwiftBankeDuznika() {
+		return swiftBankeDuznika;
 	}
 
-	public void setSwift_banke_duznika(String swift_banke_duznika) {
-		this.swift_banke_duznika = swift_banke_duznika;
+	public void setSwiftBankeDuznika(String swiftBankeDuznika) {
+		this.swiftBankeDuznika = swiftBankeDuznika;
 	}
 
 	public String getDuznik() {
@@ -100,29 +100,28 @@ public class RTGS extends AbstractEntity {
 		this.duznik = duznik;
 	}
 
-	public String getRacun_duznika() {
-		return racun_duznika;
+	public String getRacunDuznika() {
+		return racunDuznika;
 	}
 
-	public void setRacun_duznika(String racun_duznika) {
-		this.racun_duznika = racun_duznika;
+	public void setRacunDuznika(String racunDuznika) {
+		this.racunDuznika = racunDuznika;
 	}
 
-	public String getObracunski_racun_banke_duznika() {
-		return obracunski_racun_banke_duznika;
+	public String getObracunskiBankeDuznika() {
+		return obracunskiBankeDuznika;
 	}
 
-	public void setObracunski_racun_banke_duznika(
-			String obracunski_racun_banke_duznika) {
-		this.obracunski_racun_banke_duznika = obracunski_racun_banke_duznika;
+	public void setObracunskiBankeDuznika(String obracunskiBankeDuznika) {
+		this.obracunskiBankeDuznika = obracunskiBankeDuznika;
 	}
 
-	public String getSwift_banke_poverioca() {
-		return swift_banke_poverioca;
+	public String getSwiftBankePoverioca() {
+		return swiftBankePoverioca;
 	}
 
-	public void setSwift_banke_poverioca(String swift_banke_poverioca) {
-		this.swift_banke_poverioca = swift_banke_poverioca;
+	public void setSwiftBankePoverioca(String swiftBankePoverioca) {
+		this.swiftBankePoverioca = swiftBankePoverioca;
 	}
 
 	public String getPoverilac() {
@@ -133,103 +132,91 @@ public class RTGS extends AbstractEntity {
 		this.poverilac = poverilac;
 	}
 
-	public String getRacun_poverioca() {
-		return racun_poverioca;
+	public String getRacunPoverioca() {
+		return racunPoverioca;
 	}
 
-	public void setRacun_poverioca(String racun_poverioca) {
-		this.racun_poverioca = racun_poverioca;
+	public void setRacunPoverioca(String racunPoverioca) {
+		this.racunPoverioca = racunPoverioca;
 	}
 
-	public String getObracunski_recun_banke_poverioca() {
-		return obracunski_recun_banke_poverioca;
+	public String getObracunskiBankePoverioca() {
+		return obracunskiBankePoverioca;
 	}
 
-	public void setObracunski_recun_banke_poverioca(
-			String obracunski_recun_banke_poverioca) {
-		this.obracunski_recun_banke_poverioca = obracunski_recun_banke_poverioca;
+	public void setObracunskiBankePoverioca(String obracunskiBankePoverioca) {
+		this.obracunskiBankePoverioca = obracunskiBankePoverioca;
 	}
 
-	public String getModel_zaduzenja() {
-		return model_zaduzenja;
+	public String getModelZaduzenja() {
+		return modelZaduzenja;
 	}
 
-	public void setModel_zaduzenja(String model_zaduzenja) {
-		this.model_zaduzenja = model_zaduzenja;
+	public void setModelZaduzenja(String modelZaduzenja) {
+		this.modelZaduzenja = modelZaduzenja;
 	}
 
-	public String getPoziv_na_broj_zaduzenja() {
-		return poziv_na_broj_zaduzenja;
+	public String getPozivZaduzenja() {
+		return pozivZaduzenja;
 	}
 
-	public void setPoziv_na_broj_zaduzenja(String poziv_na_broj_zaduzenja) {
-		this.poziv_na_broj_zaduzenja = poziv_na_broj_zaduzenja;
+	public void setPozivZaduzenja(String pozivZaduzenja) {
+		this.pozivZaduzenja = pozivZaduzenja;
 	}
 
-	public String getModel_odobrenja() {
-		return model_odobrenja;
+	public String getModelOdobrenja() {
+		return modelOdobrenja;
 	}
 
-	public void setModel_odobrenja(String model_odobrenja) {
-		this.model_odobrenja = model_odobrenja;
+	public void setModelOdobrenja(String modelOdobrenja) {
+		this.modelOdobrenja = modelOdobrenja;
 	}
 
-	public String getPoziv_na_broj_odobrenja() {
-		return poziv_na_broj_odobrenja;
+	public String getPozivOdobrenja() {
+		return pozivOdobrenja;
 	}
 
-	public void setPoziv_na_broj_odobrenja(String poziv_na_broj_odobrenja) {
-		this.poziv_na_broj_odobrenja = poziv_na_broj_odobrenja;
+	public void setPozivOdobrenja(String pozivOdobrenja) {
+		this.pozivOdobrenja = pozivOdobrenja;
 	}
 
-	public String getSvrha_placanja() {
-		return svrha_placanja;
+	public String getSvrhaPlacanja() {
+		return svrhaPlacanja;
 	}
 
-	public void setSvrha_placanja(String svrha_placanja) {
-		this.svrha_placanja = svrha_placanja;
+	public void setSvrhaPlacanja(String svrhaPlacanja) {
+		this.svrhaPlacanja = svrhaPlacanja;
 	}
 
-	public Date getDatum_naloga() {
-		return datum_naloga;
+	public Date getDatumNaloga() {
+		return datumNaloga;
 	}
 
-	public void setDatum_naloga(Date datum_naloga) {
-		this.datum_naloga = datum_naloga;
+	public void setDatumNaloga(Date datumNaloga) {
+		this.datumNaloga = datumNaloga;
 	}
 
-	public String getSifra_valute() {
-		return sifra_valute;
+	public String getSifraValute() {
+		return sifraValute;
 	}
 
-	public void setSifra_valute(String sifra_valute) {
-		this.sifra_valute = sifra_valute;
+	public void setSifraValute(String sifraValute) {
+		this.sifraValute = sifraValute;
 	}
 
-	public Date getDatum_valute() {
-		return datum_valute;
+	public Date getDatumValute() {
+		return datumValute;
 	}
 
-	public void setDatum_valute(Date datum_valute) {
-		this.datum_valute = datum_valute;
+	public void setDatumValute(Date datumValute) {
+		this.datumValute = datumValute;
 	}
 
-	public Double getUkupan_iznos() {
-		return ukupan_iznos;
+	public Double getUkupanIznos() {
+		return ukupanIznos;
 	}
 
-	public void setUkupan_iznos(Double ukupan_iznos) {
-		this.ukupan_iznos = ukupan_iznos;
+	public void setUkupanIznos(Double ukupanIznos) {
+		this.ukupanIznos = ukupanIznos;
 	}
-
-	public AnalitikaIzvoda getAnalitikaIzvoda() {
-		return analitikaIzvoda;
-	}
-
-	public void setAnalitikaIzvoda(AnalitikaIzvoda analitikaIzvoda) {
-		this.analitikaIzvoda = analitikaIzvoda;
-	}
-
-	
-
 }

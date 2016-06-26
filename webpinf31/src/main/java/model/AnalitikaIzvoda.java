@@ -15,49 +15,49 @@ import javax.persistence.Table;
 @Table(name = "analitika_izvoda")
 public class AnalitikaIzvoda extends AbstractEntity {
 
-	@Column(nullable = false)
-	private String duznik_nalogodavac;
+	@Column(name = "ai_duznik")
+	private String duznik;
 	
-	@Column(nullable = false)
-	private String poverilac_primalac;
+	@Column(name = "ai_poverilac")
+	private String poverilac;
 	
-	@Column(nullable = false)
-	private String svrha_placanja;
+	@Column(name = "ai_svrha_placanja")
+	private String svrhaPlacanja;
 	
-	@Column(nullable = false)
-	private Date datum_prijema;
+	@Column(name = "ai_datum_prijema")
+	private Date datumPrijema;
 	
-	@Column(nullable = false)
-	private Date datum_valute;
+	@Column(name = "ai_datum_valute")
+	private Date datumValute;
 	
-	@Column(nullable = true)
-	private String racun_duznika;
+	@Column(name = "ai_racun_duznika")
+	private String racunDuznika;
 	
-	@Column(nullable = true)
-	private String racun_poverioca;
+	@Column(name = "ai_racun_poverioca")
+	private String racunPoverioca;
 	
-	@Column(nullable = true)
-	private String model_odobrenja;
+	@Column(name = "ai_model_odobrenja")
+	private String modelOdobrenja;
 	
-	@Column(nullable = true)
-	private String model_zaduzenja;
+	@Column(name = "ai_model_zaduzenja")
+	private String modelZaduzenja;
 	
-	@Column(nullable = true)
-	private String poziv_broj_odobrenja;
+	@Column(name = "ai_poziv_odobrenja")
+	private String pozivOdobrenja;
 	
-	@Column(nullable = true)
-	private String poziv_na_broj_zaduzenja;
+	@Column(name = "ai_poziv_zaduzenja")
+	private String pozivZaduzenja;
 	
-	@Column(nullable = false)
+	@Column(name = "ai_hitno")
 	private Boolean hitno;
 	
-	@Column(nullable = false)
+	@Column(name = "ai_iznos")
 	private Double iznos;
 	
-	@Column(nullable = false)
-	private Integer tip_greske;
+	@Column(name = "ai_tip_greske")
+	private Integer tipGreske;
 	
-	@Column(nullable = true)
+	@Column(name = "ai_status")
 	private String status;
 	
 	/** STRANI KLJUCEVI **/
@@ -85,102 +85,92 @@ public class AnalitikaIzvoda extends AbstractEntity {
 	
 	public AnalitikaIzvoda() {}
 
-	
-
-	public String getDuznik_nalogodavac() {
-		return duznik_nalogodavac;
+	public String getDuznik() {
+		return duznik;
 	}
 
-
-
-	public void setDuznik_nalogodavac(String duznik_nalogodavac) {
-		this.duznik_nalogodavac = duznik_nalogodavac;
+	public void setDuznik(String duznik) {
+		this.duznik = duznik;
 	}
 
-
-
-	public String getPoverilac_primalac() {
-		return poverilac_primalac;
+	public String getPoverilac() {
+		return poverilac;
 	}
 
-
-
-	public void setPoverilac_primalac(String poverilac_primalac) {
-		this.poverilac_primalac = poverilac_primalac;
+	public void setPoverilac(String poverilac) {
+		this.poverilac = poverilac;
 	}
 
-
-
-	public String getSvrha_placanja() {
-		return svrha_placanja;
+	public String getSvrhaPlacanja() {
+		return svrhaPlacanja;
 	}
 
-	public void setSvrha_placanja(String svrha_placanja) {
-		this.svrha_placanja = svrha_placanja;
+	public void setSvrhaPlacanja(String svrhaPlacanja) {
+		this.svrhaPlacanja = svrhaPlacanja;
 	}
 
-	public Date getDatum_prijema() {
-		return datum_prijema;
+	public Date getDatumPrijema() {
+		return datumPrijema;
 	}
 
-	public void setDatum_prijema(Date datum_prijema) {
-		this.datum_prijema = datum_prijema;
+	public void setDatumPrijema(Date datumPrijema) {
+		this.datumPrijema = datumPrijema;
 	}
 
-	public Date getDatum_valute() {
-		return datum_valute;
+	public Date getDatumValute() {
+		return datumValute;
 	}
 
-	public void setDatum_valute(Date datum_valute) {
-		this.datum_valute = datum_valute;
+	public void setDatumValute(Date datumValute) {
+		this.datumValute = datumValute;
 	}
 
-	public String getRacun_duznika() {
-		return racun_duznika;
+	public String getRacunDuznika() {
+		return racunDuznika;
 	}
 
-	public void setRacun_duznika(String racun_duznika) {
-		this.racun_duznika = racun_duznika;
+	public void setRacunDuznika(String racunDuznika) {
+		this.racunDuznika = racunDuznika;
 	}
 
-	public String getRacun_poverioca() {
-		return racun_poverioca;
+	public String getRacunPoverioca() {
+		return racunPoverioca;
 	}
 
-	public void setRacun_poverioca(String racun_poverioca) {
-		this.racun_poverioca = racun_poverioca;
+	public void setRacunPoverioca(String racunPoverioca) {
+		this.racunPoverioca = racunPoverioca;
 	}
 
-	public String getModel_odobrenja() {
-		return model_odobrenja;
+	public String getModelOdobrenja() {
+		return modelOdobrenja;
 	}
 
-	public void setModel_odobrenja(String model_odobrenja) {
-		this.model_odobrenja = model_odobrenja;
+	public void setModelOdobrenja(String modelOdobrenja) {
+		this.modelOdobrenja = modelOdobrenja;
 	}
 
-	public String getModel_zaduzenja() {
-		return model_zaduzenja;
+	public String getModelZaduzenja() {
+		return modelZaduzenja;
 	}
 
-	public void setModel_zaduzenja(String model_zaduzenja) {
-		this.model_zaduzenja = model_zaduzenja;
+	public void setModelZaduzenja(String modelZaduzenja) {
+		this.modelZaduzenja = modelZaduzenja;
 	}
 
-	public String getPoziv_broj_odobrenja() {
-		return poziv_broj_odobrenja;
+	public String getPozivOdobrenja() {
+		return pozivOdobrenja;
 	}
 
-	public void setPoziv_broj_odobrenja(String poziv_broj_odobrenja) {
-		this.poziv_broj_odobrenja = poziv_broj_odobrenja;
+	public void setPozivOdobrenja(String pozivOdobrenja) {
+		this.pozivOdobrenja = pozivOdobrenja;
 	}
 
-	public String getPoziv_na_broj_zaduzenja() {
-		return poziv_na_broj_zaduzenja;
+	public String getPozivZaduzenja() {
+		return pozivZaduzenja;
 	}
 
-	public void setPoziv_na_broj_zaduzenja(String poziv_na_broj_zaduzenja) {
-		this.poziv_na_broj_zaduzenja = poziv_na_broj_zaduzenja;
+	public void setPozivZaduzenja(String pozivZaduzenja) {
+		this.pozivZaduzenja = pozivZaduzenja;
 	}
 
 	public Boolean getHitno() {
@@ -199,12 +189,12 @@ public class AnalitikaIzvoda extends AbstractEntity {
 		this.iznos = iznos;
 	}
 
-	public Integer getTip_greske() {
-		return tip_greske;
+	public Integer getTipGreske() {
+		return tipGreske;
 	}
 
-	public void setTip_greske(Integer tip_greske) {
-		this.tip_greske = tip_greske;
+	public void setTipGreske(Integer tipGreske) {
+		this.tipGreske = tipGreske;
 	}
 
 	public String getStatus() {
@@ -246,22 +236,5 @@ public class AnalitikaIzvoda extends AbstractEntity {
 	public void setNaseljenoMesto(NaseljenoMesto naseljenoMesto) {
 		this.naseljenoMesto = naseljenoMesto;
 	}
-
-	public List<RTGS> getRtgsovi() {
-		return rtgsovi;
-	}
-
-	public void setRtgsovi(List<RTGS> rtgsovi) {
-		this.rtgsovi = rtgsovi;
-	}
-
-	public List<RTGS> getGrupeIzvoda() {
-		return grupeIzvoda;
-	}
-
-	public void setGrupeIzvoda(List<RTGS> grupeIzvoda) {
-		this.grupeIzvoda = grupeIzvoda;
-	}
-
 	
 }

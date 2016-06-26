@@ -10,10 +10,10 @@ import javax.persistence.Table;
 @Table(name = "ukidanje")
 public class UkidanjeRacuna extends AbstractEntity {
 	
-	@Column(nullable = false)
-	private Date datum_ukidanja;
+	@Column(name = "datum_ukidanja")
+	private Date datumUkidanja;
 	
-	@Column(nullable = false)
+	@Column(name = "prenesena_sredstva")
 	private String sredstva;
 	
 	/** da li staviti 1na1 za ukidanje i racun? 
@@ -21,16 +21,13 @@ public class UkidanjeRacuna extends AbstractEntity {
 	
 	public UkidanjeRacuna() {}
 
-	
-	public Date getDatum_ukidanja() {
-		return datum_ukidanja;
+	public Date getDatumUkidanja() {
+		return datumUkidanja;
 	}
 
-
-	public void setDatum_ukidanja(Date datum_ukidanja) {
-		this.datum_ukidanja = datum_ukidanja;
+	public void setDatumUkidanja(Date datumUkidanja) {
+		this.datumUkidanja = datumUkidanja;
 	}
-
 
 	public String getSredstva() {
 		return sredstva;

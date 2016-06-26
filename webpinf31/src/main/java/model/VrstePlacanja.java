@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @Table(name = "vrste_placanja")
 public class VrstePlacanja extends AbstractEntity {
 	
-	@Column(nullable = false)
+	@Column(name = "vpl_naziv")
 	private String naziv;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "vpl")

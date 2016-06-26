@@ -15,14 +15,14 @@ import javax.persistence.Table;
 @Table(name = "kursna_lista")
 public class KursnaLista extends AbstractEntity {
 	
-	@Column(nullable = false)
+	@Column(name = "kl_datum")
 	private Date datum;
 	
-	@Column(nullable = false)
-	private Integer broj_kursne_liste;
+	@Column(name = "kl_broj")
+	private Integer broj;
 	
-	@Column(nullable = false)
-	private Date datum_primene;
+	@Column(name = "kl_datpr")
+	private Date datumPrimene;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_banke")
@@ -41,20 +41,20 @@ public class KursnaLista extends AbstractEntity {
 		this.datum = datum;
 	}
 
-	public Integer getBroj_kursne_liste() {
-		return broj_kursne_liste;
+	public Integer getBroj() {
+		return broj;
 	}
 
-	public void setBroj_kursne_liste(Integer broj_kursne_liste) {
-		this.broj_kursne_liste = broj_kursne_liste;
+	public void setBroj(Integer broj) {
+		this.broj = broj;
 	}
 
-	public Date getDatum_primene() {
-		return datum_primene;
+	public Date getDatumPrimene() {
+		return datumPrimene;
 	}
 
-	public void setDatum_primene(Date datum_primene) {
-		this.datum_primene = datum_primene;
+	public void setDatumPrimene(Date datumPrimene) {
+		this.datumPrimene = datumPrimene;
 	}
 
 	public Banka getBanka() {
