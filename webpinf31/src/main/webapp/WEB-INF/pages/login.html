@@ -6,7 +6,7 @@
 {{login}}
 <form data-ng-submit="submitUser()">
 <label for="korisnickoIme">Korisnicko ime:</label><input data-ng-model="korisnickoIme"/>
-<label for="lozinka">Lozinka:</label><input data-ng-model="lozinka"/>
+<label for="lozinka">Lozinka:</label><input type="password" data-ng-model="lozinka"/>
 <button type="submit">Uloguj se</button>
 </form>
 <div data-ng-show="!authenticated">

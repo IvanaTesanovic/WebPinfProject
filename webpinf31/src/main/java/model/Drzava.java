@@ -14,7 +14,7 @@ import model.AbstractEntity;
 @Table(name = "drzava")
 public class Drzava extends AbstractEntity {
 	
-	@Column(name = "dr_naziv")
+	@Column
 	private String naziv;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "drzava")
@@ -24,6 +24,13 @@ public class Drzava extends AbstractEntity {
 	private List<Valuta> valute;
 	
 	public Drzava() {}
+	
+	public Drzava(String naziv, List<NaseljenoMesto> naseljenaMesta, List<Valuta> valute) {
+		super();
+		this.naziv = naziv;
+		this.naseljenaMesta = naseljenaMesta;
+		this.valute = valute;
+	}
 
 	public String getNaziv() {
 		return naziv;

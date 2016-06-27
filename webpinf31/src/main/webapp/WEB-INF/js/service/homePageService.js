@@ -11,6 +11,23 @@ app.factory("HomePageService", function($http) {
 	    },*/
 	    openTable: function(tableName, callback) {
 	    	$http.get('api/homepage/' + tableName).success(callback);
+	    },
+	    getColumnNames: function(tableName, callback) {
+	    	$http.get('api/homepage/' + tableName + "/kolone").success(callback);
+	    },
+	    izvrsiAkciju: function(rez, nt, data) {
+	    	var akcijaDTO = {rezim:rez, nazivTabele: nt, data: data};
+	    	$http({
+	    		method: 'POST',
+	    		url: 'api/actions/' + nt,
+	    		data: akcijaDTO,
+	    		headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "text/plain, application/json"
+                }
+	    	}).then(function(callback) {
+	    		
+	    	});
 	    }
     };       
 });
