@@ -4,10 +4,9 @@ app.controller("HomePageController", function($scope, HomePageService) {
 	$scope.table = {};
 	$scope.nameTable = "";
 	$scope.kolone = {};
-	$scope.koloneCopy = {};
 
 	$scope.izvrsiAkciju = function() {
-		var rez = $scope.rezim;
+		var rez = $scope.rezim.toLowerCase();
 		var nt = $scope.nameTable;
 		var data = {};
 		var inputs = document.getElementsByTagName('input');
@@ -28,14 +27,38 @@ app.controller("HomePageController", function($scope, HomePageService) {
 		HomePageService.getColumnNames(tableName, function(data) {
 			if(angular.isObject(data))
 				$scope.kolone = data;
-			console.log("kolone:"+ $scope.kolone);
-				$scope.koloneCopy = angular.copy($scope.kolone);
 		});
 	};
 
 	$scope.getValue = function(obj, kol) {
-		console.log(obj + kol);
 		return obj[kol];
+	};
+	
+	$scope.koloneZaPrikaz = function() {
+		$scope.noveKolone = angular.copy($scope.kolone);
+		angular.forEach($scope.noveKolone, function(value, key) {
+			console.log(value);
+	         if(value.naziv == "id")
+	        	 $scope.noveKolone.splice(0, 1);
+	         });
+	};
+	
+	$scope.promeniRezim = function(rez) {
+		if(rez == "nema") {
+			$scope.rezim = "Trenutno nije odabran nijedan rezim.";
+//			angular.element(document.getElementById('izmena'))[0].disabled = true;
+//			angular.element(document.getElementById('dodavanje'))[0].disabled = true;
+//			angular.element(document.getElementById('pretraga'))[0].disabled = true;
+		}
+		else {
+			$scope.rezim = rez.toUpperCase();
+			$scope.noveKolone = angular.copy($scope.kolone);
+			angular.forEach($scope.noveKolone, function(value, key) {
+				console.log(value);
+		         if(value.naziv == "id")
+		        	 $scope.noveKolone.splice(0, 1);
+		         });
+		}
 	};
 	
 	$scope.deleteRow = function(tIndex) {
