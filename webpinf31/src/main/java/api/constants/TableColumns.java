@@ -53,11 +53,12 @@ public final class TableColumns {
 					new Column("ukupan_iznos", "double")));
 			break;
 		case "kursnaLista":
-			columns.addAll(Arrays.asList(new Column("id_banke","int"),new Column("datum", "date"), new Column("broj_kursne_liste", "Integer"),new Column("datum_primene", "date")));
+			columns.addAll(Arrays.asList(new Column("id", "int"), new Column("broj_kursne_liste", "Integer"), new Column("datum", "date"),new Column("datum_primene", "date"),new Column("id_banke","int")));
 			break;
 			
 		case "kursevi":
-			columns.addAll(Arrays.asList(new Column("id_kursne_liste", "int"),new Column("id_osnovne_valute", "int"),new Column("id_valute", "int"),new Column("kupovni_kurs","double"),new Column("srednji_kurs","double"),new Column("prodajni_kurs","double")));
+			columns.addAll(Arrays.asList(new Column("id", "int"), new Column("kupovni_kurs","double"), new Column("prodajni_kurs","double"), new Column("srednji_kurs","double"),
+					new Column("id_kursne_liste", "int"),new Column("id_osnovne_valute", "int"),new Column("id_valute", "int")));
 			break;
 			
 		case "analitikeIzvoda":
@@ -71,8 +72,10 @@ public final class TableColumns {
 			break;
 			
 		case "dnevnaStanja":
-			columns.addAll(Arrays.asList(new Column("id","int"),new Column("id_racuna","int"),new Column("datum_prometa","date"), new Column("promet_u_korist","double"), new Column("prethodno_stanje","double"),
-					new Column("promet_na_teret","double"), new Column("novo_stanje","double")));
+			columns.addAll(Arrays.asList(new Column("id","int"),new Column("id_racuna","int"),new Column("datum_prometa","date"), 
+					new Column("novo_stanje","double"), new Column("prethodno_stanje","double"), 
+					new Column("promet_na_teret","double"), new Column("promet_u_korist","double")
+					));
 					
 		}
 		return columns;

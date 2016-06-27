@@ -152,11 +152,45 @@ public class HomePageAPIController {
 		return TableColumns.getColumns("banke");
 	}
 	
+	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.KLIJENTI + RequestMappings.KOLONE, produces = MimeTypes.APPLICATION_JSON)
+	public ArrayList<Column> getKlijentiKolone() {
+		return TableColumns.getColumns("klijenti");
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.RACUNI + RequestMappings.KOLONE, produces = MimeTypes.APPLICATION_JSON)
+	public ArrayList<Column> getRacuniKolone() {
+		return TableColumns.getColumns("racuni");
+	}
+	
 	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.RTGS + RequestMappings.KOLONE, produces = MimeTypes.APPLICATION_JSON)
 	public ArrayList<Column> getRtgsKolone() {
 		return TableColumns.getColumns("rtgs");
 	}
 	
+	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.KLIRING + RequestMappings.KOLONE, produces = MimeTypes.APPLICATION_JSON)
+	public ArrayList<Column> getKliringKolone() {
+		return TableColumns.getColumns("kliring");
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.KURSNA_LISTA + RequestMappings.KOLONE, produces = MimeTypes.APPLICATION_JSON)
+	public ArrayList<Column> getKursnaListaKolone() {
+		return TableColumns.getColumns("kursnaLista");
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.KURSEVI + RequestMappings.KOLONE, produces = MimeTypes.APPLICATION_JSON)
+	public ArrayList<Column> getKurseviKolone() {
+		return TableColumns.getColumns("kursevi");
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.ANALITIKE_IZVODA + RequestMappings.KOLONE, produces = MimeTypes.APPLICATION_JSON)
+	public ArrayList<Column> getAnalitikeIzvodaKolone() {
+		return TableColumns.getColumns("analitikeIzvoda");
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.DNEVNA_STANJA + RequestMappings.KOLONE, produces = MimeTypes.APPLICATION_JSON)
+	public ArrayList<Column> getDnevnaStanjaKolone() {
+		return TableColumns.getColumns("dnevnaStanja");
+	}
 	
 	
 	/** END GET KOLONE **/ 
