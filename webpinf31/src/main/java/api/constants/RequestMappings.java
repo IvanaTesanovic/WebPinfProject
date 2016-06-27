@@ -13,7 +13,15 @@ public final class RequestMappings {
 	public static final String DRZAVE = "/drzave";
 	public static final String NASELJENA_MESTA = "/naseljenaMesta";
 	public static final String BANKE = "/banke";
-	
+	public static final String KLIJENTI = "/klijenti";
+	public static final String RACUNI = "/racuni";
+	public static final String RTGS = "/rtgs";
+	public static final String KLIRING = "/kliring";
+	public static final String KURSNA_LISTA = "/kursnaLista";
+	public static final String KURSEVI = "/kursevi";
+	public static final String ANALITIKE_IZVODA = "/analitikeIzvoda";
+	public static final String DNEVNA_STANJA = "/dnevnaStanja";
+
 	public static final String KOLONE = "/kolone";
 
 	public static final String OBRISI = "/obrisi/";

@@ -39,9 +39,7 @@ app.controller("HomePageController", function($scope, HomePageService) {
 	};
 	
 	$scope.deleteRow = function(tIndex) {
-		HomePageService.deleteRow(tIndex);
-//		openTable(nameTable);
+		HomePageService.deleteRow($scope.nameTable, tIndex);
 		$scope.table.splice(tIndex - 1, 1);
 	};
-	
 });

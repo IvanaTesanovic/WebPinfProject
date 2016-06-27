@@ -29,18 +29,22 @@ app.factory("HomePageService", function($http) {
 	    		
 	    	});
 	    },	    
-	    deleteRow: function(rowId) {
+	    deleteRow: function(tableName, rowId) {
 			$http({
 				method: 'DELETE',
                 url: 'api/homepage/drzave/obrisi/' + rowId,
-                data: rowId,
                 headers: {
                     "Content-Type": "application/json",
                     "Accept": "text/plain, application/json"
                 }
 			}).then(function(callbackSuccess) {
-			}
+				}
 			);
 		}
     };       
 });
+
+//}).then(function(callbackSuccess) {
+//}
+//);
+//}

@@ -26,11 +26,9 @@ public class LoginAPIController {
 	
 	@RequestMapping(method = RequestMethod.POST, produces = MimeTypes.APPLICATION_JSON, consumes = MimeTypes.APPLICATION_JSON)
 	public Korisnik loginUser(@RequestBody KorisnikDTO korisnikDTO) {
-		
 		if(korisnikService.findByKorisnickoIme(korisnikDTO.getKorisnickoIme()) != null)
 			return new Korisnik(korisnikDTO.getKorisnickoIme(), korisnikDTO.getLozinka());
 		else
 			return null;
 	}
-
 }
