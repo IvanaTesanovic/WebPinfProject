@@ -1,10 +1,6 @@
 package controller.api;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,8 +25,8 @@ public class LoginAPIController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, produces = MimeTypes.APPLICATION_JSON, consumes = MimeTypes.APPLICATION_JSON)
-	public Korisnik loginUser(@RequestBody KorisnikDTO korisnikDTO, HttpServletResponse response) {
-
+	public Korisnik loginUser(@RequestBody KorisnikDTO korisnikDTO) {
+		
 		if(korisnikService.findByKorisnickoIme(korisnikDTO.getKorisnickoIme()) != null)
 			return new Korisnik(korisnikDTO.getKorisnickoIme(), korisnikDTO.getLozinka());
 		else

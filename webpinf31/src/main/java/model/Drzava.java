@@ -18,6 +18,11 @@ public class Drzava extends AbstractEntity {
 	private String naziv;
 
 	public Drzava() {}
+	
+	public Drzava(String naziv) {
+		super();
+		this.naziv = naziv;
+	}
 
 	public String getNaziv() {
 		return naziv;

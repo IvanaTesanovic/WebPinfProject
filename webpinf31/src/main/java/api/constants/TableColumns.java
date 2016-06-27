@@ -77,8 +77,6 @@ public final class TableColumns {
 					new Column("promet_na_teret","double"), new Column("novo_stanje","double")));
 					
 		}
-			
-		
 		return columns;
 	}
 

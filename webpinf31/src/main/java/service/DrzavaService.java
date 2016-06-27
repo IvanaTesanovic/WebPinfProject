@@ -2,6 +2,8 @@ package service;
 
 import java.util.List;
 
+import javax.persistence.Column;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +20,19 @@ public class DrzavaService {
 		return (List<Drzava>) drzavaRepo.findAll();
 	}
 	
+	public void save(Drzava drzava) {
+		drzavaRepo.save(drzava);
+	}
+	
 	public Drzava findByNaziv(String naziv) {
 		return drzavaRepo.findByNaziv(naziv);
 	}
+	
+//	public List<Column> getColumns() {
+//		return drzavaRepo.getColumns();
+//	}
 
+	public void deleteRow(Long id) {
+		drzavaRepo.delete(id);
+	}
 }

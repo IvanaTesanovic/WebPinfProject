@@ -1,6 +1,6 @@
 app.controller("LoginController", function($scope, $http, $location, LoginService) {
 	
-	$scope.login = "sonja";
+	$scope.login = "Dobrodosli. Molimo Vas da se ulogujete da biste nastavili.";
 	
 	$scope.submitUser = function() {
 		

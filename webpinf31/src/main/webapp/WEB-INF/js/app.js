@@ -2,10 +2,6 @@ var app = angular.module('WebPinf31',['ngRoute', 'ui.bootstrap'])
 	.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
 		
 		$routeProvider
-			.when('/default', {
-				templateUrl: 'pages/default.html',
-				controller: 'DefaultController'
-			})
 			.when('/login', {
 				templateUrl: 'pages/login.html',
 				controller: 'LoginController'
@@ -23,7 +19,7 @@ var app = angular.module('WebPinf31',['ngRoute', 'ui.bootstrap'])
 				controller: 'DrzaveController'
 			}) 
 			.otherwise({
-				redirectTo: '/homepage'
+				redirectTo: '/login'
 			});
 		
 		$httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
