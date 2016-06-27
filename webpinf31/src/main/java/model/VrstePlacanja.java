@@ -12,11 +12,10 @@ import javax.persistence.Table;
 @Table(name = "vrste_placanja")
 public class VrstePlacanja extends AbstractEntity {
 	
-	@Column(name = "vpl_naziv")
+	@Column(nullable = true)
 	private String naziv;
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "vpl")
-	private List<AnalitikaIzvoda> analitikeIzvoda;
+	
 	
 	public VrstePlacanja() {}
 

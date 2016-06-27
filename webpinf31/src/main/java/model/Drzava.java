@@ -14,9 +14,9 @@ import model.AbstractEntity;
 @Table(name = "drzava")
 public class Drzava extends AbstractEntity {
 	
-	@Column
+	@Column(nullable = true)
 	private String naziv;
-	
+
 	public Drzava() {}
 	
 	public Drzava(String naziv) {

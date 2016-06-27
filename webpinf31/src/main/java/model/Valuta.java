@@ -14,27 +14,19 @@ import javax.persistence.Table;
 @Table(name = "valuta")
 public class Valuta extends AbstractEntity {
 
-	@Column(name = "va_sifra")
+	@Column(nullable = true)
 	private String sifra;
 	
-	@Column(name = "va_naziv")
+	@Column(nullable = true)
 	private String naziv;
 	
-	@Column(name = "va_domicilna")
+	@Column(nullable = true)
 	private Boolean domicilna;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "dr_sifra")
 	private Drzava drzava;
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "valuta")
-	private List<KursUValuti> kursevi;
-	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "valuta")
-	private List<AnalitikaIzvoda> analitikeIzvoda;
-	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "valuta")
-	private List<Racun> racuni;
 	
 	public Valuta() {}
 
@@ -62,19 +54,11 @@ public class Valuta extends AbstractEntity {
 		this.domicilna = domicilna;
 	}
 
-	public Drzava getDrzava() {
+		public Drzava getDrzava() {
 		return drzava;
 	}
 
 	public void setDrzava(Drzava drzava) {
 		this.drzava = drzava;
+	} 
 	}
-
-	public List<KursUValuti> getKursevi() {
-		return kursevi;
-	}
-
-	public void setKursevi(List<KursUValuti> kursevi) {
-		this.kursevi = kursevi;
-	}
-}

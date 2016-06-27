@@ -14,22 +14,20 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "kursna_lista")
 public class KursnaLista extends AbstractEntity {
-	
-	@Column(name = "kl_datum")
+
+	@Column(nullable = true)
 	private Date datum;
 	
-	@Column(name = "kl_broj")
-	private Integer broj;
+	@Column(nullable = true)
+	private Integer broj_kursne_liste;
 	
-	@Column(name = "kl_datpr")
-	private Date datumPrimene;
+	@Column(nullable = true)
+	private Date datum_primene;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_banke")
 	private Banka banka;
-	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "kursnaLista")
-	private List<KursUValuti> kursevi;
+
 	
 	public KursnaLista() {}
 
@@ -41,20 +39,21 @@ public class KursnaLista extends AbstractEntity {
 		this.datum = datum;
 	}
 
-	public Integer getBroj() {
-		return broj;
+
+	public Integer getBroj_kursne_liste() {
+		return broj_kursne_liste;
 	}
 
-	public void setBroj(Integer broj) {
-		this.broj = broj;
+	public void setBroj_kursne_liste(Integer broj_kursne_liste) {
+		this.broj_kursne_liste = broj_kursne_liste;
 	}
 
-	public Date getDatumPrimene() {
-		return datumPrimene;
+	public Date getDatum_primene() {
+		return datum_primene;
 	}
 
-	public void setDatumPrimene(Date datumPrimene) {
-		this.datumPrimene = datumPrimene;
+	public void setDatum_primene(Date datum_primene) {
+		this.datum_primene = datum_primene;
 	}
 
 	public Banka getBanka() {
@@ -65,11 +64,4 @@ public class KursnaLista extends AbstractEntity {
 		this.banka = banka;
 	}
 
-	public List<KursUValuti> getKursevi() {
-		return kursevi;
-	}
-
-	public void setKursevi(List<KursUValuti> kursevi) {
-		this.kursevi = kursevi;
-	}
 }
