@@ -13,9 +13,13 @@ public class NaseljenoMestoService {
 	
 	@Autowired
 	NaseljenoMestoRepository nasMestoRepo;
-
+	
 	public List<NaseljenoMesto> listAll() {
 		return (List<NaseljenoMesto>) nasMestoRepo.findAll();
+	}
+	
+	public void deleteRow(Long id) {
+		nasMestoRepo.delete(id);
 	}
 	
 }

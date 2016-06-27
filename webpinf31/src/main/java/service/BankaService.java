@@ -17,5 +17,9 @@ public class BankaService {
 	public List<Banka> listAll() {
 		return (List<Banka>) bankaRepo.findAll();
 	}
+	
+	public void deleteRow(Long id) {
+		bankaRepo.delete(id);
+	}
 
 }

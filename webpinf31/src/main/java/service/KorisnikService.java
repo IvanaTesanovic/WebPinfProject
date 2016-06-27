@@ -21,5 +21,9 @@ public class KorisnikService {
 	public Korisnik findByKorisnickoIme(String korisnickoIme) {
 		return korisnikRepo.findByKorisnickoIme(korisnickoIme);
 	}
+	
+	public void deleteRow(Long id) {
+		korisnikRepo.delete(id);
+	}
 
 }
