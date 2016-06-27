@@ -2,7 +2,6 @@
 
 <body>
 <div data-ng-controller="HomePageController">
-
 <ul>
 	<li><button data-ng-click="openTable('drzave')">Drzave</button></li>
 	<li><button data-ng-click="openTable('naseljenaMesta')">Naseljena mesta</button></li>
@@ -16,7 +15,6 @@
 	<li><button data-ng-click="openTable('analitikeIzvoda')">Analitike izvoda</button></li>
 	<li><button data-ng-click="openTable('dnevnaStanja')">Dnevna stanja racuna</button></li>
 </ul>
-
 <div data-ng-show="nameTable != ''">
 	<table class="table table-bordered table-hover">
 		<tr>
@@ -49,6 +47,5 @@ Trenutni rezim: {{rezim}}
 		<button type="submit">Izvrsi akciju</button>
 	</form>
 </div>
-
+</div>
 </body>
-
