@@ -12,30 +12,25 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "grupa_izvoda")
 public class GrupaIzvoda extends AbstractEntity {
+
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "gi_ai_id")
-	private AnalitikaIzvoda analitikaIzvoda;
-	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "grupaIzvoda")
-	private List<Kliring> klirinzi;
+	@JoinColumn(name = "id_grupe_izvoda")
+	private AnalitikaIzvoda analitika_izvoda;
+
 	
 	public GrupaIzvoda() {}
 
-	public AnalitikaIzvoda getAnalitikaIzvoda() {
-		return analitikaIzvoda;
+
+	public AnalitikaIzvoda getAnalitika_izvoda() {
+		return analitika_izvoda;
 	}
 
-	public void setAnalitikaIzvoda(AnalitikaIzvoda analitikaIzvoda) {
-		this.analitikaIzvoda = analitikaIzvoda;
+
+	public void setAnalitika_izvoda(AnalitikaIzvoda analitika_izvoda) {
+		this.analitika_izvoda = analitika_izvoda;
 	}
 
-	public List<Kliring> getKlirinzi() {
-		return klirinzi;
-	}
-
-	public void setKlirinzi(List<Kliring> klirinzi) {
-		this.klirinzi = klirinzi;
-	}
+	
 	
 }

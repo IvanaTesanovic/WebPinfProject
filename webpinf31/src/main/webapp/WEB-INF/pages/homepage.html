@@ -7,15 +7,19 @@
 <li><button data-ng-click="openTable('drzave')">Drzave</button></li>
 <li><button data-ng-click="openTable('naseljenaMesta')">Naseljena mesta</button></li>
 <li><button data-ng-click="openTable('banke')">Banke</button></li>
+<li><button data-ng-click="openTable('klijenti')">Klijenti</button></li>
+<li><button data-ng-click="openTable('racuni')">Racuni klijenata</button></li>
 <li><button data-ng-click="openTable('rtgs')">RTGS</button></li>
 <li><button data-ng-click="openTable('kliring')">Kliring</button></li>
-<li><button data-ng-click="openTable('klijenti')">Klijenti</button></li>
 <li><button data-ng-click="openTable('kursnaLista')">Kursna lista</button></li>
+<li><button data-ng-click="openTable('kursevi')">Kursevi u valuti</button></li>
+<li><button data-ng-click="openTable('analitikeIzvoda')">Analitike izvoda</button></li>
+<li><button data-ng-click="openTable('dnevnaStanja')">Dnevna stanja racuna</button></li>
 </ul>
 
 <div data-ng-show="nameTable === 'drzave'">
 <table border="2">
-	<tr><th>ID</th><th>Naziv</th></tr>
+	<tr><th data-ng-repeat="k in kolone">{{k.naziv}}</th></tr>
 	<tr data-ng-repeat="t in table"><td>{{t.id}}</td><td>{{t.naziv}}</td></tr>
 </table>
 </div>
@@ -34,10 +38,25 @@
 </table>
 </div>
 
-
-{{rezim}}
 <button data-ng-click="rezim = 1">Izmena</button>
 <button data-ng-click="rezim = 2">Dodavanje</button>
 <button data-ng-click="rezim = 3">Pretraga</button>
+<button data-ng-click="rezim = 0">Zatvori formu</button>
+
+<div data-ng-hide="rezim === 0" >
+<div data-ng-show="rezim === 1 || rezim === 2 || rezim === 3">
+<div>Trenutni rezim:
+<p data-ng-show="rezim === 1">Izmena</p>
+<p data-ng-show="rezim === 2">Dodavanje</p>
+<p data-ng-show="rezim === 3">Pretraga</p>
+</div>
+<form data-ng-submit="izvrsiAkciju()">
+
+<span data-ng-repeat="k in kolone"><label>{{k.naziv}}</label></span><span data-ng-repeat="c in koloneCopy"><input data-ng-model="c.naziv"/><br></span>
+<button type="submit">Izvrsi akciju</button>
+</form>
+</div>
+</div>
+
 </div>
 </body>
