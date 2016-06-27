@@ -18,6 +18,10 @@ public final class RequestMappings {
 
 	public static final String OBRISI = "/obrisi/";
 	
+	public static final String IZMENA = "/izmena";
+	public static final String DODAVANJE = "/dodavanje";
+	public static final String PRETRAGA = "/pretraga";
+	
 	public RequestMappings() {}
 	
 }

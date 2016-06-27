@@ -17,19 +17,11 @@ public class Drzava extends AbstractEntity {
 	@Column
 	private String naziv;
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "drzava")
-	private List<NaseljenoMesto> naseljenaMesta;
-	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "drzava")
-	private List<Valuta> valute;
-	
 	public Drzava() {}
 	
-	public Drzava(String naziv, List<NaseljenoMesto> naseljenaMesta, List<Valuta> valute) {
+	public Drzava(String naziv) {
 		super();
 		this.naziv = naziv;
-		this.naseljenaMesta = naseljenaMesta;
-		this.valute = valute;
 	}
 
 	public String getNaziv() {
@@ -40,12 +32,4 @@ public class Drzava extends AbstractEntity {
 		this.naziv = naziv;
 	}
 
-	public List<NaseljenoMesto> getNaseljenaMesta() {
-		return naseljenaMesta;
-	}
-
-	public void setNaseljenaMesta(List<NaseljenoMesto> naseljenaMesta) {
-		this.naseljenaMesta = naseljenaMesta;
-	}
-	
 }
