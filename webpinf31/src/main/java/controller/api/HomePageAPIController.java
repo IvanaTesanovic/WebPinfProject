@@ -200,6 +200,7 @@ public class HomePageAPIController {
 	@RequestMapping(method = RequestMethod.DELETE, value = RequestMappings.DRZAVE + RequestMappings.OBRISI + "{id}", produces = MimeTypes.APPLICATION_JSON)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteDrzavaRow(@Validated @PathVariable final Long id) {
+
 //        try {
             final Drzava drzava = new Drzava();
             drzava.setId(id);
@@ -226,6 +227,13 @@ public class HomePageAPIController {
 		rtgsService.deleteRow(id);
 	}
 	
-	/** END DELETE TABLE ROWS **/
+	@RequestMapping(method = RequestMethod.DELETE, value = RequestMappings.NASELJENA_MESTA + RequestMappings.OBRISI + "{id}", produces = MimeTypes.APPLICATION_JSON)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteMestoRow(@Validated @PathVariable final Long id) {
+		final NaseljenoMesto naseljenoMesto = new NaseljenoMesto();
+		naseljenoMesto.setId(id);
+		nasMestaService.deleteRow(id);
+	}
 	
+	/** END DELETE TABLE ROWS **/
 }

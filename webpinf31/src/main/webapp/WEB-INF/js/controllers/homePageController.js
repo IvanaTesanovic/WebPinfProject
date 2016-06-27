@@ -32,7 +32,7 @@ app.controller("HomePageController", function($scope, HomePageService) {
 				$scope.koloneCopy = angular.copy($scope.kolone);
 		});
 	};
-	
+
 	$scope.getValue = function(obj, kol) {
 		console.log(obj + kol);
 		return obj[kol];
@@ -41,5 +41,7 @@ app.controller("HomePageController", function($scope, HomePageService) {
 	$scope.deleteRow = function(tIndex) {
 		HomePageService.deleteRow($scope.nameTable, tIndex);
 		$scope.table.splice(tIndex - 1, 1);
+
 	};
 });
+

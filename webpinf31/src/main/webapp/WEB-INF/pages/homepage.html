@@ -31,6 +31,7 @@
 
 <button data-ng-click="rezim = 1">Izmena</button><button data-ng-click="rezim = 2">Dodavanje</button><button data-ng-click="rezim = 3">Pretraga</button><button data-ng-click="rezim = 0">Zatvori formu</button>
 
+
 <div data-ng-hide="rezim === 0" ><div data-ng-show="rezim === 1 || rezim === 2 || rezim === 3">
 Trenutni rezim: <span data-ng-show="rezim === 1">Izmena</span><span data-ng-show="rezim === 2">Dodavanje</span><span data-ng-show="rezim === 3">Pretraga</span>
 <form data-ng-submit="izvrsiAkciju()">
@@ -40,4 +41,6 @@ Trenutni rezim: <span data-ng-show="rezim === 1">Izmena</span><span data-ng-show
 </div></div>
 
 </div>
+
 </body>
+
