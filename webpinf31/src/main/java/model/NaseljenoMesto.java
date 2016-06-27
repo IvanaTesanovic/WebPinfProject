@@ -14,19 +14,16 @@ import javax.persistence.Table;
 @Table(name = "naseljeno_mesto")
 public class NaseljenoMesto extends AbstractEntity {
 	
-	@Column(name = "nm_naziv")
+	@Column(nullable = true)
 	private String naziv;
 	
-	@Column(name = "nm_pttoznaka")
-	private String pttOznaka;
+	@Column(nullable = true)
+	private String ptt_oznaka;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "dr_sifra")
-	private Drzava drzava;
-	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "naseljenoMesto")
-	private List<AnalitikaIzvoda> analitikeIzvoda;
-	
+	@JoinColumn(name = "sifra_drzave")
+	private Drzava drzava; 
+
 	public NaseljenoMesto() {}
 
 	public String getNaziv() {
@@ -38,11 +35,11 @@ public class NaseljenoMesto extends AbstractEntity {
 	}
 
 	public String getPttOznaka() {
-		return pttOznaka;
+		return ptt_oznaka;
 	}
 
 	public void setPttOznaka(String pttOznaka) {
-		this.pttOznaka = pttOznaka;
+		this.ptt_oznaka = pttOznaka;
 	}
 
 	public Drzava getDrzava() {

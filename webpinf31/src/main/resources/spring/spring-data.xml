@@ -16,13 +16,15 @@
       <property name="packagesToScan" value="model" />
       <property name="jpaVendorAdapter">
          <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-<!--          	<property name="generateDdl" value="true" /> -->
+    <!--       	<property name="generateDdl" value="true" />  -->
          </bean>
       </property>
       <property name="jpaProperties">
          <props>
             <prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
-<!-- 				<prop key="hibernate.hbm2ddl.auto">create</prop> -->
+
+<!--             <prop key="hibernate.hbm2ddl.auto">create</prop>  -->
+
          </props>
       </property>
    </bean>

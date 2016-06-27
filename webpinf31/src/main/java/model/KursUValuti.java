@@ -10,55 +10,57 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "kurs_u_valuti")
 public class KursUValuti extends AbstractEntity {
+
+	@Column(nullable = true)
+	private Double kupovni_kurs;
 	
-	@Column(name = "kupovni")
-	private Double kupovni;
+	@Column(nullable = true)
+	private Double srednji_kurs;
 	
-	@Column(name = "srednji")
-	private Double srednji;
-	
-	@Column(name = "prodajni")
-	private Double prodajni;
+	@Column(nullable = true)
+	private Double prodajni_kurs;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_kursne_liste")
-	private KursnaLista kursnaLista;
+	private KursnaLista kursna_lista;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_valute")
 	private Valuta valuta;
 	
-	/*@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_osnovne_valute")
-	private Valuta osnovnaValuta;*/
+	private Valuta osnovna_valuta;
 	
 	public KursUValuti() {}
 
-	public Double getKupovni() {
-		return kupovni;
+
+	public Double getKupovni_kurs() {
+		return kupovni_kurs;
 	}
 
-	public void setKupovni(Double kupovni) {
-		this.kupovni = kupovni;
+	public void setKupovni_kurs(Double kupovni_kurs) {
+		this.kupovni_kurs = kupovni_kurs;
 	}
 
-	public Double getSrednji() {
-		return srednji;
+	public Double getSrednji_kurs() {
+		return srednji_kurs;
 	}
 
-	public void setSrednji(Double srednji) {
-		this.srednji = srednji;
+	public void setSrednji_kurs(Double srednji_kurs) {
+		this.srednji_kurs = srednji_kurs;
 	}
 
-	public Double getProdajni() {
-		return prodajni;
+	public Double getProdajni_kurs() {
+		return prodajni_kurs;
 	}
 
-	public void setProdajni(Double prodajni) {
-		this.prodajni = prodajni;
+	public void setProdajni_kurs(Double prodajni_kurs) {
+		this.prodajni_kurs = prodajni_kurs;
 	}
 
-	public KursnaLista getKursnaLista() {
+
+/*	public KursnaLista getKursnaLista() {
 		return kursnaLista;
 	}
 
@@ -73,5 +75,6 @@ public class KursUValuti extends AbstractEntity {
 	public void setValuta(Valuta valuta) {
 		this.valuta = valuta;
 	}
+	*/
 	
 }

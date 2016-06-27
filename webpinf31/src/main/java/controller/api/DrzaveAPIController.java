@@ -32,7 +32,7 @@ public class DrzaveAPIController {
 			
 		}
 		else if(rezim.equals("2")) {
-			Drzava drzava = new Drzava("Srbija", null, null);
+			Drzava drzava = new Drzava("Srbija");
 			service.save(drzava);
 		}
 		else if(rezim.equals("3")) {
