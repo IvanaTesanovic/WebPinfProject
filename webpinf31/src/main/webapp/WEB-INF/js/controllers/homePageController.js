@@ -38,17 +38,10 @@ app.controller("HomePageController", function($scope, HomePageService) {
 		return obj[kol];
 	};
 	
-//	$scope.getColumns = function() {
-//		HomePageService.getColumns(function(data) {
-//			$scope.kolone = data.data;
-//			console.log(data.data);
-//		})
-//	};
-//	
-//	$scope.init = function() {
-//		$scope.getColumns();
-//	}
-//	
-//	$scope.init();
+	$scope.deleteRow = function(tIndex) {
+		HomePageService.deleteRow(tIndex);
+//		openTable(nameTable);
+		$scope.table.splice(tIndex - 1, 1);
+	};
 	
 });

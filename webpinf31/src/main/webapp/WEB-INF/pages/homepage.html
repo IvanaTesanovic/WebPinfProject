@@ -18,9 +18,14 @@
 </ul>
 
 <div data-ng-show="nameTable != ''">
-<table border="2">
-	<tr><th data-ng-repeat="k in kolone">{{k.naziv}}</th></tr>
-	<tr data-ng-repeat="t in table"><td data-ng-repeat = "kk in kolone" >{{getValue(t, kk.naziv)}}</td></tr>
+<table class="table table-bordered table-hover">
+	<tr>
+		<th data-ng-repeat="k in kolone">{{k.naziv}}</th>
+	</tr>
+	<tr data-ng-repeat="t in table">
+		<td data-ng-repeat = "kk in kolone" >{{getValue(t, kk.naziv)}}</td>
+		<td><a data-ng-click="deleteRow(t.id)" class = "btn btn-primary">obrisi</a></td>
+	</tr>
 </table>
 </div>
 

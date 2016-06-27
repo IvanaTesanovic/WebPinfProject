@@ -37,6 +37,5 @@
 	<script type="text/javascript" src="<spring:url value='${version}/js/service/homePageService.js' />"></script>
 	<script type="text/javascript" src="<spring:url value='${version}/js/service/loginService.js' />"></script>
 
-	
 </body>
 </html>

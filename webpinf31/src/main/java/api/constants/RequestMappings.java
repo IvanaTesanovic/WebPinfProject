@@ -15,6 +15,8 @@ public final class RequestMappings {
 	public static final String BANKE = "/banke";
 	
 	public static final String KOLONE = "/kolone";
+
+	public static final String OBRISI = "/obrisi/";
 	
 	public RequestMappings() {}
 	

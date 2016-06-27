@@ -32,4 +32,7 @@ public class DrzavaService {
 //		return drzavaRepo.getColumns();
 //	}
 
+	public void deleteRow(Long id) {
+		drzavaRepo.delete(id);
+	}
 }
