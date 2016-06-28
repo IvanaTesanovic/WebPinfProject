@@ -56,6 +56,9 @@
 		<p data-ng-repeat="k in noveKolone" data-ng-show='rezim == "IZMENA'>
 			<label>{{k.naziv}}</label>&nbsp;<input class="izm" value="{{getIzmValue(k.naziv)}}" id="'{{k.naziv}}"/>
 		</p>
+		<p data-ng-repeat="k in noveKolone" data-ng-show='{{k.tip}} == "boolean"'>
+			<label>{{k.naziv}}</label>&nbsp;<input type="checkbox" class="dp" id="{{k.naziv}}"/>
+		</p>
 		<button class="btn btn-success" type="submit">Izvrsi akciju</button>
 	</form>
 </div>

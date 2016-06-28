@@ -8,15 +8,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import service.DrzavaService;
 import service.NaseljenoMestoService;
 import api.constants.RequestMappings;
+import dto.NaseljenoMestoDTO;
 
 @RestController
 @RequestMapping(RequestMappings.ACTIONS_API + RequestMappings.NASELJENA_MESTA)
 public class NaseljenaMestaAPIController {
 
 	@Autowired 
-	NaseljenoMestoService service;
+	NaseljenoMestoService nmService;
+	
+	@Autowired
+	DrzavaService drzavaService;
 	
 	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.IZMENA)
 	public void izmeni() {
@@ -24,8 +29,9 @@ public class NaseljenaMestaAPIController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.DODAVANJE)
-	public void dodaj(@RequestBody NaseljenoMesto obj) {
-		service.save(new NaseljenoMesto());
+	public void dodaj(@RequestBody NaseljenoMestoDTO obj){
+		nmService.save(new NaseljenoMesto(obj.getNaziv(), obj.getPtt_oznaka(), 
+				drzavaService.findById(Long.parseLong(obj.getId_drzave()))));
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.PRETRAGA)

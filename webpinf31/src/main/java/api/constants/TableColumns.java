@@ -16,10 +16,10 @@ public final class TableColumns {
 			break;
 		case "naseljenaMesta":
 			columns.addAll(Arrays.asList(new Column("id", "int"), new Column("naziv", "string"), 
-					new Column("ptt_oznaka", "string"), new Column("id_drzava", "int")));
+					new Column("ptt_oznaka", "string"), new Column("id_drzave", "int")));
 			break;
 		case "banke":
-			columns.addAll(Arrays.asList(new Column("id", "int"),new Column("id_banke", "int"), new Column("naziv", "string"),
+			columns.addAll(Arrays.asList(new Column("id", "int"), new Column("naziv", "string"),
 					new Column("pib", "string"), 
 					new Column("adresa", "string"), new Column("email", "string"), new Column("telefon", "string"),
 					new Column("fax", "string"),new Column("web", "string"), new Column("narodna_banka", "boolean")));
