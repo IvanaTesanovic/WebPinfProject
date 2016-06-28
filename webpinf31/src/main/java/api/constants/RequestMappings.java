@@ -23,6 +23,7 @@ public final class RequestMappings {
 	public static final String DNEVNA_STANJA = "/dnevnaStanja";
 
 	public static final String KOLONE = "/kolone";
+	public static final String KOLONE_ZA_PRIKAZ = "/koloneZaPrikaz";
 
 	public static final String OBRISI = "/obrisi/";
 	

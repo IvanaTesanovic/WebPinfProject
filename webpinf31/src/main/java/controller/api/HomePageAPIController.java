@@ -29,7 +29,6 @@ import api.constants.MimeTypes;
 import api.constants.RequestMappings;
 import api.constants.TableColumns;
 import service.AnalitikaIzvodaService;
-//github.com/IvanaTesanovic/WebPinfProject
 import service.BankaService;
 import service.DnevnaStanjaRacunaService;
 import service.DrzavaService;
@@ -191,7 +190,6 @@ public class HomePageAPIController {
 	public RTGS getRTGS (@Validated @PathVariable final Long id){
 		return rtgsService.findById(id);
 	}
-	//TODO URADITI OVO ZA SVE TABELE!
 	/**END GET ONE OBJECT **/
 	
 	
@@ -250,9 +248,7 @@ public class HomePageAPIController {
 	public ArrayList<Column> getDnevnaStanjaKolone() {
 		return TableColumns.getColumns("dnevnaStanja");
 	}
-	
-	
-	/** END GET KOLONE **/ 
+	/** END GET KOLONE **/
 	
 	
 	/** TODO DELETE TABLE ROWS **/

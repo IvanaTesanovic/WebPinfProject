@@ -31,7 +31,7 @@
 <div data-ng-show="nameTable != ''">
 	<table class="table table-bordered table-hover">
 		<tr>
-			<th data-ng-repeat="k in kolone">{{k.naziv}}</th>
+			<th data-ng-repeat="k in kolone">{{k.naziv.toUpperCase().replace("_", " ")}}</th>
 		</tr>
 		<tr data-ng-repeat="t in table">
 			<td data-ng-repeat = "kk in kolone" >{{getValue(t, kk.naziv)}}</td>
@@ -50,7 +50,7 @@
 <div id="formaAkcijeDP" data-ng-show='rezim == "DODAVANJE" || rezim == "PRETRAGA"'>
 	<form class="navbar-form" data-ng-submit="izvrsiAkciju()">
 		<p data-ng-repeat="k in kolone" data-ng-show='rezim == "DODAVANJE" || rezim == "PRETRAGA"' data-ng-hide='rezim == "DODAVANJE" && k.naziv == "id"'>
-			<label>{{k.naziv}}</label>&nbsp;<input data-ng-disabled='k.naziv == "id" && rezim != "PRETRAGA"' class="dp" id="{{k.naziv}}"/>
+			<label>{{k.naziv.toUpperCase().replace("_", " ")}}</label>&nbsp;<input data-ng-disabled='k.naziv == "id" && rezim != "PRETRAGA"' class="dp" id="{{k.naziv}}"/>
 		</p>
 		<button class="btn btn-success" type="submit">Izvrsi akciju</button>
 	</form>
@@ -59,7 +59,7 @@
 <div id="formaAkcijeDP" data-ng-show='rezim == "IZMENA"'>
 	<form class="navbar-form" data-ng-submit="izvrsiAkciju()">
 		<p data-ng-repeat="k in kolone">
-			<label>{{k.naziv}}</label>&nbsp;<input data-ng-disabled='k.naziv == "id"' class="izm" value="{{getIzmValue(k.naziv)}}" id="{{k.naziv}}"/>
+			<label>{{k.naziv.toUpperCase().replace("_", " ")}}</label>&nbsp;<input data-ng-disabled='k.naziv == "id"' class="izm" value="{{getIzmValue(k.naziv)}}" id="{{k.naziv}}"/>
 		</p>
 		<button class="btn btn-success" type="submit">Izvrsi akciju</button>
 	</form>
