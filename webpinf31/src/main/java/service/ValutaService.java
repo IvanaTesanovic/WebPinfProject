@@ -5,9 +5,10 @@ import java.util.List;
 import model.Valuta;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import repository.ValutaRepository;
-
+@Service
 public class ValutaService {
 	
 	@Autowired
