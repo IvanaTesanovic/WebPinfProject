@@ -2,8 +2,10 @@ package service;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import model.Drzava;
 import repository.DrzavaRepository;
@@ -32,5 +34,12 @@ public class DrzavaService {
 	
 	public Drzava findById(Long id) {
 		return drzavaRepo.findOne(id);
+	}
+	
+	@Transactional
+	public void update(Long id, String naziv) {
+		Drzava drzava = drzavaRepo.findOne(id);
+		drzava.setNaziv(naziv);
+		drzavaRepo.save(drzava);
 	}
 }

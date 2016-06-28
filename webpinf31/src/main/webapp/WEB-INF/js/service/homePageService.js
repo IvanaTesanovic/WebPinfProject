@@ -9,8 +9,11 @@ app.factory("HomePageService", function($http) {
 	    getColumnNames: function(tableName, callback) {
 	    	$http.get('api/homepage/' + tableName + "/kolone").success(callback);
 	    },
+	    getColumnsToShow: function(tableName, callback) {
+	    	$http.get('api/homepage/' + tableName + '/koloneZaPrikaz').success(callback);
+	    },
 	    izvrsiAkciju: function(rez, nt, data) {
-	    	$http({
+	    	return $http({
 	    		method: 'POST',
 	    		url: 'api/actions/' + nt + '/' + rez,
 	    		data: data,
@@ -18,8 +21,6 @@ app.factory("HomePageService", function($http) {
                     "Content-Type": "application/json",
                     "Accept": "text/plain, application/json"
                 }
-	    	}).then(function(callback) {
-	    		
 	    	});
 	    },	    
 	    deleteRow: function(tableName, rowId) {
