@@ -21,10 +21,15 @@ public class NaseljenoMesto extends AbstractEntity {
 	private String ptt_oznaka;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "sifra_drzave")
+	@JoinColumn(name = "drzava")
 	private Drzava drzava; 
 
 	public NaseljenoMesto() {}
+	
+	public NaseljenoMesto(String naziv){
+		super();
+		this.naziv = naziv;
+	}
 
 	public String getNaziv() {
 		return naziv;

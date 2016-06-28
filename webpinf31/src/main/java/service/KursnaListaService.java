@@ -19,6 +19,9 @@ public class KursnaListaService {
 		return (List<KursnaLista>) kursnaListaRepo.findAll();
 	}
 	
+	public void save(KursnaLista kl){
+		kursnaListaRepo.save(kl);
+	}	
 	public void deleteRow(Long id) {
 		kursnaListaRepo.delete(id);
 	}

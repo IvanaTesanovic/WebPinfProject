@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class Valuta extends AbstractEntity {
 
 	@Column(nullable = true)
-	private String sifra;
+	private String id_valute;
 	
 	@Column(nullable = true)
 	private String naziv;
@@ -24,18 +24,19 @@ public class Valuta extends AbstractEntity {
 	private Boolean domicilna;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "dr_sifra")
+	@JoinColumn(name = "drzava")
 	private Drzava drzava;
 	
 	
 	public Valuta() {}
 
-	public String getSifra() {
-		return sifra;
+
+	public String getId_valute() {
+		return id_valute;
 	}
 
-	public void setSifra(String sifra) {
-		this.sifra = sifra;
+	public void setId_valute(String id_valute) {
+		this.id_valute = id_valute;
 	}
 
 	public String getNaziv() {

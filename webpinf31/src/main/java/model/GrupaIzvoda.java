@@ -15,7 +15,7 @@ public class GrupaIzvoda extends AbstractEntity {
 
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_grupe_izvoda")
+	@JoinColumn(name = "analitika_izvoda")
 	private AnalitikaIzvoda analitika_izvoda;
 
 	

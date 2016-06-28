@@ -19,6 +19,10 @@ public class KursUValutiService {
 		return (List<KursUValuti>) kursUValutiRepo.findAll();
 	}
 	
+	public void save(KursUValuti kursUValuti){
+		kursUValutiRepo.save(kursUValuti);
+	}
+	
 	public void deleteRow(Long id) {
 		kursUValutiRepo.delete(id);
 	}

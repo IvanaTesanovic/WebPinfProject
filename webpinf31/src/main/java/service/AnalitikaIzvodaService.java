@@ -19,6 +19,10 @@ public class AnalitikaIzvodaService {
 		return (List<AnalitikaIzvoda>) analitikaIzvodaRepo.findAll();
 	}
 	
+	public void save(AnalitikaIzvoda ai){
+		analitikaIzvodaRepo.save(ai);
+	}
+	
 	public void deleteRow(Long id) {
 		analitikaIzvodaRepo.delete(id);
 	}

@@ -32,7 +32,7 @@ public class DnevnoStanjeRacuna extends AbstractEntity {
 	
 	/** STRANI KLJUCEVI **/
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_racuna")
+	@JoinColumn(name = "racun")
 	private Racun racun;
 	
 

@@ -18,6 +18,10 @@ public class BankaService {
 		return (List<Banka>) bankaRepo.findAll();
 	}
 	
+	public void save(Banka banka){
+		bankaRepo.save(banka);
+	}
+	
 	public void deleteRow(Long id) {
 		bankaRepo.delete(id);
 	}

@@ -19,6 +19,10 @@ public class KliringService {
 		return (List<Kliring>) kliringRepo.findAll();
 	}
 	
+	public void save(Kliring kliring){
+		kliringRepo.save(kliring);
+	}
+
 	public void deleteRow(Long id) {
 		kliringRepo.delete(id);
 	}

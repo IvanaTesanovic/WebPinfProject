@@ -62,7 +62,7 @@ public class RTGS extends AbstractEntity {
 	private Date datum_naloga;
 	
 	@Column(nullable = true)
-	private String sifra_valute;
+	private String id_valute;
 	
 	@Column(nullable = true)
 	private Date datum_valute;
@@ -71,7 +71,7 @@ public class RTGS extends AbstractEntity {
 	private Double ukupan_iznos;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_analitike_izvoda")
+	@JoinColumn(name = "analitika_izvoda")
 	private AnalitikaIzvoda analitika_izvoda;
 	
 	public RTGS() {}
@@ -198,12 +198,12 @@ public class RTGS extends AbstractEntity {
 		this.datum_naloga = datum_naloga;
 	}
 
-	public String getSifra_valute() {
-		return sifra_valute;
+	public String getId_valute() {
+		return id_valute;
 	}
 
-	public void setSifra_valute(String sifra_valute) {
-		this.sifra_valute = sifra_valute;
+	public void setId_valute(String id_valute) {
+		this.id_valute = id_valute;
 	}
 
 	public Date getDatum_valute() {
