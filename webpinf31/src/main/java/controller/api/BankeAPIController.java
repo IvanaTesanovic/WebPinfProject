@@ -25,7 +25,8 @@ public class BankeAPIController {
 	
 	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.DODAVANJE)
 	public void dodaj(@RequestBody Banka obj) {
-		service.save(new Banka());
+		service.save(new Banka(obj.getPib(), obj.getNaziv(), obj.getAdresa(), obj.getTelefon(),
+				obj.getEmail(), obj.getWeb(), obj.getFax(), obj.getNarodna_banka()));
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.PRETRAGA)
