@@ -54,10 +54,6 @@ app.controller("HomePageController", function($scope, HomePageService) {
 			if(angular.isObject(data))
 				$scope.kolone = data;
 		});
-//		HomePageService.getColumnsToShow(tableName, function(data) {
-//			if(angular.isObject(data))
-//				$scope.koloneZaPrikaz = data;
-//		});
 	};
 
 	$scope.getValue = function(obj, kol) {
@@ -70,10 +66,6 @@ app.controller("HomePageController", function($scope, HomePageService) {
 //			angular.element(document.getElementById('pretraga'))[0].disabled = true;
 		else {
 			$scope.rezim = rez.toUpperCase();
-//			HomePageService.getColumnsToShow($scope.nameTable, function(data) {
-//				if(angular.isObject(data))
-//					$scope.koloneZaPrikaz = data;
-//			});
 		}
 	};
 	

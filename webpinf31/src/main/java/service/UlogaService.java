@@ -6,10 +6,12 @@ import model.Uloga;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import repository.UlogaRepository;
 
 @Service
+@Transactional
 public class UlogaService {
 
 	@Autowired

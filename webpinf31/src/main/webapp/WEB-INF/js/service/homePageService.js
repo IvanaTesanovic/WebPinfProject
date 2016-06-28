@@ -9,9 +9,6 @@ app.factory("HomePageService", function($http) {
 	    getColumnNames: function(tableName, callback) {
 	    	$http.get('api/homepage/' + tableName + "/kolone").success(callback);
 	    },
-	    getColumnsToShow: function(tableName, callback) {
-	    	$http.get('api/homepage/' + tableName + '/koloneZaPrikaz').success(callback);
-	    },
 	    izvrsiAkciju: function(rez, nt, data) {
 	    	return $http({
 	    		method: 'POST',

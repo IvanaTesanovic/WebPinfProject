@@ -5,10 +5,12 @@ import model.VrstePlacanja;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import repository.VrstePlacanjaRepository;
 
 @Service
+@Transactional
 public class VrstePlacanjaService {
 
 	@Autowired
