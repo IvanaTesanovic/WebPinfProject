@@ -21,18 +21,31 @@ public class KursUValuti extends AbstractEntity {
 	private Double prodajni_kurs;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "kursna_lista")
-	private KursnaLista kursna_lista;
+	@JoinColumn(name = "id_kursne_liste")
+	private KursnaLista id_kursne_liste;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "valuta")
-	private Valuta valuta;
+	@JoinColumn(name = "id_valute")
+	private Valuta id_valute;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "osnovna_valuta")
-	private Valuta osnovna_valuta;
+	@JoinColumn(name = "id_osnovne_valute")
+	private Valuta id_osnovne_valute;
 	
 	public KursUValuti() {}
+
+	
+	public KursUValuti(Double kupovni_kurs, Double srednji_kurs,
+			Double prodajni_kurs, KursnaLista id_kursne_liste,
+			Valuta id_valute, Valuta id_osnovne_valute) {
+		super();
+		this.kupovni_kurs = kupovni_kurs;
+		this.srednji_kurs = srednji_kurs;
+		this.prodajni_kurs = prodajni_kurs;
+		this.id_kursne_liste = id_kursne_liste;
+		this.id_valute = id_valute;
+		this.id_osnovne_valute = id_osnovne_valute;
+	}
 
 
 	public Double getKupovni_kurs() {
@@ -60,21 +73,35 @@ public class KursUValuti extends AbstractEntity {
 	}
 
 
-/*	public KursnaLista getKursnaLista() {
-		return kursnaLista;
+	public KursnaLista getId_kursne_liste() {
+		return id_kursne_liste;
 	}
 
-	public void setKursnaLista(KursnaLista kursnaLista) {
-		this.kursnaLista = kursnaLista;
+
+	public void setId_kursne_liste(KursnaLista id_kursne_liste) {
+		this.id_kursne_liste = id_kursne_liste;
 	}
 
-	public Valuta getValuta() {
-		return valuta;
+
+	public Valuta getId_valute() {
+		return id_valute;
 	}
 
-	public void setValuta(Valuta valuta) {
-		this.valuta = valuta;
+
+	public void setId_valute(Valuta id_valute) {
+		this.id_valute = id_valute;
 	}
-	*/
+
+
+	public Valuta getId_osnovne_valute() {
+		return id_osnovne_valute;
+	}
+
+
+	public void setId_osnovne_valute(Valuta id_osnovne_valute) {
+		this.id_osnovne_valute = id_osnovne_valute;
+	}
+
+
 	
 }

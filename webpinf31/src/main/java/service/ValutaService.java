@@ -20,4 +20,8 @@ public class ValutaService {
 	public void deleteRow(Long id) {
 		valutaRepo.delete(id);
 	}
+	
+	 public Valuta findById(Long id){
+		 return valutaRepo.findOne(id);
+	 }
 }

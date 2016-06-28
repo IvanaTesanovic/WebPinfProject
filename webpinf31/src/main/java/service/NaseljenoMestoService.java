@@ -25,4 +25,7 @@ public class NaseljenoMestoService {
 		nasMestoRepo.delete(id);
 	}
 	
+	 public NaseljenoMesto findById(Long id){
+		 return nasMestoRepo.findOne(id);
+	 }
 }

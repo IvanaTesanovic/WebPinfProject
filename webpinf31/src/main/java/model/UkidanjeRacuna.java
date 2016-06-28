@@ -21,7 +21,13 @@ public class UkidanjeRacuna extends AbstractEntity {
 	
 	public UkidanjeRacuna() {}
 
-	
+	public UkidanjeRacuna(Date datum_ukidanja, String sredstva) {
+		super();
+		this.datum_ukidanja = datum_ukidanja;
+		this.sredstva = sredstva;
+	}
+
+
 	public Date getDatum_ukidanja() {
 		return datum_ukidanja;
 	}

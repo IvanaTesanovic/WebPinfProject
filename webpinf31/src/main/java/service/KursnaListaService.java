@@ -25,5 +25,9 @@ public class KursnaListaService {
 	public void deleteRow(Long id) {
 		kursnaListaRepo.delete(id);
 	}
+	
+	 public KursnaLista findById(Long id){
+		 return kursnaListaRepo.findOne(id);
+	 }
 
 }

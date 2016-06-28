@@ -26,4 +26,8 @@ public class RTGSService {
 	public void deleteRow(Long id) {
 		rtgsRepo.delete(id);
 	}
+	
+	 public RTGS findById(Long id){
+		 return rtgsRepo.findOne(id);
+	 }
 }

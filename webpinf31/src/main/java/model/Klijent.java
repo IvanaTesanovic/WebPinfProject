@@ -57,6 +57,27 @@ public class Klijent extends AbstractEntity {
 		
 	public Klijent() {}
 
+	public Klijent(Boolean fizicko_lice, String jmbg, String ime,
+			String prezime, String adresa, String telefon, String email,
+			String naziv, String pib, String fax, String sajt,
+			String id_delatnosti, String naziv_delatnosti, String odgovorno_lice) {
+		super();
+		this.fizicko_lice = fizicko_lice;
+		this.jmbg = jmbg;
+		this.ime = ime;
+		this.prezime = prezime;
+		this.adresa = adresa;
+		this.telefon = telefon;
+		this.email = email;
+		this.naziv = naziv;
+		this.pib = pib;
+		this.fax = fax;
+		this.sajt = sajt;
+		this.id_delatnosti = id_delatnosti;
+		this.naziv_delatnosti = naziv_delatnosti;
+		this.odgovorno_lice = odgovorno_lice;
+	}
+
 
 	public Boolean getFizicko_lice() {
 		return fizicko_lice;

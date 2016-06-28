@@ -15,20 +15,27 @@ public class GrupaIzvoda extends AbstractEntity {
 
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "analitika_izvoda")
-	private AnalitikaIzvoda analitika_izvoda;
+	@JoinColumn(name = "id_analitike_izvoda")
+	private AnalitikaIzvoda id_analitike_izvoda;
 
 	
 	public GrupaIzvoda() {}
 
 
-	public AnalitikaIzvoda getAnalitika_izvoda() {
-		return analitika_izvoda;
+	public GrupaIzvoda(AnalitikaIzvoda id_analitike_izvoda) {
+		super();
+		this.id_analitike_izvoda = id_analitike_izvoda;
 	}
 
 
-	public void setAnalitika_izvoda(AnalitikaIzvoda analitika_izvoda) {
-		this.analitika_izvoda = analitika_izvoda;
+
+	public AnalitikaIzvoda getId_analitike_izvoda() {
+		return id_analitike_izvoda;
+	}
+
+
+	public void setId_analitike_izvoda(AnalitikaIzvoda id_analitike_izvoda) {
+		this.id_analitike_izvoda = id_analitike_izvoda;
 	}
 
 	

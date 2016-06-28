@@ -19,6 +19,11 @@ public class VrstePlacanja extends AbstractEntity {
 	
 	public VrstePlacanja() {}
 
+	public VrstePlacanja(String naziv) {
+		super();
+		this.naziv = naziv;
+	}
+
 	public String getNaziv() {
 		return naziv;
 	}

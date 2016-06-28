@@ -41,10 +41,31 @@ public class Kliring extends AbstractEntity {
 	private Double ukupan_iznos;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "grupa_izvoda")
-	private GrupaIzvoda grupa_izvoda;
+	@JoinColumn(name = "id_grupe_izvoda")
+	private GrupaIzvoda id_grupe_izvoda;
 	
 	public Kliring() {}
+	
+	public Kliring(String id_poruke, String swift_banke_duznika,
+			String obracunski_racun_banke_duznika,
+			String swift_banke_poverioca,
+			String obracunski_racun_banke_poverioca, Date datum_naloga,
+			String id_valute, Date datum_valute, Double ukupan_iznos,
+			GrupaIzvoda id_grupe_izvoda) {
+		super();
+		this.id_poruke = id_poruke;
+		this.swift_banke_duznika = swift_banke_duznika;
+		this.obracunski_racun_banke_duznika = obracunski_racun_banke_duznika;
+		this.swift_banke_poverioca = swift_banke_poverioca;
+		this.obracunski_racun_banke_poverioca = obracunski_racun_banke_poverioca;
+		this.datum_naloga = datum_naloga;
+		this.id_valute = id_valute;
+		this.datum_valute = datum_valute;
+		this.ukupan_iznos = ukupan_iznos;
+		this.id_grupe_izvoda = id_grupe_izvoda;
+	}
+
+
 
 	public String getId_poruke() {
 		return id_poruke;
@@ -120,14 +141,13 @@ public class Kliring extends AbstractEntity {
 		this.ukupan_iznos = ukupan_iznos;
 	}
 
-	public GrupaIzvoda getGrupa_izvoda() {
-		return grupa_izvoda;
+	public GrupaIzvoda getId_grupe_izvoda() {
+		return id_grupe_izvoda;
 	}
 
-	public void setGrupa_izvoda(GrupaIzvoda grupa_izvoda) {
-		this.grupa_izvoda = grupa_izvoda;
+	public void setId_grupe_izvoda(GrupaIzvoda id_grupe_izvoda) {
+		this.id_grupe_izvoda = id_grupe_izvoda;
 	}
 
-	
 	
 }

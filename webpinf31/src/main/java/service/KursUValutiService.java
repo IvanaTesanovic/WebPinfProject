@@ -26,4 +26,8 @@ public class KursUValutiService {
 	public void deleteRow(Long id) {
 		kursUValutiRepo.delete(id);
 	}
+
+	 public KursUValuti findById(Long id){
+		 return kursUValutiRepo.findOne(id);
+	 }
 }

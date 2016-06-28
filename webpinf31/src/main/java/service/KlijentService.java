@@ -27,4 +27,7 @@ public class KlijentService {
 		klijentRepo.delete(id);
 	}
 	
+	 public Klijent findById(Long id){
+		 return klijentRepo.findOne(id);
+	 }
 }

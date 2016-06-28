@@ -26,4 +26,8 @@ public class RacunService {
 	public void deleteRow(Long id) {
 		racunRepo.delete(id);
 	}
+
+	 public Racun findById(Long id){
+		 return racunRepo.findOne(id);
+	 }
 }
