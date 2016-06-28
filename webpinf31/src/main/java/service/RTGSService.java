@@ -19,6 +19,10 @@ public class RTGSService {
 		return (List<RTGS>) rtgsRepo.findAll();
 	}
 	
+	public void save(RTGS rtgs){
+		rtgsRepo.save(rtgs);
+	}
+	
 	public void deleteRow(Long id) {
 		rtgsRepo.delete(id);
 	}

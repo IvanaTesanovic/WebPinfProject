@@ -25,7 +25,7 @@ public class KursnaLista extends AbstractEntity {
 	private Date datum_primene;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_banke")
+	@JoinColumn(name = "banka")
 	private Banka banka;
 
 	

@@ -19,6 +19,10 @@ public class UlogaService {
 		return (List<Uloga>) ulogaRepo.findAll();
 	}
 	
+	public void save(Uloga uloga){
+		ulogaRepo.save(uloga);
+	}
+	
 	public void deleteRow(Long id) {
 		ulogaRepo.delete(id);
 	}

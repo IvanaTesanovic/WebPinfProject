@@ -18,6 +18,9 @@ public class NaseljenoMestoService {
 		return (List<NaseljenoMesto>) nasMestoRepo.findAll();
 	}
 	
+	public void save(NaseljenoMesto nm){
+		nasMestoRepo.save(nm);
+	}
 	public void deleteRow(Long id) {
 		nasMestoRepo.delete(id);
 	}

@@ -19,6 +19,10 @@ public class DnevnaStanjaRacunaService {
 		return (List<DnevnoStanjeRacuna>) dnevnaStanjaRacunaRepo.findAll();
 	}
 	
+	public void save(DnevnoStanjeRacuna dsr){
+		dnevnaStanjaRacunaRepo.save(dsr);		
+	}
+
 	public void deleteRow(Long id) {
 		dnevnaStanjaRacunaRepo.delete(id);
 	}

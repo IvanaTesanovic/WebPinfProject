@@ -62,25 +62,24 @@ public class AnalitikaIzvoda extends AbstractEntity {
 	
 	/** STRANI KLJUCEVI **/
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_dnevnog_stanja_racuna")
+	@JoinColumn(name = "dnevno_stanje_racuna")
 	private DnevnoStanjeRacuna dnevno_stanje_racuna;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_vrste_placanja")
+	@JoinColumn(name = "vrste_placanja")
 	private VrstePlacanja vrste_placanja;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_valute")
+	@JoinColumn(name = "valuta")
 	private Valuta valuta;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_naseljenog_mesta")
+	@JoinColumn(name = "naseljeno_mesto")
 	private NaseljenoMesto naseljeno_mesto;
 	
 	
 	public AnalitikaIzvoda() {}
-
-
+	
 	public String getDuznik() {
 		return duznik;
 	}

@@ -21,15 +21,15 @@ public class KursUValuti extends AbstractEntity {
 	private Double prodajni_kurs;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_kursne_liste")
+	@JoinColumn(name = "kursna_lista")
 	private KursnaLista kursna_lista;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_valute")
+	@JoinColumn(name = "valuta")
 	private Valuta valuta;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_osnovne_valute")
+	@JoinColumn(name = "osnovna_valuta")
 	private Valuta osnovna_valuta;
 	
 	public KursUValuti() {}

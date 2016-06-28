@@ -46,7 +46,7 @@ public class Klijent extends AbstractEntity {
 	private String sajt;
 	
 	@Column(nullable = true)
-	private String sifra_delatnosti;
+	private String id_delatnosti;
 	
 	@Column(nullable = true)
 	private String naziv_delatnosti;
@@ -168,13 +168,15 @@ public class Klijent extends AbstractEntity {
 	}
 
 
-	public String getSifra_delatnosti() {
-		return sifra_delatnosti;
+
+
+	public String getId_delatnosti() {
+		return id_delatnosti;
 	}
 
 
-	public void setSifra_delatnosti(String sifra_delatnosti) {
-		this.sifra_delatnosti = sifra_delatnosti;
+	public void setId_delatnosti(String id_delatnosti) {
+		this.id_delatnosti = id_delatnosti;
 	}
 
 

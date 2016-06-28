@@ -19,6 +19,10 @@ public class KlijentService {
 		return (List<Klijent>) klijentRepo.findAll();
 	}
 	
+	public void save(Klijent k){
+		klijentRepo.save(k);
+	}
+	
 	public void deleteRow(Long id) {
 		klijentRepo.delete(id);
 	}

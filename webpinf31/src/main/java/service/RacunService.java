@@ -19,6 +19,10 @@ public class RacunService {
 		return (List<Racun>) racunRepo.findAll();
 	}
 	
+	public void save(Racun racun){
+		racunRepo.save(racun);
+		
+	}
 	public void deleteRow(Long id) {
 		racunRepo.delete(id);
 	}

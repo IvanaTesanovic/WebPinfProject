@@ -25,6 +25,12 @@ public class NaseljenoMesto extends AbstractEntity {
 	private Drzava sifra_drzave; 
 
 	public NaseljenoMesto() {}
+	
+	public NaseljenoMesto(String naziv, String ptt_oznaka) {
+		super();
+		this.naziv = naziv;
+		this.ptt_oznaka = ptt_oznaka;
+	}
 
 	public String getNaziv() {
 		return naziv;

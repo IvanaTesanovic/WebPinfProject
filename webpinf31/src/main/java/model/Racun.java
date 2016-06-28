@@ -26,15 +26,15 @@ public class Racun extends AbstractEntity {
 	private Boolean vazeci;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_banke")
+	@JoinColumn(name = "banka")
 	private Banka banka;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_valute")
+	@JoinColumn(name = "valuta")
 	private Valuta valuta;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_klijenta")
+	@JoinColumn(name = "klijent")
 	private Klijent klijent;
 	
 	
