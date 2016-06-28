@@ -54,6 +54,7 @@ app.controller("HomePageController", function($scope, HomePageService) {
 		$scope.noveKolone = angular.copy($scope.kolone);
 		angular.forEach($scope.noveKolone, function(value, key) {
 	         if(value.naziv == "id")
+	        	 //ovde treba disable-ovati
 	        	 $scope.noveKolone.splice(0, 1);
 	         });
 	};

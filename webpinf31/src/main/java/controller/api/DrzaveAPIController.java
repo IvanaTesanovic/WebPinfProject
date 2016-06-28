@@ -18,8 +18,8 @@ public class DrzaveAPIController {
 	DrzavaService service;
 	
 	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.IZMENA)
-	public void izmeni() {
-		
+	public void izmeni(@RequestBody Drzava obj) {
+		service.update(obj.getId(), obj.getNaziv());
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.DODAVANJE)

@@ -27,8 +27,6 @@ public class GrupaIzvoda extends AbstractEntity {
 		this.id_analitike_izvoda = id_analitike_izvoda;
 	}
 
-
-
 	public AnalitikaIzvoda getId_analitike_izvoda() {
 		return id_analitike_izvoda;
 	}
