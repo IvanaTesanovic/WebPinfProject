@@ -2,19 +2,32 @@
 
 <body>
 <div data-ng-controller="HomePageController">
-<ul>
-	<li><button data-ng-click="openTable('drzave')">Drzave</button></li>
-	<li><button data-ng-click="openTable('naseljenaMesta')">Naseljena mesta</button></li>
-	<li><button data-ng-click="openTable('banke')">Banke</button></li>
-	<li><button data-ng-click="openTable('klijenti')">Klijenti</button></li>
-	<li><button data-ng-click="openTable('racuni')">Racuni klijenata</button></li>
-	<li><button data-ng-click="openTable('rtgs')">RTGS</button></li>
-	<li><button data-ng-click="openTable('kliring')">Kliring</button></li>
-	<li><button data-ng-click="openTable('kursnaLista')">Kursna lista</button></li>
-	<li><button data-ng-click="openTable('kursevi')">Kursevi u valuti</button></li>
-	<li><button data-ng-click="openTable('analitikeIzvoda')">Analitike izvoda</button></li>
-	<li><button data-ng-click="openTable('dnevnaStanja')">Dnevna stanja racuna</button></li>
+
+<div class="nav-tabs">
+<ul class="nav nav-pills">
+	<li>
+		<div class="dropdown">
+			<div style="margin-bottom:0.2em;">
+			<button class="btn" data-ng-click="openTable('drzave')">Drzave</button>
+			<button class="btn " data-ng-click="openTable('naseljenaMesta')">Naseljena mesta</button>
+			<button class="btn" data-ng-click="openTable('banke')">Banke</button>
+			<button class="btn" data-ng-click="openTable('klijenti')">Klijenti</button>
+			<button class="btn" data-ng-click="openTable('racuni')">Racuni klijenata</button>
+			<button class="btn" data-ng-click="openTable('rtgs')">RTGS</button>
+			<button class="btn" data-ng-click="openTable('kliring')">Kliring</button>
+			<button class="btn" data-ng-click="openTable('kursnaLista')">Kursna lista</button>
+			<button class="btn" data-ng-click="openTable('kursevi')">Kursevi u valuti</button>
+			<button class="btn" data-ng-click="openTable('analitikeIzvoda')">Analitike izvoda</button>
+			<button class="btn" data-ng-click="openTable('dnevnaStanja')">Dnevna stanja racuna</button>
+			</div>
+		</div>
+	</li>
+<!-- 	<li><button class="btn btn-primary">Odjavi se</button></li> -->
 </ul>
+</div>
+
+<br>
+
 <div data-ng-show="nameTable != ''">
 	<table class="table table-bordered table-hover">
 		<tr>
@@ -22,30 +35,30 @@
 		</tr>
 		<tr data-ng-repeat="t in table">
 			<td data-ng-repeat = "kk in kolone" >{{getValue(t, kk.naziv)}}</td>
-			<td><a data-ng-click="deleteRow(t.id)" class = "btn btn-primary">Obrisi</a></td>
-			<td><a data-ng-click="izmeni(t.id)" class = "btn btn-primary">Izmeni</a></td>
+			<td><a data-ng-click="deleteRow(t.id)" class = "btn btn-success">Obrisi</a></td>
+			<td><a data-ng-click="izmeni(t.id)" class = "btn btn-success">Izmeni</a></td>
 		</tr>
 	</table>
 </div>
-Trenutni rezim: {{rezim}}
+<p>Trenutni rezim: {{rezim}}</p>
 <div>
-	<button id="izmena" data-ng-click="promeniRezim('izmena')" data-ng-disabled='nameTable == ""'>Izmena</button>
-	<button id="dodavanje" data-ng-click="promeniRezim('dodavanje')" data-ng-disabled='nameTable == ""'>Dodavanje</button>
-	<button id="pretraga" data-ng-click="promeniRezim('pretraga')" data-ng-disabled='nameTable == ""'>Pretraga</button>
-	<button data-ng-click="promeniRezim('nema')">Zatvori formu</button>
+<!-- 	<button class="btn btn-primary" id="izmena" data-ng-click="promeniRezim('izmena')" data-ng-disabled='nameTable == ""'>Izmena</button> -->
+	<button class="btn btn-primary" id="dodavanje" data-ng-click="promeniRezim('dodavanje')" data-ng-disabled='nameTable == ""'>Dodavanje</button>
+	<button class="btn btn-primary" id="pretraga" data-ng-click="promeniRezim('pretraga')" data-ng-disabled='nameTable == ""'>Pretraga</button>
+	<button class="btn btn-primary" data-ng-click="promeniRezim('nema')">Zatvori formu</button>
 </div>
 
-<div id="formaAkcije" data-ng-show='rezim == "IZMENA" || rezim == "DODAVANJE" || rezim == "PRETRAGA"'>
-
-	<form data-ng-submit="izvrsiAkciju()">
-		<p data-ng-show='rezim == "DODAVANJE" || rezim == "PRETRAGA"' data-ng-repeat="k in noveKolone">
-			<label>{{k.naziv}}</label><input id="{{k.naziv}}"/>
+<div id="formaAkcijeDP" data-ng-show='rezim == "DODAVANJE" || rezim == "PRETRAGA" || rezim == "IZMENA"'>
+	<form class="navbar-form" data-ng-submit="izvrsiAkciju()">
+		<p data-ng-repeat="k in noveKolone" data-ng-show='rezim == "DODAVANJE" || rezim == "PRETRAGA"'>
+			<label>{{k.naziv}}</label>&nbsp;<input class="dp" id="{{k.naziv}}"/>
 		</p>
-		<p data-ng-show='rezim == "IZMENA"' data-ng-repeat="k in noveKolone">
-			<label>{{k.naziv}}</label><input value="bla bla" id="{{k.naziv}}"/>
+		<p data-ng-repeat="k in noveKolone" data-ng-show='rezim == "IZMENA'>
+			<label>{{k.naziv}}</label>&nbsp;<input class="izm" value="{{getIzmValue(k.naziv)}}" id="'{{k.naziv}}"/>
 		</p>
-		<button type="submit">Izvrsi akciju</button>
+		<button class="btn btn-success" type="submit">Izvrsi akciju</button>
 	</form>
 </div>
+
 </div>
 </body>

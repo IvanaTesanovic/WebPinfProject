@@ -22,7 +22,7 @@ public class NaseljenoMesto extends AbstractEntity {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "sifra_drzave")
-	private Drzava drzava; 
+	private Drzava sifra_drzave; 
 
 	public NaseljenoMesto() {}
 
@@ -34,20 +34,20 @@ public class NaseljenoMesto extends AbstractEntity {
 		this.naziv = naziv;
 	}
 
-	public String getPttOznaka() {
+	public String getPtt_oznaka() {
 		return ptt_oznaka;
 	}
 
-	public void setPttOznaka(String pttOznaka) {
-		this.ptt_oznaka = pttOznaka;
+	public void setPtt_oznaka(String ptt_oznaka) {
+		this.ptt_oznaka = ptt_oznaka;
 	}
 
-	public Drzava getDrzava() {
-		return drzava;
+	public Drzava getSifra_drzave() {
+		return sifra_drzave;
 	}
 
-	public void setDrzava(Drzava drzava) {
-		this.drzava = drzava;
+	public void setSifra_drzave(Drzava sifra_drzave) {
+		this.sifra_drzave = sifra_drzave;
 	}
 	
 }

@@ -26,11 +26,11 @@ public class DrzavaService {
 		return drzavaRepo.findByNaziv(naziv);
 	}
 	
-//	public List<Column> getColumns() {
-//		return drzavaRepo.getColumns();
-//	}
-
 	public void deleteRow(Long id) {
 		drzavaRepo.delete(id);
+	}
+	
+	public Drzava findById(Long id) {
+		return drzavaRepo.findOne(id);
 	}
 }

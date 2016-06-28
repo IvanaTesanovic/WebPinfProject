@@ -78,7 +78,7 @@ public class HomePageAPIController {
 	@Autowired
 	DnevnaStanjaRacunaService dnevnaStanjaRacunaService;
 	
-	/** GET TABELE **/
+	/** TODO GET TABELE **/
 	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.ANALITIKE_IZVODA, produces = MimeTypes.APPLICATION_JSON)
 	public List<AnalitikaIzvoda> getanalitikaIzvoda() {
 		return analitikaIzvodaService.listAll();
@@ -135,8 +135,17 @@ public class HomePageAPIController {
 	}
 	/** END GET TABELE**/
 	
+	/** TODO GET ONE OBJECT **/
+	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.DRZAVE + "/{id}", produces = MimeTypes.APPLICATION_JSON)
+	public Drzava getDrzava(@Validated @PathVariable final Long id) {
+		return drzavaService.findById(id);
+	}
 	
-	/** GET KOLONE **/
+	//TODO URADITI OVO ZA SVE TABELE!
+	/**END GET ONE OBJECT **/
+	
+	
+	/** TODO GET KOLONE **/
 	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.DRZAVE + RequestMappings.KOLONE, produces = MimeTypes.APPLICATION_JSON)
 	public ArrayList<Column> getDrzaveKolone() {
 		return TableColumns.getColumns("drzave");
@@ -196,7 +205,7 @@ public class HomePageAPIController {
 	/** END GET KOLONE **/ 
 	
 	
-	/** DELETE TABLE ROWS **/
+	/** TODO DELETE TABLE ROWS **/
 	@RequestMapping(method = RequestMethod.DELETE, value = RequestMappings.DRZAVE + RequestMappings.OBRISI + "{id}", produces = MimeTypes.APPLICATION_JSON)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteDrzavaRow(@Validated @PathVariable final Long id) {

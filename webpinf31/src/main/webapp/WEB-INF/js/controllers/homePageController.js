@@ -4,18 +4,33 @@ app.controller("HomePageController", function($scope, HomePageService) {
 	$scope.table = {};
 	$scope.nameTable = "";
 	$scope.kolone = {};
+	
+	$scope.objIzm = {};
+	$scope.valIzm = {};
 
 	$scope.izvrsiAkciju = function() {
 		var rez = $scope.rezim.toLowerCase();
 		var nt = $scope.nameTable;
 		var data = {};
+		var dataIzm = {};
 		var inputs = document.getElementsByTagName('input');
+		
 		for(var i = 0; i < inputs.length; i++) {
 			var id = inputs[i].getAttribute('id');
-            var val = inputs[i].value;
-            data[id] = val;
+			var klasa = inputs[i].getAttribute('class');
+			if(klasa == 'izm') {
+				var val = inputs[i].value;
+				dataIzm[id] = val;
+			}
+			else if (klasa == 'dp'){
+				var val = inputs[i].value;
+		        data[id] = val;
+			}
 		}
-		HomePageService.izvrsiAkciju(rez, nt, data);
+		if(rez == 'izmena')
+			HomePageService.izvrsiAkciju(rez, nt, dataIzm);
+		else
+			HomePageService.izvrsiAkciju(rez, nt, data);
 	};
 	
 	$scope.openTable = function(tableName) {
@@ -37,7 +52,6 @@ app.controller("HomePageController", function($scope, HomePageService) {
 	$scope.koloneZaPrikaz = function() {
 		$scope.noveKolone = angular.copy($scope.kolone);
 		angular.forEach($scope.noveKolone, function(value, key) {
-			console.log(value);
 	         if(value.naziv == "id")
 	        	 $scope.noveKolone.splice(0, 1);
 	         });
@@ -54,7 +68,6 @@ app.controller("HomePageController", function($scope, HomePageService) {
 			$scope.rezim = rez.toUpperCase();
 			$scope.noveKolone = angular.copy($scope.kolone);
 			angular.forEach($scope.noveKolone, function(value, key) {
-				console.log(value);
 		         if(value.naziv == "id")
 		        	 $scope.noveKolone.splice(0, 1);
 		         });
@@ -66,5 +79,21 @@ app.controller("HomePageController", function($scope, HomePageService) {
 		$scope.table.splice(tIndex - 1, 1);
 
 	};
+	
+	$scope.izmeni = function(id) {
+		$scope.rezim = 'izmena';
+		$scope.promeniRezim($scope.rezim);
+		HomePageService.findById(id, $scope.nameTable, function(data) {
+			if(angular.isObject(data))
+				$scope.objIzm = data;
+		});
+		//treba da vratim onu torku u tabeli ciji je id ovaj prosledjeni
+	};
+	
+	$scope.getIzmValue = function(kol) {
+		var obj = $scope.objIzm;
+		return obj[kol];
+	};
+	
 });
 

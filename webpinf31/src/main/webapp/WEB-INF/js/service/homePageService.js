@@ -1,5 +1,8 @@
 app.factory("HomePageService", function($http) {
 	return {
+		findById: function(id, tableName, callback) {
+			$http.get('api/homepage/' + tableName + '/' + id).success(callback);
+		},
 	    openTable: function(tableName, callback) {
 	    	$http.get('api/homepage/' + tableName).success(callback);
 	    },
