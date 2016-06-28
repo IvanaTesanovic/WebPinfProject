@@ -113,6 +113,4 @@ public class DnevnoStanjeRacuna extends AbstractEntity {
 		this.id_racuna = id_racuna;
 	}
 
-
-	
 }

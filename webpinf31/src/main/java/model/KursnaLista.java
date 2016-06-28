@@ -26,19 +26,19 @@ public class KursnaLista extends AbstractEntity {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_banke")
-	private Banka banka;
+	private Banka id_banke;
 
 	
 	public KursnaLista() {}
 
 	
 	public KursnaLista(Date datum, Integer broj_kursne_liste,
-			Date datum_primene, Banka banka) {
+			Date datum_primene, Banka id_banke) {
 		super();
 		this.datum = datum;
 		this.broj_kursne_liste = broj_kursne_liste;
 		this.datum_primene = datum_primene;
-		this.banka = banka;
+		this.id_banke = id_banke;
 	}
 
 	public Date getDatum() {
@@ -66,12 +66,14 @@ public class KursnaLista extends AbstractEntity {
 		this.datum_primene = datum_primene;
 	}
 
-	public Banka getBanka() {
-		return banka;
+
+	public Banka getId_banke() {
+		return id_banke;
 	}
 
-	public void setBanka(Banka banka) {
-		this.banka = banka;
+
+	public void setId_banke(Banka id_banke) {
+		this.id_banke = id_banke;
 	}
 
 }

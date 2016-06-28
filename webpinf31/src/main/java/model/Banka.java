@@ -121,12 +121,5 @@ public class Banka extends AbstractEntity {
 		this.fax = fax;
 	}
 
-	public Boolean getJeste_banka() {
-		return narodna_banka;
-	}
-
-	public void setJeste_banka(Boolean narodna_banka) {
-		this.narodna_banka = narodna_banka;
-	}
 
 }
