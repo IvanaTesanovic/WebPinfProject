@@ -5,9 +5,13 @@ import java.util.List;
 import model.Valuta;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import repository.ValutaRepository;
 
+@Service
+@Transactional
 public class ValutaService {
 	
 	@Autowired

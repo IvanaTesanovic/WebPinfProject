@@ -11,6 +11,7 @@ import model.Drzava;
 import repository.DrzavaRepository;
 
 @Service
+@Transactional
 public class DrzavaService {
 	
 	@Autowired
@@ -36,7 +37,6 @@ public class DrzavaService {
 		return drzavaRepo.findOne(id);
 	}
 	
-	@Transactional
 	public void update(Long id, String naziv) {
 		Drzava drzava = drzavaRepo.findOne(id);
 		drzava.setNaziv(naziv);

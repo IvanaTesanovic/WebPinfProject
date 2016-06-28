@@ -12,9 +12,9 @@ import service.AnalitikaIzvodaService;
 import service.DnevnaStanjaRacunaService;
 import service.NaseljenoMestoService;
 import service.ValutaService;
-import service.VrstePlacanjaService;
+//import service.VrstePlacanjaService;
 import api.constants.RequestMappings;
-import dto.AnalitikaIzvodaDTO;
+//import dto.AnalitikaIzvodaDTO;
 
 @RestController
 @RequestMapping(RequestMappings.ACTIONS_API + RequestMappings.ANALITIKE_IZVODA)
@@ -42,7 +42,7 @@ public class AnalitikeIzvodaAPIController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.DODAVANJE)
-	public void dodaj(@RequestBody AnalitikaIzvodaDTO obj) {
+	public void dodaj(/*@RequestBody AnalitikaIzvodaDTO obj*/) {
 	
 		analitikaIzvodaService.save(new AnalitikaIzvoda()); }/*(obj.getDuznik(), obj.getPoverilac(), obj.getSvrha_placanja(), obj.getDatum_prijema(),
 				obj.getDatum_valute(), obj.getRacun_duznika(), obj.getRacun_poverioca(), obj.getModel_odobrenja(), obj.getModel_zaduzenja(),
