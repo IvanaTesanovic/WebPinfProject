@@ -34,6 +34,7 @@ app.controller("HomePageController", function($scope, HomePageService) {
 	};
 	
 	$scope.openTable = function(tableName) {
+		$scope.promeniRezim('nema');
 		$scope.nameTable = tableName;
 		HomePageService.openTable(tableName, function(data) {
 			if(angular.isObject(data))
@@ -60,8 +61,6 @@ app.controller("HomePageController", function($scope, HomePageService) {
 	$scope.promeniRezim = function(rez) {
 		if(rez == "nema") {
 			$scope.rezim = "Trenutno nije odabran nijedan rezim.";
-//			angular.element(document.getElementById('izmena'))[0].disabled = true;
-//			angular.element(document.getElementById('dodavanje'))[0].disabled = true;
 //			angular.element(document.getElementById('pretraga'))[0].disabled = true;
 		}
 		else {
@@ -87,7 +86,6 @@ app.controller("HomePageController", function($scope, HomePageService) {
 			if(angular.isObject(data))
 				$scope.objIzm = data;
 		});
-		//treba da vratim onu torku u tabeli ciji je id ovaj prosledjeni
 	};
 	
 	$scope.getIzmValue = function(kol) {

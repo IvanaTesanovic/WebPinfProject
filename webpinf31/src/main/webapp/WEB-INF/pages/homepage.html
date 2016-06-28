@@ -8,17 +8,17 @@
 	<li>
 		<div class="dropdown">
 			<div style="margin-bottom:0.2em;">
-			<button class="btn" data-ng-click="openTable('drzave')">Drzave</button>
-			<button class="btn " data-ng-click="openTable('naseljenaMesta')">Naseljena mesta</button>
-			<button class="btn" data-ng-click="openTable('banke')">Banke</button>
-			<button class="btn" data-ng-click="openTable('klijenti')">Klijenti</button>
-			<button class="btn" data-ng-click="openTable('racuni')">Racuni klijenata</button>
-			<button class="btn" data-ng-click="openTable('rtgs')">RTGS</button>
-			<button class="btn" data-ng-click="openTable('kliring')">Kliring</button>
-			<button class="btn" data-ng-click="openTable('kursnaLista')">Kursna lista</button>
-			<button class="btn" data-ng-click="openTable('kursevi')">Kursevi u valuti</button>
-			<button class="btn" data-ng-click="openTable('analitikeIzvoda')">Analitike izvoda</button>
-			<button class="btn" data-ng-click="openTable('dnevnaStanja')">Dnevna stanja racuna</button>
+			<button class="btn btn-info" data-ng-click="openTable('drzave')">Drzave</button>
+			<button class="btn btn-info" data-ng-click="openTable('naseljenaMesta')">Naseljena mesta</button>
+			<button class="btn btn-info" data-ng-click="openTable('banke')">Banke</button>
+			<button class="btn btn-info" data-ng-click="openTable('klijenti')">Klijenti</button>
+			<button class="btn btn-info" data-ng-click="openTable('racuni')">Racuni klijenata</button>
+			<button class="btn btn-info" data-ng-click="openTable('rtgs')">RTGS</button>
+			<button class="btn btn-info" data-ng-click="openTable('kliring')">Kliring</button>
+			<button class="btn btn-info" data-ng-click="openTable('kursnaLista')">Kursna lista</button>
+			<button class="btn btn-info" data-ng-click="openTable('kursevi')">Kursevi u valuti</button>
+			<button class="btn btn-info" data-ng-click="openTable('analitikeIzvoda')">Analitike izvoda</button>
+			<button class="btn btn-info" data-ng-click="openTable('dnevnaStanja')">Dnevna stanja racuna</button>
 			</div>
 		</div>
 	</li>
@@ -42,18 +42,27 @@
 </div>
 <p>Trenutni rezim: {{rezim}}</p>
 <div>
-<!-- 	<button class="btn btn-primary" id="izmena" data-ng-click="promeniRezim('izmena')" data-ng-disabled='nameTable == ""'>Izmena</button> -->
 	<button class="btn btn-primary" id="dodavanje" data-ng-click="promeniRezim('dodavanje')" data-ng-disabled='nameTable == ""'>Dodavanje</button>
 	<button class="btn btn-primary" id="pretraga" data-ng-click="promeniRezim('pretraga')" data-ng-disabled='nameTable == ""'>Pretraga</button>
 	<button class="btn btn-primary" data-ng-click="promeniRezim('nema')">Zatvori formu</button>
 </div>
 
-<div id="formaAkcijeDP" data-ng-show='rezim == "DODAVANJE" || rezim == "PRETRAGA" || rezim == "IZMENA"'>
+<!-- NE ZNAM ZASTO, PONAVLJAJU SE KOLONE! treba to proveriti 
+sta je klijent kod klijenta?
+sta je id banke kod banke?-->
+
+<div id="formaAkcijeDP" data-ng-show='rezim == "DODAVANJE" || rezim == "PRETRAGA"'>
 	<form class="navbar-form" data-ng-submit="izvrsiAkciju()">
 		<p data-ng-repeat="k in noveKolone" data-ng-show='rezim == "DODAVANJE" || rezim == "PRETRAGA"'>
 			<label>{{k.naziv}}</label>&nbsp;<input class="dp" id="{{k.naziv}}"/>
 		</p>
-		<p data-ng-repeat="k in noveKolone" data-ng-show='rezim == "IZMENA'>
+		<button class="btn btn-success" type="submit">Izvrsi akciju</button>
+	</form>
+</div>
+
+<div id="formaAkcijeDP" data-ng-show='rezim == "IZMENA"'>
+	<form class="navbar-form" data-ng-submit="izvrsiAkciju()">
+		<p data-ng-repeat="k in noveKolone">
 			<label>{{k.naziv}}</label>&nbsp;<input class="izm" value="{{getIzmValue(k.naziv)}}" id="'{{k.naziv}}"/>
 		</p>
 		<button class="btn btn-success" type="submit">Izvrsi akciju</button>
