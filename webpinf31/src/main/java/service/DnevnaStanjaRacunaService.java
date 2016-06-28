@@ -27,4 +27,8 @@ public class DnevnaStanjaRacunaService {
 		dnevnaStanjaRacunaRepo.delete(id);
 	}
 	
+	public DnevnoStanjeRacuna findById(Long id){
+		return dnevnaStanjaRacunaRepo.findOne(id);
+	}
+	
 }

@@ -25,11 +25,21 @@ public class KursnaLista extends AbstractEntity {
 	private Date datum_primene;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "banka")
+	@JoinColumn(name = "id_banke")
 	private Banka banka;
 
 	
 	public KursnaLista() {}
+
+	
+	public KursnaLista(Date datum, Integer broj_kursne_liste,
+			Date datum_primene, Banka banka) {
+		super();
+		this.datum = datum;
+		this.broj_kursne_liste = broj_kursne_liste;
+		this.datum_primene = datum_primene;
+		this.banka = banka;
+	}
 
 	public Date getDatum() {
 		return datum;

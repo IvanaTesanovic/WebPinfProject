@@ -62,24 +62,59 @@ public class AnalitikaIzvoda extends AbstractEntity {
 	
 	/** STRANI KLJUCEVI **/
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "dnevno_stanje_racuna")
-	private DnevnoStanjeRacuna dnevno_stanje_racuna;
+	@JoinColumn(name = "id_dnevnog_stanja_racuna")
+	private DnevnoStanjeRacuna id_dnevnog_stanja_racuna;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "vrste_placanja")
-	private VrstePlacanja vrste_placanja;
+	@JoinColumn(name = "id_vrste_placanja")
+	private VrstePlacanja id_vrste_placanja;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "valuta")
-	private Valuta valuta;
+	@JoinColumn(name = "id_valute")
+	private Valuta id_valute;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "naseljeno_mesto")
-	private NaseljenoMesto naseljeno_mesto;
+	@JoinColumn(name = "id_naseljenog_mesta")
+	private NaseljenoMesto id_naseljenog_mesta;
 	
 	
 	public AnalitikaIzvoda() {}
 	
+	
+	
+	public AnalitikaIzvoda(String duznik, String poverilac,
+			String svrha_placanja, Date datum_prijema, Date datum_valute,
+			String racun_duznika, String racun_poverioca,
+			String model_odobrenja, String model_zaduzenja,
+			String poziv_na_broj_odobrenja, String poziv_na_broj_zaduzenja,
+			Boolean hitno, Double iznos, Integer tip_greske, String status,
+			DnevnoStanjeRacuna id_dnevnog_stanja_racuna,
+			VrstePlacanja id_vrste_placanja, Valuta id_valute,
+			NaseljenoMesto id_naseljenog_mesta) {
+		super();
+		this.duznik = duznik;
+		this.poverilac = poverilac;
+		this.svrha_placanja = svrha_placanja;
+		this.datum_prijema = datum_prijema;
+		this.datum_valute = datum_valute;
+		this.racun_duznika = racun_duznika;
+		this.racun_poverioca = racun_poverioca;
+		this.model_odobrenja = model_odobrenja;
+		this.model_zaduzenja = model_zaduzenja;
+		this.poziv_na_broj_odobrenja = poziv_na_broj_odobrenja;
+		this.poziv_na_broj_zaduzenja = poziv_na_broj_zaduzenja;
+		this.hitno = hitno;
+		this.iznos = iznos;
+		this.tip_greske = tip_greske;
+		this.status = status;
+		this.id_dnevnog_stanja_racuna = id_dnevnog_stanja_racuna;
+		this.id_vrste_placanja = id_vrste_placanja;
+		this.id_valute = id_valute;
+		this.id_naseljenog_mesta = id_naseljenog_mesta;
+	}
+
+
+
 	public String getDuznik() {
 		return duznik;
 	}
@@ -229,46 +264,38 @@ public class AnalitikaIzvoda extends AbstractEntity {
 		this.status = status;
 	}
 
-
-	public DnevnoStanjeRacuna getDnevno_stanje_racuna() {
-		return dnevno_stanje_racuna;
+	public DnevnoStanjeRacuna getId_dnevnog_stanja_racuna() {
+		return id_dnevnog_stanja_racuna;
 	}
 
-
-	public void setDnevno_stanje_racuna(DnevnoStanjeRacuna dnevno_stanje_racuna) {
-		this.dnevno_stanje_racuna = dnevno_stanje_racuna;
+	public void setId_dnevnog_stanja_racuna(
+			DnevnoStanjeRacuna id_dnevnog_stanja_racuna) {
+		this.id_dnevnog_stanja_racuna = id_dnevnog_stanja_racuna;
 	}
 
-
-	public VrstePlacanja getVrste_placanja() {
-		return vrste_placanja;
+	public VrstePlacanja getId_vrste_placanja() {
+		return id_vrste_placanja;
 	}
 
-
-	public void setVrste_placanja(VrstePlacanja vrste_placanja) {
-		this.vrste_placanja = vrste_placanja;
+	public void setId_vrste_placanja(VrstePlacanja id_vrste_placanja) {
+		this.id_vrste_placanja = id_vrste_placanja;
 	}
 
-
-	public Valuta getValuta() {
-		return valuta;
+	public Valuta getId_valute() {
+		return id_valute;
 	}
 
-
-	public void setValuta(Valuta valuta) {
-		this.valuta = valuta;
+	public void setId_valute(Valuta id_valute) {
+		this.id_valute = id_valute;
 	}
 
-
-	public NaseljenoMesto getNaseljeno_mesto() {
-		return naseljeno_mesto;
+	public NaseljenoMesto getId_naseljenog_mesta() {
+		return id_naseljenog_mesta;
 	}
 
-
-	public void setNaseljeno_mesto(NaseljenoMesto naseljeno_mesto) {
-		this.naseljeno_mesto = naseljeno_mesto;
+	public void setId_naseljenog_mesta(NaseljenoMesto id_naseljenog_mesta) {
+		this.id_naseljenog_mesta = id_naseljenog_mesta;
 	}
-
 
 	
 }

@@ -18,15 +18,16 @@ public class NaseljenoMesto extends AbstractEntity {
 	private String ptt_oznaka;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "drzava")
-	private Drzava drzava; 
+	@JoinColumn(name = "id_drzava")
+	private Drzava id_drzava; 
 
 	public NaseljenoMesto() {}
-	
-	public NaseljenoMesto(String naziv, String ptt_oznaka) {
+
+	public NaseljenoMesto(String naziv, String ptt_oznaka, Drzava id_drzava) {
 		super();
 		this.naziv = naziv;
 		this.ptt_oznaka = ptt_oznaka;
+		this.id_drzava = id_drzava;
 	}
 
 	public String getNaziv() {
@@ -45,12 +46,13 @@ public class NaseljenoMesto extends AbstractEntity {
 		this.ptt_oznaka = ptt_oznaka;
 	}
 
-	public Drzava getDrzava() {
-		return drzava;
+	public Drzava getId_drzava() {
+		return id_drzava;
 	}
 
-	public void setDrzava(Drzava drzava) {
-		this.drzava = drzava;
+	public void setId_drzava(Drzava id_drzava) {
+		this.id_drzava = id_drzava;
 	}
+
 
 }

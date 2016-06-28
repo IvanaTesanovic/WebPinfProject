@@ -26,4 +26,8 @@ public class KliringService {
 	public void deleteRow(Long id) {
 		kliringRepo.delete(id);
 	}
+	
+	 public Kliring findById(Long id){
+		 return kliringRepo.findOne(id);
+	 }
 }

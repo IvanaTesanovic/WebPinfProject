@@ -71,10 +71,42 @@ public class RTGS extends AbstractEntity {
 	private Double ukupan_iznos;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "analitika_izvoda")
-	private AnalitikaIzvoda analitika_izvoda;
+	@JoinColumn(name = "id_analitike_izvoda")
+	private AnalitikaIzvoda id_analitike_izvoda;
 	
 	public RTGS() {}
+
+	public RTGS(String id_poruke, String swift_banke_duznika, String duznik,
+			String racun_duznika, String obracunski_racun_banke_duznika,
+			String swift_banke_poverioca, String poverilac,
+			String racun_poverioca, String obracunski_racun_banke_poverioca,
+			String model_zaduzenja, String poziv_na_broj_zaduzenja,
+			String model_odobrenja, String poziv_na_broj_odobrenja,
+			String svrha_placanja, Date datum_naloga, String id_valute,
+			Date datum_valute, Double ukupan_iznos,
+			AnalitikaIzvoda id_analitike_izvoda) {
+		super();
+		this.id_poruke = id_poruke;
+		this.swift_banke_duznika = swift_banke_duznika;
+		this.duznik = duznik;
+		this.racun_duznika = racun_duznika;
+		this.obracunski_racun_banke_duznika = obracunski_racun_banke_duznika;
+		this.swift_banke_poverioca = swift_banke_poverioca;
+		this.poverilac = poverilac;
+		this.racun_poverioca = racun_poverioca;
+		this.obracunski_racun_banke_poverioca = obracunski_racun_banke_poverioca;
+		this.model_zaduzenja = model_zaduzenja;
+		this.poziv_na_broj_zaduzenja = poziv_na_broj_zaduzenja;
+		this.model_odobrenja = model_odobrenja;
+		this.poziv_na_broj_odobrenja = poziv_na_broj_odobrenja;
+		this.svrha_placanja = svrha_placanja;
+		this.datum_naloga = datum_naloga;
+		this.id_valute = id_valute;
+		this.datum_valute = datum_valute;
+		this.ukupan_iznos = ukupan_iznos;
+		this.id_analitike_izvoda = id_analitike_izvoda;
+	}
+
 
 	public String getId_poruke() {
 		return id_poruke;
@@ -222,12 +254,12 @@ public class RTGS extends AbstractEntity {
 		this.ukupan_iznos = ukupan_iznos;
 	}
 
-	public AnalitikaIzvoda getAnalitika_izvoda() {
-		return analitika_izvoda;
+	public AnalitikaIzvoda getId_analitike_izvoda() {
+		return id_analitike_izvoda;
 	}
 
-	public void setAnalitika_izvoda(AnalitikaIzvoda analitika_izvoda) {
-		this.analitika_izvoda = analitika_izvoda;
+	public void setId_analitike_izvoda(AnalitikaIzvoda id_analitike_izvoda) {
+		this.id_analitike_izvoda = id_analitike_izvoda;
 	}
 
 }

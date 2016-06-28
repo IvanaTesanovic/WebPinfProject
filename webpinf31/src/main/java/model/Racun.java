@@ -26,19 +26,31 @@ public class Racun extends AbstractEntity {
 	private Boolean vazeci;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "banka")
-	private Banka banka;
+	@JoinColumn(name = "id_banke")
+	private Banka id_banke;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "valuta")
-	private Valuta valuta;
+	@JoinColumn(name = "id_valute")
+	private Valuta id_valute;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "klijent")
-	private Klijent klijent;
+	@JoinColumn(name = "id_klijenta")
+	private Klijent id_klijenta;
 	
 	
 	public Racun() {}
+
+	public Racun(String broj_racuna, Date datum_otvaranja, Boolean vazeci,
+			Banka id_banke, Valuta id_valute, Klijent id_klijenta) {
+		super();
+		this.broj_racuna = broj_racuna;
+		this.datum_otvaranja = datum_otvaranja;
+		this.vazeci = vazeci;
+		this.id_banke = id_banke;
+		this.id_valute = id_valute;
+		this.id_klijenta = id_klijenta;
+	}
+
 
 
 	public String getBroj_racuna() {
@@ -71,35 +83,34 @@ public class Racun extends AbstractEntity {
 	}
 
 
-	public Banka getBanka() {
-		return banka;
+	public Banka getId_banke() {
+		return id_banke;
 	}
 
 
-	public void setBanka(Banka banka) {
-		this.banka = banka;
+	public void setId_banke(Banka id_banke) {
+		this.id_banke = id_banke;
 	}
 
 
-	public Valuta getValuta() {
-		return valuta;
+	public Valuta getId_valute() {
+		return id_valute;
 	}
 
 
-	public void setValuta(Valuta valuta) {
-		this.valuta = valuta;
+	public void setId_valute(Valuta id_valute) {
+		this.id_valute = id_valute;
 	}
 
 
-	public Klijent getKlijent() {
-		return klijent;
+	public Klijent getId_klijenta() {
+		return id_klijenta;
 	}
 
 
-	public void setKlijent(Klijent klijent) {
-		this.klijent = klijent;
+	public void setId_klijenta(Klijent id_klijenta) {
+		this.id_klijenta = id_klijenta;
 	}
-	
-	
+
 	
 }

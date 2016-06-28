@@ -26,4 +26,8 @@ public class BankaService {
 		bankaRepo.delete(id);
 	}
 
+	public Banka findById(Long id) {
+		return bankaRepo.findOne(id);
+	}
+	
 }

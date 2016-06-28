@@ -3,6 +3,7 @@ package service;
 import java.util.List;
 
 import model.AnalitikaIzvoda;
+import model.Drzava;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,4 +28,7 @@ public class AnalitikaIzvodaService {
 		analitikaIzvodaRepo.delete(id);
 	}
 
+	public AnalitikaIzvoda findById(Long id) {
+		return analitikaIzvodaRepo.findOne(id);
+	}
 }

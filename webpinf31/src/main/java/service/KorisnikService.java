@@ -22,8 +22,12 @@ public class KorisnikService {
 		return korisnikRepo.findByKorisnickoIme(korisnickoIme);
 	}
 	
+	 public Korisnik findById(Long id){
+		 return korisnikRepo.findOne(id);
+	 }
 	public void deleteRow(Long id) {
 		korisnikRepo.delete(id);
 	}
 
+	
 }
