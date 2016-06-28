@@ -1,13 +1,10 @@
 package model;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,8 +18,8 @@ public class NaseljenoMesto extends AbstractEntity {
 	private String ptt_oznaka;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "sifra_drzave")
-	private Drzava sifra_drzave; 
+	@JoinColumn(name = "drzava")
+	private Drzava drzava; 
 
 	public NaseljenoMesto() {}
 	
@@ -48,12 +45,12 @@ public class NaseljenoMesto extends AbstractEntity {
 		this.ptt_oznaka = ptt_oznaka;
 	}
 
-	public Drzava getSifra_drzave() {
-		return sifra_drzave;
+	public Drzava getDrzava() {
+		return drzava;
 	}
 
-	public void setSifra_drzave(Drzava sifra_drzave) {
-		this.sifra_drzave = sifra_drzave;
+	public void setDrzava(Drzava drzava) {
+		this.drzava = drzava;
 	}
-	
+
 }
