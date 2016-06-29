@@ -1,5 +1,8 @@
 package controller.api;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import model.NaseljenoMesto;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,10 +38,34 @@ public class NaseljenaMestaAPIController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.PRETRAGA)
-	public void pretrazi() {
+	public List<NaseljenoMesto> pretrazi(@RequestBody NaseljenoMesto obj) {
+		List<NaseljenoMesto> nm = nmService.listAll();
+		List<NaseljenoMesto> result = new ArrayList<NaseljenoMesto>();
 		
+		if(obj.getId()!= null || obj.getNaziv()!=null || obj.getPtt_oznaka() != null || obj.getId_drzave() != null){
+			for(NaseljenoMesto n: nm){
+				if(n.getNaziv().contains(obj.getNaziv())) {
+						result.add(n);
+						return result;
+				}
+				else if(n.getId().equals(obj.getId())){
+						result.add(n);
+						return result;
+				}
+				else if(n.getPtt_oznaka().equals(obj.getPtt_oznaka())){
+					result.add(n);
+					return result;
+			}
+				else if(n.getId_drzave().equals(obj.getId_drzave())){
+					result.add(n);
+					return result;
+			}
+		}
 	}
+		
+		return result;
+}
 	
-	
+		
 	
 }

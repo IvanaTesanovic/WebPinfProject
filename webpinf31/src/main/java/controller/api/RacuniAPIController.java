@@ -29,7 +29,7 @@ public class RacuniAPIController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.PRETRAGA)
-	public void pretrazi() {
+	public void pretrazi(@RequestBody Racun obj) {
 		
 	}
 

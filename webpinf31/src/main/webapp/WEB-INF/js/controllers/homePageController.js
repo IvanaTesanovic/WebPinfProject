@@ -39,8 +39,11 @@ app.controller("HomePageController", function($scope, HomePageService) {
 				$scope.table.push(drz);
 			});
 		}
-		else if(rez == 'pretraga')
-			HomePageService.izvrsiAkciju(rez, nt, data);
+		else if(rez == 'pretraga'){
+			HomePageService.izvrsiAkciju(rez, nt, data).then(function(response) {
+				$scope.table= response.data;
+			});
+		}
 	};
 	
 	$scope.openTable = function(tableName) {
