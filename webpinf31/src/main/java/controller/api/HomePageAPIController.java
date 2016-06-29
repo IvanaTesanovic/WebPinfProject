@@ -290,5 +290,61 @@ public class HomePageAPIController {
 		nasMestaService.deleteRow(id);
 	}
 	
+	@RequestMapping(method = RequestMethod.DELETE, value = RequestMappings.RACUNI + RequestMappings.OBRISI + "{id}", produces = MimeTypes.APPLICATION_JSON)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteRacuniRow(@Validated @PathVariable final Long id) {
+		final Racun racun = new Racun();
+		racun.setId(id);
+		racunService.deleteRow(id);
+	}
+	
+	@RequestMapping(method = RequestMethod.DELETE, value = RequestMappings.ANALITIKE_IZVODA + RequestMappings.OBRISI + "{id}", produces = MimeTypes.APPLICATION_JSON)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteAnalitikeRow(@Validated @PathVariable final Long id) {
+		final AnalitikaIzvoda analitika = new AnalitikaIzvoda();
+		analitika.setId(id);
+		analitikaIzvodaService.deleteRow(id);
+	}
+	
+	@RequestMapping(method = RequestMethod.DELETE, value = RequestMappings.DNEVNA_STANJA + RequestMappings.OBRISI + "{id}", produces = MimeTypes.APPLICATION_JSON)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteDnevnaStanjaRow(@Validated @PathVariable final Long id) {
+		final DnevnoStanjeRacuna dnevnoStanjeRacuna = new DnevnoStanjeRacuna();
+		dnevnoStanjeRacuna.setId(id);
+		dnevnaStanjaRacunaService.deleteRow(id);
+	}
+	
+	@RequestMapping(method = RequestMethod.DELETE, value = RequestMappings.KLIJENTI + RequestMappings.OBRISI + "{id}", produces = MimeTypes.APPLICATION_JSON)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteKlijentiRow(@Validated @PathVariable final Long id) {
+		final Klijent klijent = new Klijent();
+		klijent.setId(id);
+		klijentiService.deleteRow(id);
+	}
+	
+	@RequestMapping(method = RequestMethod.DELETE, value = RequestMappings.KLIRING + RequestMappings.OBRISI + "{id}", produces = MimeTypes.APPLICATION_JSON)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteKliringRow(@Validated @PathVariable final Long id) {
+		final Kliring kliring = new Kliring();
+		kliring.setId(id);
+		kliringService.deleteRow(id);
+	}
+	
+	@RequestMapping(method = RequestMethod.DELETE, value = RequestMappings.KURSEVI + RequestMappings.OBRISI + "{id}", produces = MimeTypes.APPLICATION_JSON)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteKurseviRow(@Validated @PathVariable final Long id) {
+		final KursUValuti kurs = new KursUValuti();
+		kurs.setId(id);
+		kursUValutiService.deleteRow(id);
+	}
+	
+	@RequestMapping(method = RequestMethod.DELETE, value = RequestMappings.KURSNA_LISTA + RequestMappings.OBRISI + "{id}", produces = MimeTypes.APPLICATION_JSON)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteKursnaListaRow(@Validated @PathVariable final Long id) {
+		final KursnaLista kursnaLista = new KursnaLista();
+		kursnaLista.setId(id);
+		kursnaListaService.deleteRow(id);
+	}
+	
 	/** END DELETE TABLE ROWS **/
 }
