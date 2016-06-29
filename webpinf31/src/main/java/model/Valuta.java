@@ -24,11 +24,21 @@ public class Valuta extends AbstractEntity {
 	private Boolean domicilna;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "drzava")
-	private Drzava drzava;
+	@JoinColumn(name = "id_drzave")
+	private Drzava id_drzave;
 	
 	
 	public Valuta() {}
+
+	public Valuta(String id_valute, String naziv, Boolean domicilna,
+			Drzava id_drzave) {
+		super();
+		this.id_valute = id_valute;
+		this.naziv = naziv;
+		this.domicilna = domicilna;
+		this.id_drzave = id_drzave;
+	}
+
 
 
 	public String getId_valute() {
@@ -55,11 +65,14 @@ public class Valuta extends AbstractEntity {
 		this.domicilna = domicilna;
 	}
 
-		public Drzava getDrzava() {
-		return drzava;
+
+	public Drzava getId_drzave() {
+		return id_drzave;
 	}
 
-	public void setDrzava(Drzava drzava) {
-		this.drzava = drzava;
-	} 
+
+	public void setId_drzave(Drzava id_drzave) {
+		this.id_drzave = id_drzave;
 	}
+
+}

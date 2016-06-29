@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import model.Korisnik;
 import repository.KorisnikRepository;
 
 @Service
+@Transactional
 public class KorisnikService {
 	
 	@Autowired
@@ -22,8 +24,12 @@ public class KorisnikService {
 		return korisnikRepo.findByKorisnickoIme(korisnickoIme);
 	}
 	
+	 public Korisnik findById(Long id){
+		 return korisnikRepo.findOne(id);
+	 }
 	public void deleteRow(Long id) {
 		korisnikRepo.delete(id);
 	}
 
+	
 }

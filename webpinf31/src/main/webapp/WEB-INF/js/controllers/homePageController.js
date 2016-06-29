@@ -4,6 +4,7 @@ app.controller("HomePageController", function($scope, HomePageService) {
 	$scope.table = {};
 	$scope.nameTable = "";
 	$scope.kolone = {};
+	$scope.koloneZaPrikaz = {};
 	
 	$scope.objIzm = {};
 	$scope.valIzm = {};
@@ -27,13 +28,23 @@ app.controller("HomePageController", function($scope, HomePageService) {
 		        data[id] = val;
 			}
 		}
-		if(rez == 'izmena')
+		//naci ga u listi, obrisati, izmeniti i dodati na isto mesto
+		if(rez == 'izmena') {
 			HomePageService.izvrsiAkciju(rez, nt, dataIzm);
-		else
+		}
+		//kada se radi dodavanje, treba da se push-uje u listu
+		else if(rez == 'dodavanje') {
+			HomePageService.izvrsiAkciju(rez, nt, data).then(function(response) {
+				var drz = response.data;
+				$scope.table.push(drz);
+			});
+		}
+		else if(rez == 'pretraga')
 			HomePageService.izvrsiAkciju(rez, nt, data);
 	};
 	
 	$scope.openTable = function(tableName) {
+		$scope.promeniRezim('nema');
 		$scope.nameTable = tableName;
 		HomePageService.openTable(tableName, function(data) {
 			if(angular.isObject(data))
@@ -49,28 +60,12 @@ app.controller("HomePageController", function($scope, HomePageService) {
 		return obj[kol];
 	};
 	
-	$scope.koloneZaPrikaz = function() {
-		$scope.noveKolone = angular.copy($scope.kolone);
-		angular.forEach($scope.noveKolone, function(value, key) {
-	         if(value.naziv == "id")
-	        	 $scope.noveKolone.splice(0, 1);
-	         });
-	};
-	
 	$scope.promeniRezim = function(rez) {
-		if(rez == "nema") {
+		if(rez == "nema")
 			$scope.rezim = "Trenutno nije odabran nijedan rezim.";
-//			angular.element(document.getElementById('izmena'))[0].disabled = true;
-//			angular.element(document.getElementById('dodavanje'))[0].disabled = true;
 //			angular.element(document.getElementById('pretraga'))[0].disabled = true;
-		}
 		else {
 			$scope.rezim = rez.toUpperCase();
-			$scope.noveKolone = angular.copy($scope.kolone);
-			angular.forEach($scope.noveKolone, function(value, key) {
-		         if(value.naziv == "id")
-		        	 $scope.noveKolone.splice(0, 1);
-		         });
 		}
 	};
 	
@@ -94,7 +89,6 @@ app.controller("HomePageController", function($scope, HomePageService) {
 			if(angular.isObject(data))
 				$scope.objIzm = data;
 		});
-		//treba da vratim onu torku u tabeli ciji je id ovaj prosledjeni
 	};
 	
 	$scope.getIzmValue = function(kol) {
@@ -103,4 +97,3 @@ app.controller("HomePageController", function($scope, HomePageService) {
 	};
 	
 });
-

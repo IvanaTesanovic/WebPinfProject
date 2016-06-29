@@ -32,11 +32,26 @@ public class DnevnoStanjeRacuna extends AbstractEntity {
 	
 	/** STRANI KLJUCEVI **/
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "racun")
-	private Racun racun;
+	@JoinColumn(name = "id_racuna")
+	private Racun id_racuna;
 	
 
 	public DnevnoStanjeRacuna() {}
+	
+
+	public DnevnoStanjeRacuna(Date datum_prometa, Double promet_u_korist,
+			Double prethodno_stanje, Double promet_na_teret,
+			Double novo_stanje, Racun id_racuna) {
+		super();
+		this.datum_prometa = datum_prometa;
+		this.promet_u_korist = promet_u_korist;
+		this.prethodno_stanje = prethodno_stanje;
+		this.promet_na_teret = promet_na_teret;
+		this.novo_stanje = novo_stanje;
+		this.id_racuna = id_racuna;
+	}
+
+
 
 
 	public Date getDatum_prometa() {
@@ -89,15 +104,13 @@ public class DnevnoStanjeRacuna extends AbstractEntity {
 	}
 
 
-	public Racun getRacun() {
-		return racun;
+	public Racun getId_racuna() {
+		return id_racuna;
 	}
 
 
-	public void setRacun(Racun racun) {
-		this.racun = racun;
+	public void setId_racuna(Racun id_racuna) {
+		this.id_racuna = id_racuna;
 	}
 
-	
-	
 }

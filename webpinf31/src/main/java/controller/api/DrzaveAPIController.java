@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import api.constants.MimeTypes;
 import api.constants.RequestMappings;
 import model.Drzava;
 import service.DrzavaService;
@@ -18,13 +19,15 @@ public class DrzaveAPIController {
 	DrzavaService service;
 	
 	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.IZMENA)
-	public void izmeni() {
-		
+	public void izmeni(@RequestBody Drzava obj) {
+		service.update(obj.getId(), obj.getNaziv());
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.DODAVANJE)
-	public void dodaj(@RequestBody Drzava obj) {
-		service.save(new Drzava(obj.getNaziv()));
+	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.DODAVANJE, produces = MimeTypes.APPLICATION_JSON)
+	public Drzava dodaj(@RequestBody Drzava obj) {
+		Drzava drzava = new Drzava(obj.getNaziv());
+		service.save(drzava);
+		return drzava;
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.PRETRAGA)

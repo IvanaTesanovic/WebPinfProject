@@ -7,6 +7,7 @@ import model.AnalitikaIzvoda;
 import model.Banka;
 import model.DnevnoStanjeRacuna;
 import model.Drzava;
+import model.GrupaIzvoda;
 import model.Klijent;
 import model.Kliring;
 import model.KursUValuti;
@@ -28,7 +29,6 @@ import api.constants.MimeTypes;
 import api.constants.RequestMappings;
 import api.constants.TableColumns;
 import service.AnalitikaIzvodaService;
-//github.com/IvanaTesanovic/WebPinfProject
 import service.BankaService;
 import service.DnevnaStanjaRacunaService;
 import service.DrzavaService;
@@ -141,7 +141,55 @@ public class HomePageAPIController {
 		return drzavaService.findById(id);
 	}
 	
-	//TODO URADITI OVO ZA SVE TABELE!
+	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.ANALITIKE_IZVODA + "/{id}", produces = MimeTypes.APPLICATION_JSON)
+	public AnalitikaIzvoda getAnalitikaIzvoda(@Validated @PathVariable final Long id) {
+		return analitikaIzvodaService.findById(id);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.BANKE + "/{id}", produces = MimeTypes.APPLICATION_JSON )
+	public Banka getBanka (@Validated @PathVariable final Long id){
+		return  bankaService.findById(id);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.DNEVNA_STANJA + "/{id}", produces = MimeTypes.APPLICATION_JSON )
+	public DnevnoStanjeRacuna getDnevnoStanjeRacuna(@Validated @PathVariable final Long id){
+		return  dnevnaStanjaRacunaService.findById(id);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.KLIJENTI + "/{id}", produces = MimeTypes.APPLICATION_JSON )
+	public Klijent getKlijent(@Validated @PathVariable final Long id){
+		return  klijentiService.findById(id);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.KLIRING + "/{id}", produces = MimeTypes.APPLICATION_JSON )
+	public Kliring getKliring (@Validated @PathVariable final Long id){
+		return  kliringService.findById(id);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.KURSNA_LISTA + "/{id}", produces = MimeTypes.APPLICATION_JSON )
+	public KursnaLista getKursnaLista(@Validated @PathVariable final Long id){
+		return kursnaListaService.findById(id);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.KURSEVI + "/{id}", produces = MimeTypes.APPLICATION_JSON )
+	public KursUValuti getKursUvaluti (@Validated @PathVariable final Long id){
+		return kursUValutiService.findById(id);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.NASELJENA_MESTA + "/{id}", produces = MimeTypes.APPLICATION_JSON )
+	public NaseljenoMesto getNaseljenoMesto(@Validated @PathVariable final Long id){
+		return  nasMestaService.findById(id);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.RACUNI + "/{id}", produces = MimeTypes.APPLICATION_JSON )
+	public Racun getRacun (@Validated @PathVariable final Long id){
+		return racunService.findById(id);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.RTGS + "/{id}", produces = MimeTypes.APPLICATION_JSON )
+	public RTGS getRTGS (@Validated @PathVariable final Long id){
+		return rtgsService.findById(id);
+	}
 	/**END GET ONE OBJECT **/
 	
 	
@@ -200,9 +248,7 @@ public class HomePageAPIController {
 	public ArrayList<Column> getDnevnaStanjaKolone() {
 		return TableColumns.getColumns("dnevnaStanja");
 	}
-	
-	
-	/** END GET KOLONE **/ 
+	/** END GET KOLONE **/
 	
 	
 	/** TODO DELETE TABLE ROWS **/
