@@ -37,7 +37,6 @@ public class Banka extends AbstractEntity {
 	private Boolean narodna_banka;
 	
 	public Banka() {}
-
 	
 	public Banka(String pib, String naziv, String adresa, String telefon,
 			String email, String web, String fax, Boolean narodna_banka) {

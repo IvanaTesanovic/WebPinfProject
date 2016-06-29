@@ -15,8 +15,6 @@ public class VrstePlacanja extends AbstractEntity {
 	@Column(nullable = true)
 	private String naziv;
 	
-	
-	
 	public VrstePlacanja() {}
 
 	public VrstePlacanja(String naziv) {

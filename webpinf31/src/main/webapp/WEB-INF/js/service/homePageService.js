@@ -23,7 +23,6 @@ app.factory("HomePageService", function($http) {
 	    deleteRow: function(tableName, rowId) {
 			return $http({
 				method: 'DELETE',
-                url: 'api/homepage/'+tableName+'/obrisi/' + rowId,
                 headers: {
                     "Content-Type": "application/json",
                     "Accept": "text/plain, application/json"

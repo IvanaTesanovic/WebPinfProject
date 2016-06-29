@@ -22,9 +22,10 @@ public class DrzaveAPIController {
 	@Autowired
 	DrzavaService service;
 	
-	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.IZMENA)
-	public void izmeni(@RequestBody Drzava obj) {
+	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.IZMENA, produces = MimeTypes.APPLICATION_JSON)
+	public Drzava izmeni(@RequestBody Drzava obj) {
 		service.update(obj.getId(), obj.getNaziv());
+		return service.findById(obj.getId());
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.DODAVANJE, produces = MimeTypes.APPLICATION_JSON)

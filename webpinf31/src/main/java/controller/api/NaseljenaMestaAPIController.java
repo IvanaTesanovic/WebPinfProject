@@ -27,14 +27,17 @@ public class NaseljenaMestaAPIController {
 	DrzavaService drzavaService;
 	
 	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.IZMENA)
-	public void izmeni() {
-		
+	public NaseljenoMesto izmeni(@RequestBody NaseljenoMestoDTO obj) {
+		nmService.update(Long.parseLong(obj.getId()), obj.getNaziv(), obj.getPtt_oznaka(), drzavaService.findById(Long.parseLong(obj.getId_drzave())));
+		return nmService.findById(Long.parseLong(obj.getId()));
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.DODAVANJE)
-	public void dodaj(@RequestBody NaseljenoMestoDTO obj){
-		nmService.save(new NaseljenoMesto(obj.getNaziv(), obj.getPtt_oznaka(), 
-				drzavaService.findById(Long.parseLong(obj.getId_drzave()))));
+	public NaseljenoMesto dodaj(@RequestBody NaseljenoMestoDTO obj) {
+		NaseljenoMesto nasMesto = new NaseljenoMesto(obj.getNaziv(), obj.getPtt_oznaka(), 
+				drzavaService.findById(Long.parseLong(obj.getId_drzave())));
+		nmService.save(nasMesto);
+		return nasMesto;
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.PRETRAGA)

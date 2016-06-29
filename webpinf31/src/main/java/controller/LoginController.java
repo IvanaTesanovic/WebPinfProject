@@ -8,10 +8,10 @@ import org.springframework.web.servlet.ModelAndView;
 import api.constants.RequestMappings;
 
 @Controller
-@RequestMapping(RequestMappings.ROOT)
-public class HomeController {
+@RequestMapping(RequestMappings.LOGIN)
+public class LoginController {
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(method = { RequestMethod.GET })
 	public ModelAndView get() {
 		return new ModelAndView("login");
 	}

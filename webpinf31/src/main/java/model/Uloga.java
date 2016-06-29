@@ -12,15 +12,15 @@ import javax.persistence.Table;
 @Table(name = "uloga")
 public class Uloga extends AbstractEntity {
 	
-/*	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="id_korisnika")
-	private Korisnik korisnik; */
+	private Korisnik korisnik;
 	
 	@Column(nullable = false, length = 255)
 	private String uloga;
 	
 	public Uloga() {}
-/*
+
 	public Uloga(Korisnik korisnik, String uloga) {
 		super();
 		this.korisnik = korisnik;
@@ -42,5 +42,4 @@ public class Uloga extends AbstractEntity {
 	public void setUloga(String uloga) {
 		this.uloga = uloga;
 	}
-	*/
 }
