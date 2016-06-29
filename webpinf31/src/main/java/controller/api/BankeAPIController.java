@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import service.BankaService;
+import api.constants.MimeTypes;
 import api.constants.RequestMappings;
 
 @RestController
@@ -23,10 +24,12 @@ public class BankeAPIController {
 		
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.DODAVANJE)
-	public void dodaj(@RequestBody Banka obj) {
-		service.save(new Banka(obj.getPib(), obj.getNaziv(), obj.getAdresa(), obj.getTelefon(),
-				obj.getEmail(), obj.getWeb(), obj.getFax(), obj.getNarodna_banka()));
+	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.DODAVANJE, produces = MimeTypes.APPLICATION_JSON)
+	public Banka dodaj(@RequestBody Banka obj) {
+		Banka banka = new Banka(obj.getPib(), obj.getNaziv(), obj.getAdresa(), obj.getTelefon(),
+				obj.getEmail(), obj.getWeb(), obj.getFax(), obj.getNarodna_banka());
+		service.save(banka);
+		return banka;
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.PRETRAGA)

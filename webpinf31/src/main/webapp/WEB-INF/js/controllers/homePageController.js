@@ -6,6 +6,8 @@ app.controller("HomePageController", function($scope, HomePageService) {
 	$scope.kolone = {};
 	$scope.koloneZaPrikaz = {};
 	
+	$scope.idIzmene = "";
+	
 	$scope.objIzm = {};
 	$scope.valIzm = {};
 
@@ -23,20 +25,40 @@ app.controller("HomePageController", function($scope, HomePageService) {
 				var val = inputs[i].value;
 				dataIzm[id] = val;
 			}
-			else if (klasa == 'dp'){
+			else if (klasa == 'dp') {
 				var val = inputs[i].value;
+				if (inputs[i].type == "checkbox") {
+					//stalno vraca on; zasto??
+					console.log(val);
+	                if (val == "on")
+	                    val = true;
+	                if (val == "off")
+	                    val = false;
+	            }
+	            if (val == "")
+	                val = null;
 		        data[id] = val;
 			}
 		}
 		//naci ga u listi, obrisati, izmeniti i dodati na isto mesto
+		//array.splice(index,howmany,item1,.....,itemX); if howmany == 0, no item will be removed; index - tamo gde zelim da dodam
 		if(rez == 'izmena') {
-			HomePageService.izvrsiAkciju(rez, nt, dataIzm);
+			HomePageService.izvrsiAkciju(rez, nt, dataIzm).then(function(response) {
+				var obj = response.data;
+				for(var i = 0; i < $scope.table.length; i++) {
+					var item = $scope.table[i];
+					if($scope.getValue(item, "id") == $scope.idIzmene) {
+						$scope.table.splice(i, 1);
+						$scope.table.splice(i, 0, obj);
+						break;
+					}
+				}
+			});
 		}
-		//kada se radi dodavanje, treba da se push-uje u listu
 		else if(rez == 'dodavanje') {
 			HomePageService.izvrsiAkciju(rez, nt, data).then(function(response) {
-				var drz = response.data;
-				$scope.table.push(drz);
+				var obj = response.data;
+				$scope.table.push(obj);
 			});
 		}
 		else if(rez == 'pretraga')
@@ -75,18 +97,23 @@ app.controller("HomePageController", function($scope, HomePageService) {
 
 	};
 	
-	$scope.izmeni = function(id) {
+	$scope.izmeni = function(obj) {
 		$scope.rezim = 'izmena';
 		$scope.promeniRezim($scope.rezim);
-		HomePageService.findById(id, $scope.nameTable, function(data) {
-			if(angular.isObject(data))
-				$scope.objIzm = data;
-		});
+		$scope.idIzmene = obj.id;
+		$scope.objIzm = obj;
+//		HomePageService.findById(id, $scope.nameTable, function(data) {
+//			if(angular.isObject(data)) {
+//				$scope.objIzm = data;
+//				console.log($scope.objIzm);
+//			}
+//		});
 	};
 	
+	//pokupi dobar objIzm, ali nece da promeni vrednost.... KAKO JE TO MOGUCE UOPSTE
 	$scope.getIzmValue = function(kol) {
 		var obj = $scope.objIzm;
-		return obj[kol];
+		return $scope.objIzm[kol];
 	};
 	
 });

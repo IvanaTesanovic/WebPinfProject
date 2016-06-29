@@ -36,7 +36,7 @@
 		<tr data-ng-repeat="t in table">
 			<td data-ng-repeat = "kk in kolone" >{{getValue(t, kk.naziv)}}</td>
 			<td><a data-ng-click="deleteRow(t.id)" class = "btn btn-success">Obrisi</a></td>
-			<td><a data-ng-click="izmeni(t.id)" class = "btn btn-success">Izmeni</a></td>
+			<td><a data-ng-click="izmeni(t)" class = "btn btn-success">Izmeni</a></td>
 		</tr>
 	</table>
 </div>
@@ -50,19 +50,18 @@
 <div id="formaAkcijeDP" data-ng-show='rezim == "DODAVANJE" || rezim == "PRETRAGA"'>
 	<form class="navbar-form" data-ng-submit="izvrsiAkciju()">
 		<p data-ng-repeat="k in kolone" data-ng-show='rezim == "DODAVANJE" || rezim == "PRETRAGA"' data-ng-hide='rezim == "DODAVANJE" && k.naziv == "id"'>
-			<label>{{k.naziv.toUpperCase().split('_').join(' ')}}</label>&nbsp;<input data-ng-disabled='k.naziv == "id" && rezim != "PRETRAGA"' class="dp" id="{{k.naziv}}"/>
+			<label>{{k.naziv.toUpperCase().split('_').join(' ')}}</label>&nbsp;
+			<input data-ng-hide='k.tip == "boolean"' data-ng-disabled='k.naziv == "id" && rezim != "PRETRAGA"' class="dp" id="{{k.naziv}}"/>
+			<input data-ng-show='k.tip == "boolean"' type="checkbox" data-ng-disabled='k.naziv == "id" && rezim != "PRETRAGA"' class="dp" id="{{k.naziv}}"/>
 		</p>
 		<button class="btn btn-success" type="submit">Izvrsi akciju</button>
 	</form>
 </div>
 
-<div id="formaAkcijeDP" data-ng-show='rezim == "IZMENA"'>
+<div id="formaAkcijeIZM" data-ng-show='rezim == "IZMENA"'>
 	<form class="navbar-form" data-ng-submit="izvrsiAkciju()">
 		<p data-ng-repeat="k in kolone">
 			<label>{{k.naziv.toUpperCase().split('_').join(' ')}}</label>&nbsp;<input data-ng-disabled='k.naziv == "id"' class="izm" value="{{getIzmValue(k.naziv)}}" id="{{k.naziv}}"/>
-		</p>
-		<p data-ng-repeat="k in noveKolone" data-ng-show='{{k.tip}} == "boolean"'>
-			<label>{{k.naziv}}</label>&nbsp;<input type="checkbox" class="dp" id="{{k.naziv}}"/>
 		</p>
 		<button class="btn btn-success" type="submit">Izvrsi akciju</button>
 	</form>
