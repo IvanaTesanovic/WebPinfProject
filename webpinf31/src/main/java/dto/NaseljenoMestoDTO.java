@@ -4,14 +4,18 @@ package dto;
 import model.Drzava;
 
 public class NaseljenoMestoDTO {
+	
+	public String id;
 	public String naziv;
 	public String ptt_oznaka;
 	public String id_drzave;
 	
 	public NaseljenoMestoDTO() { }
 
-	public NaseljenoMestoDTO(String naziv, String ptt_oznaka, String id_drzave) {
+	
+	public NaseljenoMestoDTO(String id, String naziv, String ptt_oznaka, String id_drzave) {
 		super();
+		this.id = id;
 		this.naziv = naziv;
 		this.ptt_oznaka = ptt_oznaka;
 		this.id_drzave = id_drzave;
@@ -40,7 +44,17 @@ public class NaseljenoMestoDTO {
 	public void setId_drzave(String id_drzave) {
 		this.id_drzave = id_drzave;
 	}
-	
 
+
+	public String getId() {
+		return id;
+	}
+
+
+	public void setId(String id) {
+		this.id = id;
+	}
+	
+	
 	
 }

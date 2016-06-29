@@ -32,8 +32,8 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 
 	$scope.getValue = function(obj, kol) {
 		//$scope.objIzm = obj;
-//		if(kol.includes("id_"))
-//			return obj[kol].id;
+		if(kol.includes("id_"))
+			return obj[kol].id;
 		if(obj[kol] == true)
 			return "DA";
 		else if(obj[kol] == false)
@@ -79,21 +79,20 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 	
 	//pokupi dobar objIzm, ali nece da promeni vrednost.... KAKO JE TO MOGUCE UOPSTE
 	$scope.getIzmValue = function(kol) {
-		console.log("getIzmValue" + kol);
-//		console.log($scope.objIzm);
-		console.log("get izm calue" + $scope.objIzm.id);
-		if(kol.includes("id_")) {
-			console.log("ako ima id_" + $scope.objIzm);
-			var obj = $scope.objIzm;
+		var obj = $scope.objIzm;
+		console.log("izmvalue" + obj);
+		if(kol.includes("id_"))
 			return obj[kol].id;
-		}
-		else {
-			var obj = $scope.objIzm;
+		else if(obj[kol] == true)
+			return "DA";
+		else if(obj[kol] == false)
+			return "NE";
+		else 
 			return obj[kol];
-		}
 	};
 	
 	$scope.izvrsiAkciju = function() {
+		//ovde treba vratiti objekat na scope?
 		var rez = $scope.rezim.toLowerCase();
 		var nt = $scope.nameTable;
 		var data = {};
@@ -148,6 +147,13 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 		}
 		else if(rez == 'pretraga')
 			HomePageService.izvrsiAkciju(rez, nt, data);
+		
+		$scope.promeniRezim('nema');
+		//$scope.objIzm = {};
+		//vratiti sve inpute na null
+//		for(var i = 0; i < inputs.length; i++) {
+//			inputs[i].value = null;
+//		}
 	};
 	
 });
