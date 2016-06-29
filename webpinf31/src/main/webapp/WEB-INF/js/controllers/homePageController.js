@@ -92,9 +92,16 @@ app.controller("HomePageController", function($scope, HomePageService) {
 	};
 	
 	$scope.deleteRow = function(tIndex) {
-		HomePageService.deleteRow($scope.nameTable, tIndex);
-		$scope.table.splice(tIndex - 1, 1);
-
+		HomePageService.deleteRow($scope.nameTable, tIndex).
+		then(function(response) {
+			for (var i = 0; i < $scope.table.length; i++) {
+				var item = $scope.table[i];
+				if ($scope.getValue(item, "id") == tIndex) {
+					$scope.table.splice(i, 1);
+					break;
+				}
+			}
+		});
 	};
 	
 	$scope.izmeni = function(obj) {

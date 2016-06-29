@@ -19,23 +19,17 @@ app.factory("HomePageService", function($http) {
                     "Accept": "text/plain, application/json"
                 }
 	    	});
-	    },	    
+	    },
 	    deleteRow: function(tableName, rowId) {
-			$http({
+			return $http({
 				method: 'DELETE',
                 url: 'api/homepage/' + tableName + '/obrisi/' + rowId,
                 headers: {
                     "Content-Type": "application/json",
                     "Accept": "text/plain, application/json"
                 }
-			}).then(function(callbackSuccess) {
-				}
-			);
+			});
 		}
     };       
 });
 
-//}).then(function(callbackSuccess) {
-//}
-//);
-//}

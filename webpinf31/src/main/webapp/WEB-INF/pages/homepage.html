@@ -22,7 +22,7 @@
 			</div>
 		</div>
 	</li>
-<!-- 	<li><button class="btn btn-primary">Odjavi se</button></li> -->
+<!-- 	<li><button class="btn btn-primary">Odjavi se</button></li>  -->
 </ul>
 </div>
 
@@ -47,23 +47,34 @@
 	<button class="btn btn-primary" data-ng-click="promeniRezim('nema')" data-ng-disabled='nameTable == "" || rezim == "nema" || rezim == "Trenutno nije odabran nijedan rezim."'>Zatvori formu</button>
 </div>
 
+<br>
+
 <div id="formaAkcijeDP" data-ng-show='rezim == "DODAVANJE" || rezim == "PRETRAGA"'>
-	<form class="navbar-form" data-ng-submit="izvrsiAkciju()">
-		<p data-ng-repeat="k in kolone" data-ng-show='rezim == "DODAVANJE" || rezim == "PRETRAGA"' data-ng-hide='rezim == "DODAVANJE" && k.naziv == "id"'>
-			<label>{{k.naziv.toUpperCase().split('_').join(' ')}}</label>&nbsp;
-			<input data-ng-hide='k.tip == "boolean"' data-ng-disabled='k.naziv == "id" && rezim != "PRETRAGA"' class="dp" id="{{k.naziv}}"/>
-			<input data-ng-show='k.tip == "boolean"' type="checkbox" data-ng-disabled='k.naziv == "id" && rezim != "PRETRAGA"' class="dp" id="{{k.naziv}}"/>
-		</p>
-		<button class="btn btn-success" type="submit">Izvrsi akciju</button>
+	<form class="form-horizontal" data-ng-submit="izvrsiAkciju()">
+		<fieldset>
+			<legend data-ng-show='rezim == "DODAVANJE"'>Forma za dodavanje</legend>
+			<legend data-ng-show='rezim == "PRETRAGA"'>Forma za pretragu</legend>
+			<div data-ng-repeat="k in kolone" data-ng-show='rezim == "DODAVANJE" || rezim == "PRETRAGA"' data-ng-hide='rezim == "DODAVANJE" && k.naziv == "id"' class="form-group">
+				<label class="col-lg-2 control-label">{{k.naziv.toUpperCase().split('_').join(' ')}}</label>&nbsp;
+				<input data-ng-hide='k.tip == "boolean"' data-ng-disabled='k.naziv == "id" && rezim != "PRETRAGA"' class="dp" id="{{k.naziv}}"/>
+				<input data-ng-show='k.tip == "boolean"' type="checkbox" data-ng-disabled='k.naziv == "id" && rezim != "PRETRAGA"' class="dp" id="{{k.naziv}}"/>
+			</div>
+			<button class="btn btn-success" type="submit">Izvrsi akciju</button>
+		</fieldset>
 	</form>
 </div>
 
 <div id="formaAkcijeIZM" data-ng-show='rezim == "IZMENA"'>
-	<form class="navbar-form" data-ng-submit="izvrsiAkciju()">
-		<p data-ng-repeat="k in kolone">
-			<label>{{k.naziv.toUpperCase().split('_').join(' ')}}</label>&nbsp;<input data-ng-disabled='k.naziv == "id"' class="izm" value="{{getIzmValue(k.naziv)}}" id="{{k.naziv}}"/>
-		</p>
-		<button class="btn btn-success" type="submit">Izvrsi akciju</button>
+	<form class="form-horizontal" data-ng-submit="izvrsiAkciju()">
+		<fieldset>
+			<legend>Forma za izmenu</legend>
+			<div data-ng-repeat="k in kolone" class="form-group">
+				<label class="col-lg-2 control-label">{{k.naziv.toUpperCase().split('_').join(' ')}}</label>&nbsp;
+				<input data-ng-hide='k.tip == "boolean"' data-ng-disabled='k.naziv == "id"' class="izm" value="{{getIzmValue(k.naziv)}}" id="{{k.naziv}}" class="form-control"/>
+				<input data-ng-show='k.tip == "boolean"' type="checkbox" data-ng-disabled='k.naziv == "id"' class="dp" id="{{k.naziv}}"/>
+			</div>
+			<button class="btn btn-success" type="submit">Izvrsi akciju</button>
+		</fieldset>
 	</form>
 </div>
 
