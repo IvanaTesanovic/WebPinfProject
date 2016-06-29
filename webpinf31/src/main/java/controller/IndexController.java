@@ -8,11 +8,12 @@ import org.springframework.web.servlet.ModelAndView;
 import api.constants.RequestMappings;
 
 @Controller
-@RequestMapping(RequestMappings.ROOT)
-public class HomeController {
-
+@RequestMapping("/index")
+public class IndexController {
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView get() {
-		return new ModelAndView("login");
+		return new ModelAndView("index");
 	}
+
 }

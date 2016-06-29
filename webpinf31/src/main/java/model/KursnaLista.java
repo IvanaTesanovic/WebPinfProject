@@ -28,9 +28,7 @@ public class KursnaLista extends AbstractEntity {
 	@JoinColumn(name = "id_banke")
 	private Banka id_banke;
 
-	
 	public KursnaLista() {}
-
 	
 	public KursnaLista(Date datum, Integer broj_kursne_liste,
 			Date datum_primene, Banka id_banke) {

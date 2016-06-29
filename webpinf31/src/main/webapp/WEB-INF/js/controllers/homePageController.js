@@ -1,4 +1,4 @@
-app.controller("HomePageController", function($scope, HomePageService) {
+app.controller("HomePageController", function($scope, $location, HomePageService) {
 	
 	$scope.rezim = "Trenutno nije odabran nijedan rezim.";
 	$scope.table = {};
@@ -9,8 +9,90 @@ app.controller("HomePageController", function($scope, HomePageService) {
 	$scope.idIzmene = "";
 	
 	$scope.objIzm = {};
-	$scope.valIzm = {};
+	$scope.valIzm = "";
+	
+	$scope.init = function() {
+		//$scope.objIzm = { id: 54, naziv: "rrr", ptt_oznaka: "rrrr", id_drzave: {id: 3, naziv: "Srbija"} };
+	};
+	
+	$scope.init();
 
+	$scope.openTable = function(tableName) {
+		$scope.promeniRezim('nema');
+		$scope.nameTable = tableName;
+		HomePageService.openTable(tableName, function(data) {
+			if(angular.isObject(data))
+				$scope.table = data;
+		});
+		HomePageService.getColumnNames(tableName, function(data) {
+			if(angular.isObject(data))
+				$scope.kolone = data;
+		});
+	};
+
+	$scope.getValue = function(obj, kol) {
+		//$scope.objIzm = obj;
+//		if(kol.includes("id_"))
+//			return obj[kol].id;
+		if(obj[kol] == true)
+			return "DA";
+		else if(obj[kol] == false)
+			return "NE";
+		else
+			return obj[kol];
+	};
+	
+	$scope.promeniRezim = function(rez) {
+		if(rez == "nema")
+			$scope.rezim = "Trenutno nije odabran nijedan rezim.";
+		else 
+			$scope.rezim = rez.toUpperCase();
+	};
+	
+	$scope.deleteRow = function(tIndex) {
+		HomePageService.deleteRow($scope.nameTable, tIndex).
+		then(function(response) {
+			for (var i = 0; i < $scope.table.length; i++) {
+				var item = $scope.table[i];
+				if ($scope.getValue(item, "id") == tIndex) {
+					$scope.table.splice(i, 1);
+					break;
+				}
+			}
+		});
+	};
+	
+	$scope.izmeni = function(obj) {
+		console.log(obj);
+		$scope.rezim = 'izmena';
+		$scope.promeniRezim($scope.rezim);
+		$scope.idIzmene = obj.id;
+		$scope.objIzm = obj;
+		console.log($scope.objIzm);
+//		HomePageService.findById(id, $scope.nameTable, function(data) {
+//			if(angular.isObject(data)) {
+//				$scope.objIzm = data;
+//				console.log($scope.objIzm);
+//			}
+//		});
+	};
+	
+	//pokupi dobar objIzm, ali nece da promeni vrednost.... KAKO JE TO MOGUCE UOPSTE
+	$scope.getIzmValue = function(kol) {
+		console.log("getIzmValue" + kol);
+//		console.log($scope.objIzm);
+		console.log("get izm calue" + $scope.objIzm.id);
+		if(kol.includes("id_")) {
+			console.log("ako ima id_" + $scope.objIzm);
+			var obj = $scope.objIzm;
+			return obj[kol].id;
+		}
+		else {
+			var obj = $scope.objIzm;
+			return obj[kol];
+		}
+	};
+	
 	$scope.izvrsiAkciju = function() {
 		var rez = $scope.rezim.toLowerCase();
 		var nt = $scope.nameTable;
@@ -25,24 +107,27 @@ app.controller("HomePageController", function($scope, HomePageService) {
 				var val = inputs[i].value;
 				dataIzm[id] = val;
 			}
-			else if (klasa == 'dp') {
+			else if (klasa == 'dp' || klasa == 'dpbl') {
 				var val = inputs[i].value;
-				if (inputs[i].type == "checkbox") {
-					//stalno vraca on; zasto??
+				if(klasa == 'dpbl') {
 					console.log(val);
-	                if (val == "on")
-	                    val = true;
-	                if (val == "off")
-	                    val = false;
-	            }
+					var newVal = val.toLowerCase();
+					console.log(newVal);
+					if(newVal == "ne")
+						val = "false";
+					else if(newVal == "da")
+						val = "true";
+					console.log(val);
+				}
 	            if (val == "")
 	                val = null;
 		        data[id] = val;
 			}
 		}
-		//naci ga u listi, obrisati, izmeniti i dodati na isto mesto
-		//array.splice(index,howmany,item1,.....,itemX); if howmany == 0, no item will be removed; index - tamo gde zelim da dodam
+		//u zavisnosti od rezima, handle-ujemo prikaz na homepage.html
 		if(rez == 'izmena') {
+			console.log("izmena");
+			console.log("izmena" + dataIzm);
 			HomePageService.izvrsiAkciju(rez, nt, dataIzm).then(function(response) {
 				var obj = response.data;
 				for(var i = 0; i < $scope.table.length; i++) {
@@ -63,64 +148,6 @@ app.controller("HomePageController", function($scope, HomePageService) {
 		}
 		else if(rez == 'pretraga')
 			HomePageService.izvrsiAkciju(rez, nt, data);
-	};
-	
-	$scope.openTable = function(tableName) {
-		$scope.promeniRezim('nema');
-		$scope.nameTable = tableName;
-		HomePageService.openTable(tableName, function(data) {
-			if(angular.isObject(data))
-				$scope.table = data;
-		});
-		HomePageService.getColumnNames(tableName, function(data) {
-			if(angular.isObject(data))
-				$scope.kolone = data;
-		});
-	};
-
-	$scope.getValue = function(obj, kol) {
-		return obj[kol];
-	};
-	
-	$scope.promeniRezim = function(rez) {
-		if(rez == "nema")
-			$scope.rezim = "Trenutno nije odabran nijedan rezim.";
-//			angular.element(document.getElementById('pretraga'))[0].disabled = true;
-		else {
-			$scope.rezim = rez.toUpperCase();
-		}
-	};
-	
-	$scope.deleteRow = function(tIndex) {
-		HomePageService.deleteRow($scope.nameTable, tIndex).
-		then(function(response) {
-			for (var i = 0; i < $scope.table.length; i++) {
-				var item = $scope.table[i];
-				if ($scope.getValue(item, "id") == tIndex) {
-					$scope.table.splice(i, 1);
-					break;
-				}
-			}
-		});
-	};
-	
-	$scope.izmeni = function(obj) {
-		$scope.rezim = 'izmena';
-		$scope.promeniRezim($scope.rezim);
-		$scope.idIzmene = obj.id;
-		$scope.objIzm = obj;
-//		HomePageService.findById(id, $scope.nameTable, function(data) {
-//			if(angular.isObject(data)) {
-//				$scope.objIzm = data;
-//				console.log($scope.objIzm);
-//			}
-//		});
-	};
-	
-	//pokupi dobar objIzm, ali nece da promeni vrednost.... KAKO JE TO MOGUCE UOPSTE
-	$scope.getIzmValue = function(kol) {
-		var obj = $scope.objIzm;
-		return $scope.objIzm[kol];
 	};
 	
 });

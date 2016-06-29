@@ -57,7 +57,7 @@
 			<div data-ng-repeat="k in kolone" data-ng-show='rezim == "DODAVANJE" || rezim == "PRETRAGA"' data-ng-hide='rezim == "DODAVANJE" && k.naziv == "id"' class="form-group">
 				<label class="col-lg-2 control-label">{{k.naziv.toUpperCase().split('_').join(' ')}}</label>&nbsp;
 				<input data-ng-hide='k.tip == "boolean"' data-ng-disabled='k.naziv == "id" && rezim != "PRETRAGA"' class="dp" id="{{k.naziv}}"/>
-				<input data-ng-show='k.tip == "boolean"' type="checkbox" data-ng-disabled='k.naziv == "id" && rezim != "PRETRAGA"' class="dp" id="{{k.naziv}}"/>
+				<input data-ng-show='k.tip == "boolean"' class="dpbl" id="{{k.naziv}}"/>
 			</div>
 			<button class="btn btn-success" type="submit">Izvrsi akciju</button>
 		</fieldset>
@@ -70,8 +70,8 @@
 			<legend>Forma za izmenu</legend>
 			<div data-ng-repeat="k in kolone" class="form-group">
 				<label class="col-lg-2 control-label">{{k.naziv.toUpperCase().split('_').join(' ')}}</label>&nbsp;
-				<input data-ng-hide='k.tip == "boolean"' data-ng-disabled='k.naziv == "id"' class="izm" value="{{getIzmValue(k.naziv)}}" id="{{k.naziv}}" class="form-control"/>
-				<input data-ng-show='k.tip == "boolean"' type="checkbox" data-ng-disabled='k.naziv == "id"' class="dp" id="{{k.naziv}}"/>
+				<input data-ng-disabled='k.naziv == "id"' class="izm" value="{{getIzmValue(k.naziv)}}" id="{{k.naziv}}" class="form-control"/>
+<!-- 				<input data-ng-show='k.tip == "boolean"' type="checkbox" class="izm" data-ng-checked='valIzm == true' id="{{k.naziv}}" data-ng-true="1" data-ng-false="0"/> -->
 			</div>
 			<button class="btn btn-success" type="submit">Izvrsi akciju</button>
 		</fieldset>

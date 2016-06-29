@@ -10,16 +10,8 @@ var app = angular.module('WebPinf31',['ngRoute', 'ui.bootstrap'])
 				templateUrl: 'pages/homepage.html',
 				controller: 'HomePageController'
 			})
-			.when('/drzave', {
-				templateUrl: 'pages/drzave.html',
-				controller: 'DrzaveController'
-			})
-			.when('/drzave/:id', {
-				templateUrl: 'pages/drzava.html',
-				controller: 'DrzaveController'
-			}) 
 			.otherwise({
-				redirectTo: '/login'
+				redirectTo: '/homepage'
 			});
 		
 		$httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';

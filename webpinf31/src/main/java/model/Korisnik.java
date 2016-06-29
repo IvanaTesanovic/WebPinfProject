@@ -1,7 +1,11 @@
 package model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -12,6 +16,9 @@ public class Korisnik extends AbstractEntity {
 	private String korisnickoIme;
 	
 	private String lozinka;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "korisnik")
+	private List<Uloga> uloge;
 	
 	public Korisnik() {}
 
@@ -35,6 +42,14 @@ public class Korisnik extends AbstractEntity {
 
 	public void setLozinka(String lozinka) {
 		this.lozinka = lozinka;
+	}
+	
+	public List<Uloga> getUloge() {
+		return uloge;
+	}
+
+	public void setUloge(List<Uloga> uloge) {
+		this.uloge = uloge;
 	}
 	
 }

@@ -3,6 +3,7 @@ package api.constants;
 public final class RequestMappings {
 	
 	public static final String ROOT = "/";
+	public static final String LOGIN = "/login";
 	
 	/** API URLS **/
 	public static final String HOMEPAGE_API = "/api/homepage";

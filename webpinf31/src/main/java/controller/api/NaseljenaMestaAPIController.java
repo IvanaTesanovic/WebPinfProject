@@ -29,9 +29,11 @@ public class NaseljenaMestaAPIController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.DODAVANJE)
-	public void dodaj(@RequestBody NaseljenoMestoDTO obj){
-		nmService.save(new NaseljenoMesto(obj.getNaziv(), obj.getPtt_oznaka(), 
-				drzavaService.findById(Long.parseLong(obj.getId_drzave()))));
+	public NaseljenoMesto dodaj(@RequestBody NaseljenoMestoDTO obj){
+		NaseljenoMesto nasMesto = new NaseljenoMesto(obj.getNaziv(), obj.getPtt_oznaka(), 
+				drzavaService.findById(Long.parseLong(obj.getId_drzave())));
+		nmService.save(nasMesto);
+		return nasMesto;
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.PRETRAGA)
