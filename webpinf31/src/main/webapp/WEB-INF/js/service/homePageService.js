@@ -21,23 +21,17 @@ app.factory("HomePageService", function($http) {
 	    	}).then(function(callback) {
 	    		
 	    	});
-	    },	    
+	    },
 	    deleteRow: function(tableName, rowId) {
-			$http({
+			return $http({
 				method: 'DELETE',
                 url: 'api/homepage/drzave/obrisi/' + rowId,
                 headers: {
                     "Content-Type": "application/json",
                     "Accept": "text/plain, application/json"
                 }
-			}).then(function(callbackSuccess) {
-				}
-			);
+			});
 		}
     };       
 });
 
-//}).then(function(callbackSuccess) {
-//}
-//);
-//}
