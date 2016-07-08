@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import service.BankaService;
 import api.constants.MimeTypes;
 import api.constants.RequestMappings;
+import dto.BankaDTO;
 
 @RestController
 @RequestMapping(RequestMappings.ACTIONS_API + RequestMappings.BANKE)
@@ -20,8 +21,9 @@ public class BankeAPIController {
 	BankaService service;
 	
 	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.IZMENA)
-	public void izmeni() {
-		
+	public Banka izmeni(@RequestBody BankaDTO obj) {
+		service.update(Long.parseLong(obj.getId()), obj.getPib(), obj.getNaziv(), obj.getAdresa(), obj.getTelefon(), obj.getEmail(), obj.getWeb(), obj.getFax(), Boolean.parseBoolean(obj.getNarodna_banka()));
+		return service.findById(Long.parseLong(obj.getId()));
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.DODAVANJE, produces = MimeTypes.APPLICATION_JSON)

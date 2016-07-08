@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 public class KursnaListaDTO {
 
+	private String id;
 	private String datum;
 	private String broj_kursne_liste;
 	private String datum_primene;
@@ -20,8 +21,9 @@ public class KursnaListaDTO {
 
 	public KursnaListaDTO() {}
 
-	public KursnaListaDTO(String datum, String broj_kursne_liste, String datum_primene, String id_banke) {
+	public KursnaListaDTO(String id, String datum, String broj_kursne_liste, String datum_primene, String id_banke) {
 		super();
+		this.id = id;
 		this.datum = datum;
 		this.broj_kursne_liste = broj_kursne_liste;
 		this.datum_primene = datum_primene;
@@ -58,6 +60,14 @@ public class KursnaListaDTO {
 
 	public void setId_banke(String id_banke) {
 		this.id_banke = id_banke;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 }

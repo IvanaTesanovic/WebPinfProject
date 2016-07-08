@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="www.poslovna.rs/izvod"
+    targetNamespace="www.poslovna.rs/izvod" elementFormDefault="qualified"
+    xmlns:gt="www.poslovna.rs">
+    <xs:import namespace="www.poslovna.rs" schemaLocation="globalTypes.xsd"/>
+    <xs:element name="Nalog_za_prenos">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ID_poruke" type="gt:TIDPoruke"/>
+                <xs:element name="Duznik">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1"/>
+                            <xs:maxLength value="255"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="Poverilac">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1"/>
+                            <xs:maxLength value="255"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="Svrha_placanja">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1"/>
+                            <xs:maxLength value="255"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="Datum_naloga" type="xs:date"/>
+                <xs:element name="Datum_valute" type="xs:date"/>
+                <xs:element name="Racun_duznika" type="gt:TRacun"/>
+                <xs:element name="Racun_poverioca" type="gt:TRacun"/>
+                <xs:element minOccurs="1" name="Hitno" type="xs:boolean"/>
+                <xs:element name="Oznaka_valute" type="gt:TOznakaValute"/>
+                <xs:element name="Iznos" type="gt:TIznos"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -24,8 +24,12 @@ public class KlijentiAPIController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.DODAVANJE)
-	public void dodaj(@RequestBody Klijent obj) {
-		service.save(new Klijent());
+	public Klijent dodaj(@RequestBody Klijent obj) {
+		Klijent klijent = new Klijent(obj.getFizicko_lice(), obj.getJmbg(), obj.getIme(), obj.getPrezime(), obj.getAdresa(), 
+				obj.getTelefon(), obj.getEmail(), obj.getNaziv(), obj.getPib(), obj.getFax(), obj.getSajt(), obj.getId_delatnosti(), 
+				obj.getNaziv_delatnosti(), obj.getOdgovorno_lice());
+		service.save(klijent);
+		return klijent;
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.PRETRAGA)

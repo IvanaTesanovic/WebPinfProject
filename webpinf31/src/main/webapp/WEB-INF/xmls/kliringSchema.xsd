@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="www.poslovna.rs/kliring"
+    targetNamespace="www.poslovna.rs/kliring" elementFormDefault="qualified"
+    xmlns:gt="www.poslovna.rs">
+    <xs:import namespace="www.poslovna.rs" schemaLocation="globalTypes.xsd"/>
+    <xs:element name="Kliring">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ID_poruke" type="gt:TIDPoruke"/>
+                <xs:element name="SWIFT_banke_duznika" type="gt:TSwift"/>
+                <xs:element name="Obracunski_racun_banke_duznika" type="gt:TBrojRacuna"/>
+                <xs:element name="SWIFT_banke_poverioca" type="gt:TSwift"/>
+                <xs:element name="Obracunski_racun_banke_poverioca" type="gt:TBrojRacuna"/>
+                <xs:element name="Datum_naloga" type="xs:date"/>
+                <xs:element name="Datum_valute" type="xs:date"/>
+                <xs:element name="Oznaka_valute" type="gt:TOznakaValute"/>
+                <xs:element name="Iznos" type="gt:TIznos"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

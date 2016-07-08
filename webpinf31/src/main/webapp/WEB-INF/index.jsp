@@ -15,18 +15,16 @@
 
 	<div class="container" id="appContainer">
 		
-		<div>
+		<div data-ng-view>
+			<!-- Pages will be inserted here -->
+		</div>
+		
+		<div style="margin-top:0.5em;">
 			<c:choose>
 				<c:when test="${loggedIn}">
-					<a id="logout" href="j_spring_security_logout"><spring:message code='logout'/></a>
+					<a class="btn btn-danger" id="logout" href="j_spring_security_logout"><spring:message code='logout'/></a>
 				</c:when>
 			</c:choose>
-		</div>		
-		
-		<div data-ng-view>
-
-		
-			<!-- Pages will be inserted here -->
 		</div>
 		
 		<input type="hidden" value='<c:out value="${pageContext.response.locale}"></c:out>' id="localeCode">

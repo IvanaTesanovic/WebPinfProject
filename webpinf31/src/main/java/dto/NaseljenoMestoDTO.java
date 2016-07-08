@@ -11,7 +11,6 @@ public class NaseljenoMestoDTO {
 	public String id_drzave;
 	
 	public NaseljenoMestoDTO() { }
-
 	
 	public NaseljenoMestoDTO(String id, String naziv, String ptt_oznaka, String id_drzave) {
 		super();

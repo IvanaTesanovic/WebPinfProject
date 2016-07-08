@@ -11,6 +11,8 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 	$scope.objIzm = {};
 	$scope.valIzm = "";
 	
+	$scope.error = "";
+	
 	$scope.init = function() {
 		//$scope.objIzm = { id: 54, naziv: "rrr", ptt_oznaka: "rrrr", id_drzave: {id: 3, naziv: "Srbija"} };
 	};
@@ -18,6 +20,7 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 	$scope.init();
 
 	$scope.openTable = function(tableName) {
+		$scope.error = "";
 		$scope.promeniRezim('nema');
 		$scope.nameTable = tableName;
 		HomePageService.openTable(tableName, function(data) {
@@ -30,19 +33,27 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 		});
 	};
 
-	$scope.getValue = function(obj, kol) {
+	$scope.getValue = function(obj, kol, tip) {
 		//$scope.objIzm = obj;
-		if(kol.includes("id_"))
+		if(tip == "date") {
+			var val = obj[kol];
+			var god = val.split("-")[0];
+			var mes = val.split("-")[1];
+			var dan = val.split("-")[2];
+			return dan+"-"+mes+"-"+god;
+		}
+		else if(kol.includes("id_"))
 			return obj[kol].id;
-		if(obj[kol] == true)
+		else if(obj[kol] === true)
 			return "DA";
-		else if(obj[kol] == false)
+		else if(obj[kol] === false)
 			return "NE";
 		else
 			return obj[kol];
 	};
 	
 	$scope.promeniRezim = function(rez) {
+		$scope.error = "";
 		if(rez == "nema")
 			$scope.rezim = "Trenutno nije odabran nijedan rezim.";
 		else 
@@ -52,13 +63,16 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 	$scope.deleteRow = function(tIndex) {
 		HomePageService.deleteRow($scope.nameTable, tIndex).
 		then(function(response) {
+			$scope.error = "";
 			for (var i = 0; i < $scope.table.length; i++) {
 				var item = $scope.table[i];
-				if ($scope.getValue(item, "id") == tIndex) {
+				if ($scope.getValue(item, "id", "int") == tIndex) {
 					$scope.table.splice(i, 1);
 					break;
 				}
 			}
+		}, function(error) {
+			$scope.error = "Nije moguce obrisati ovaj objekat!";
 		});
 	};
 	
@@ -83,9 +97,9 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 		console.log("izmvalue" + obj);
 		if(kol.includes("id_"))
 			return obj[kol].id;
-		else if(obj[kol] == true)
+		else if(obj[kol] === true)
 			return "DA";
-		else if(obj[kol] == false)
+		else if(obj[kol] === false)
 			return "NE";
 		else 
 			return obj[kol];
@@ -128,25 +142,38 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 			console.log("izmena");
 			console.log("izmena" + dataIzm);
 			HomePageService.izvrsiAkciju(rez, nt, dataIzm).then(function(response) {
+				$scope.error = "";
 				var obj = response.data;
 				for(var i = 0; i < $scope.table.length; i++) {
 					var item = $scope.table[i];
-					if($scope.getValue(item, "id") == $scope.idIzmene) {
+					if($scope.getValue(item, "id", "int") == $scope.idIzmene) {
 						$scope.table.splice(i, 1);
 						$scope.table.splice(i, 0, obj);
 						break;
 					}
 				}
+			}, function(error) {
+				$scope.error = "Nije moguce izmeniti ovaj objekat!";
 			});
 		}
 		else if(rez == 'dodavanje') {
 			HomePageService.izvrsiAkciju(rez, nt, data).then(function(response) {
+				$scope.error = "";
 				var obj = response.data;
 				$scope.table.push(obj);
+			}, function(error) {
+				$scope.error = "Nije moguce dodati ovaj objekat!";
 			});
 		}
-		else if(rez == 'pretraga')
-			HomePageService.izvrsiAkciju(rez, nt, data);
+		else if(rez == 'pretraga') {
+			HomePageService.izvrsiAkciju(rez, nt, data).then(function(response) {
+				$scope.error = "";
+				var obj = response.data;
+				$scope.table = obj;
+			}, function(error) {
+				$scope.error = "Nije moguce izvrsiti pretragu po ovom kriterijumu!";
+			});
+		}
 		
 		$scope.promeniRezim('nema');
 		//$scope.objIzm = {};
