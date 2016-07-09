@@ -37,6 +37,7 @@
 			<td><a data-ng-click="deleteRow(t.id)" class = "btn btn-success">Obrisi</a></td>
 			<td><a data-ng-click="izmeni(t)" class = "btn btn-success">Izmeni</a></td>
 			<td><a data-ng-click="next(t)" class = "btn btn-success">Child tabele</a></td>
+			<td data-ng-if='nameTable == "analitikeIzvoda"'><a data-ng-click="export(t)" class = "btn btn-success">Export</a></td>
 		</tr>
 	</table>
 </div>
@@ -81,10 +82,16 @@
       {{error}}
 </div>
 
-<form data-ng-submit="importNaloga()" class="form-horizontal" enctype="multipart/form-data">
-   <input type="file" data-ng-model="importovanNalog" />
-   <button class="btn btn-primary" type="submit">Import</button>
-</form>
-
+<div style="margin-top:0.5em;">
+<label class="btn btn-primary">
+Odaberite nalog za placanje
+<input type="file" data-file-model="myFile" style="opacity:0;display:none;">
+</label><br>
+<div data-ng-if="myFile != null" style="margin-top:0.5em;">
+Naziv: {{myFile.name}}
+<br>
+<button style="margin-top:0.5em;" class="btn btn-success" data-ng-click="importNaloga()">Import naloga za placanje</button>
+</div>
+</div>
 </div>
 </body>

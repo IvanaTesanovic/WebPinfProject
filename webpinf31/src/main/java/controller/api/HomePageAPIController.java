@@ -1,13 +1,21 @@
 package controller.api;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
 
 import model.AnalitikaIzvoda;
 import model.Banka;
 import model.DnevnoStanjeRacuna;
 import model.Drzava;
-import model.GrupaIzvoda;
 import model.Klijent;
 import model.Kliring;
 import model.KursUValuti;
@@ -18,13 +26,14 @@ import model.Racun;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import api.constants.MimeTypes;
 import api.constants.RequestMappings;
@@ -80,9 +89,26 @@ public class HomePageAPIController {
 	DnevnaStanjaRacunaService dnevnaStanjaRacunaService;
 	
 	/** TODO IMPORT **/
-	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.IMPORT, produces = MimeTypes.UPLOAD_FILE)
-	public void importNaloga() {
+	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.IMPORT, produces = MimeTypes.UPLOAD_FILE)
+	public void importNaloga(MultipartHttpServletRequest request) {
 		
+		Iterator<String> itr =  request.getFileNames();
+	    MultipartFile mpf = request.getFile(itr.next());
+	    
+	    //ali je ovaj file prazan, obvs. treba da se setuju byte-ovi maleni
+	    File file = new File(System.getProperty("user.home"), mpf.getOriginalFilename());
+	    try {
+			BufferedWriter out = new BufferedWriter(new FileWriter(file));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+//	    JAXBContext jaxbContext = JAXBContext.newInstance(Customer.class);
+//
+//		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+//		Customer customer = (Customer) jaxbUnmarshaller.unmarshal(mpf);
+//		
 	}
 	
 	

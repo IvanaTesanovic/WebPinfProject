@@ -9,13 +9,16 @@ app.factory("HomePageService", function($http) {
 	    getColumnNames: function(tableName, callback) {
 	    	$http.get('api/homepage/' + tableName + "/kolone").success(callback);
 	    },
-	    importNaloga: function() {
+	    importNaloga: function(file) {
+	    	var fd = new FormData();
+	        fd.append('file', file);
 	    	$http({
 	    		method: 'POST',
 	    		url: 'api/homepage/import',
-	    		data: data,
+	    		data: fd,
+	    		transformRequest: angular.identity,
 	    		headers: {
-                    "Content-Type": "multipart/form-data",
+                    "Content-Type": undefined,
                 }
 	    	});
 	    },
