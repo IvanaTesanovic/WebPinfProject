@@ -183,4 +183,8 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 //		}
 	};
 	
+	$scope.importNaloga = function() {
+		HomePageService.importNaloga();
+	};
+	
 });

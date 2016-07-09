@@ -17,16 +17,30 @@
 	<![endif]-->
 	
 <style>
-	.container {
+.container {
 	position: absolute;
    	top: 50%;
     left: 50%;
     width:30em;
     height:18em;
     margin-top: -16em;
-    margin-left: -11em;
-	}
-
+    margin-left: -11em
+}
+#errors {
+	padding: 2px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	background-color:#ff3333;
+	color:white;
+	margin-top:0.5em;
+	width:18em;
+	margin-left: 0.1em
+}
+#submit_button {
+	margin-top: -1em;
+	margin-left: 6em;
+	margin-bottom: 0.5em
+}
 </style>
 </head>
 <body id="login_body" data-ng-controller="LoginController">
@@ -77,7 +91,7 @@
 		</div>
 		<div>
 			<c:if test="${param.error == '1' }">
-				<div id="errors" class="alert-warning" >
+				<div id="errors" >
 					<spring:message code="login.error.incorectUserNameOrPassword" />
 				</div>
 			</c:if>

@@ -18,6 +18,7 @@ import model.Racun;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -77,6 +78,13 @@ public class HomePageAPIController {
 	
 	@Autowired
 	DnevnaStanjaRacunaService dnevnaStanjaRacunaService;
+	
+	/** TODO IMPORT **/
+	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.IMPORT, produces = MimeTypes.UPLOAD_FILE)
+	public void importNaloga() {
+		
+	}
+	
 	
 	/** TODO GET TABELE **/
 	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.ANALITIKE_IZVODA, produces = MimeTypes.APPLICATION_JSON)

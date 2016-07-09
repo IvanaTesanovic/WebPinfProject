@@ -77,9 +77,14 @@
 	</form>
 </div>
 
-<div data-ng-hide='error == ""' class="alert" style="background-color:#f0ad4e;color:white;margin-bottom:0.5em;margin-bottom:0.5em;width:25em" role="alert">
+<div data-ng-hide='error == ""' class="alert" style="background-color:#f0ad4e;color:white;margin-top:0.5em;margin-bottom:0.5em;width:25em" role="alert">
       {{error}}
 </div>
+
+<form data-ng-submit="importNaloga()" class="form-horizontal" enctype="multipart/form-data">
+   <input type="file" data-ng-model="importovanNalog" />
+   <button class="btn btn-primary" type="submit">Import</button>
+</form>
 
 </div>
 </body>

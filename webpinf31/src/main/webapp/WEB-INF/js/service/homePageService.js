@@ -9,6 +9,16 @@ app.factory("HomePageService", function($http) {
 	    getColumnNames: function(tableName, callback) {
 	    	$http.get('api/homepage/' + tableName + "/kolone").success(callback);
 	    },
+	    importNaloga: function() {
+	    	$http({
+	    		method: 'POST',
+	    		url: 'api/homepage/import',
+	    		data: data,
+	    		headers: {
+                    "Content-Type": "multipart/form-data",
+                }
+	    	});
+	    },
 	    izvrsiAkciju: function(rez, nt, data) {
 	    	return $http({
 	    		method: 'POST',

@@ -25,9 +25,10 @@ public final class RequestMappings {
 
 	public static final String KOLONE = "/kolone";
 	public static final String KOLONE_ZA_PRIKAZ = "/koloneZaPrikaz";
+	
+	public static final String IMPORT = "/import";
 
 	public static final String OBRISI = "/obrisi/";
-	
 	public static final String IZMENA = "/izmena";
 	public static final String DODAVANJE = "/dodavanje";
 	public static final String PRETRAGA = "/pretraga";
