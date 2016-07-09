@@ -12,14 +12,14 @@ public final class TableColumns {
 		
 		switch(tableName) {
 		case "drzave":
-			columns.addAll(Arrays.asList(new Column("id", "int"), new Column("naziv", "string")));
+			columns.addAll(Arrays.asList(new Column("id", "int"), new Column("sifra", "string"), new Column("naziv", "string")));
 			break;
 		case "naseljenaMesta":
 			columns.addAll(Arrays.asList(new Column("id", "int"), new Column("naziv", "string"), 
 					new Column("ptt_oznaka", "string"), new Column("id_drzave", "int")));
 			break;
 		case "banke":
-			columns.addAll(Arrays.asList(new Column("id", "int"), new Column("naziv", "string"),
+			columns.addAll(Arrays.asList(new Column("id", "int"), new Column("sifra", "string"), new Column("naziv", "string"),
 					new Column("pib", "string"), 
 					new Column("adresa", "string"), new Column("email", "string"), new Column("telefon", "string"),
 					new Column("fax", "string"),new Column("web", "string"), new Column("narodna_banka", "boolean")));
@@ -64,7 +64,7 @@ public final class TableColumns {
 			break;
 			
 		case "analitikeIzvoda":
-			columns.addAll(Arrays.asList(new Column("id","int"), new Column("id_dnevnog_stanja_racuna","int"),new Column("id_naseljenog_mesto","int"),
+			columns.addAll(Arrays.asList(new Column("id","int"), new Column("id_dnevnog_stanja_racuna","int"),new Column("id_naseljenog_mesta","int"),
 					new Column("id_valute","int"), new Column("id_vrste_placanja","int"),
 					new Column("duznik","string"),new Column("poverilac","string"),new Column("svrha_placanja","string"),
 					new Column("datum_prijema","date"),new Column("datum_valute","date"), new Column("racun_duznika","string"),

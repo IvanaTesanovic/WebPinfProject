@@ -20,6 +20,7 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 	$scope.init();
 
 	$scope.openTable = function(tableName) {
+		$scope.myFile = null;
 		$scope.error = "";
 		$scope.promeniRezim('nema');
 		$scope.nameTable = tableName;
@@ -54,6 +55,7 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 	
 	$scope.promeniRezim = function(rez) {
 		$scope.error = "";
+		$scope.myFile = null;
 		if(rez == "nema")
 			$scope.rezim = "Trenutno nije odabran nijedan rezim.";
 		else 
@@ -176,15 +178,13 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 		}
 		
 		$scope.promeniRezim('nema');
-		//$scope.objIzm = {};
-		//vratiti sve inpute na null
-//		for(var i = 0; i < inputs.length; i++) {
-//			inputs[i].value = null;
-//		}
 	};
 	
 	$scope.importNaloga = function() {
-		HomePageService.importNaloga();
-	};
+        var file = $scope.myFile;
+        console.log('file is ' );
+        console.dir(file);
+        HomePageService.importNaloga(file);
+    };
 	
 });
