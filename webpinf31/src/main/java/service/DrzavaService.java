@@ -37,9 +37,11 @@ public class DrzavaService {
 		return drzavaRepo.findOne(id);
 	}
 	
-	public void update(Long id, String naziv) {
+	public void update(Long id, String sifra, String naziv) {
 		Drzava drzava = drzavaRepo.findOne(id);
+		drzava.setSifra(sifra);
 		drzava.setNaziv(naziv);
 		drzavaRepo.save(drzava);
 	}
+	
 }

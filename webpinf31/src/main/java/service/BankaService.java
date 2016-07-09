@@ -32,9 +32,10 @@ public class BankaService {
 		return bankaRepo.findOne(id);
 	}
 
-	public void update(Long id, String pib, String naziv, String adresa, String telefon, String email, String web,
+	public void update(Long id, String sifra, String pib, String naziv, String adresa, String telefon, String email, String web,
 			String fax, Boolean nb) {
 		Banka banka = bankaRepo.findOne(id);
+		banka.setSifra(sifra);
 		banka.setAdresa(adresa);
 		banka.setEmail(email);
 		banka.setFax(fax);

@@ -12,13 +12,16 @@ import javax.persistence.Table;
 @Table(name = "banka")
 public class Banka extends AbstractEntity {
 
-	@Column(nullable = true)
+	@Column(nullable = false, unique = false)
+	private String sifra;
+	
+	@Column(nullable = false)
 	private String pib;
 	
-	@Column(nullable = true)
+	@Column(nullable = false)
 	private String naziv;
 	
-	@Column(nullable = true)
+	@Column(nullable = false)
 	private String adresa;
 	
 	@Column(nullable = true)
@@ -33,14 +36,15 @@ public class Banka extends AbstractEntity {
 	@Column(nullable = true)
 	private String fax;
 	
-	@Column(nullable = true)
+	@Column(nullable = false)
 	private Boolean narodna_banka;
 	
 	public Banka() {}
 	
-	public Banka(String pib, String naziv, String adresa, String telefon,
-			String email, String web, String fax, Boolean narodna_banka) {
+	public Banka(String sifra, String pib, String naziv, String adresa, String telefon, String email, String web,
+			String fax, Boolean narodna_banka) {
 		super();
+		this.sifra = sifra;
 		this.pib = pib;
 		this.naziv = naziv;
 		this.adresa = adresa;
@@ -51,18 +55,21 @@ public class Banka extends AbstractEntity {
 		this.narodna_banka = narodna_banka;
 	}
 
+	public String getSifra() {
+		return sifra;
+	}
+
+	public void setSifra(String sifra) {
+		this.sifra = sifra;
+	}
 
 	public Boolean getNarodna_banka() {
 		return narodna_banka;
 	}
 
-
-
 	public void setNarodna_banka(Boolean narodna_banka) {
 		this.narodna_banka = narodna_banka;
 	}
-
-
 
 	public String getPib() {
 		return pib;

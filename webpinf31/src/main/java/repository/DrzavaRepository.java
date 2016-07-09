@@ -15,6 +15,4 @@ public interface DrzavaRepository extends CrudRepository<Drzava, Long> {
 	
 	public Drzava findByNaziv(String naziv);
 	
-//	@Query("exec sp_fkeys 'drzava'")
-//	public List<String> findByCategory(@Param("categoryName") String categoryName);
 }

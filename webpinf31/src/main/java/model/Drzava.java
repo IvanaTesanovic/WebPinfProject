@@ -10,14 +10,26 @@ import model.AbstractEntity;
 @Table(name = "drzava")
 public class Drzava extends AbstractEntity {
 	
-	@Column(nullable = true)
+	@Column(nullable = false, unique = true)
+	private String sifra;
+	
+	@Column(nullable = false)
 	private String naziv;
 
 	public Drzava() {}
 	
-	public Drzava(String naziv) {
+	public Drzava(String sifra, String naziv) {
 		super();
+		this.sifra = sifra;
 		this.naziv = naziv;
+	}
+
+	public String getSifra() {
+		return sifra;
+	}
+
+	public void setSifra(String sifra) {
+		this.sifra = sifra;
 	}
 
 	public String getNaziv() {

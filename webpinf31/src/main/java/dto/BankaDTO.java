@@ -5,6 +5,7 @@ import javax.persistence.Column;
 public class BankaDTO {
 	
 	private String id;
+	private String sifra;
 	private String pib;
 	private String naziv;
 	private String adresa;
@@ -16,10 +17,11 @@ public class BankaDTO {
 	
 	public BankaDTO() {}
 
-	public BankaDTO(String id, String pib, String naziv, String adresa, String telefon, String email, String web,
+	public BankaDTO(String id, String sifra, String pib, String naziv, String adresa, String telefon, String email, String web,
 			String fax, String narodna_banka) {
 		super();
 		this.id = id;
+		this.sifra = sifra;
 		this.pib = pib;
 		this.naziv = naziv;
 		this.adresa = adresa;
@@ -28,6 +30,14 @@ public class BankaDTO {
 		this.web = web;
 		this.fax = fax;
 		this.narodna_banka = narodna_banka;
+	}
+
+	public String getSifra() {
+		return sifra;
+	}
+
+	public void setSifra(String sifra) {
+		this.sifra = sifra;
 	}
 
 	public String getId() {

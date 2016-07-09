@@ -24,17 +24,19 @@ public class DrzaveAPIController {
 	
 	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.IZMENA, produces = MimeTypes.APPLICATION_JSON)
 	public Drzava izmeni(@RequestBody Drzava obj) {
-		service.update(obj.getId(), obj.getNaziv());
+		service.update(obj.getId(), obj.getSifra(), obj.getNaziv());
 		return service.findById(obj.getId());
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.DODAVANJE, produces = MimeTypes.APPLICATION_JSON)
 	public Drzava dodaj(@RequestBody Drzava obj) {
-		Drzava drzava = new Drzava(obj.getNaziv());
+		Drzava drzava = new Drzava(obj.getSifra(), obj.getNaziv());
 		service.save(drzava);
 		return drzava;
 	}
 	
+	//** OVO TREBA MENJATI **//
+	/** koristiti linked hash set za duplikate **/
 	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.PRETRAGA)
 	public List<Drzava> pretrazi(@RequestBody DrzavaDTO obj) {
 		List<Drzava> drzave = service.listAll();

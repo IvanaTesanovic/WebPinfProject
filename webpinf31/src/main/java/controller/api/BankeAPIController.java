@@ -22,13 +22,13 @@ public class BankeAPIController {
 	
 	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.IZMENA)
 	public Banka izmeni(@RequestBody BankaDTO obj) {
-		service.update(Long.parseLong(obj.getId()), obj.getPib(), obj.getNaziv(), obj.getAdresa(), obj.getTelefon(), obj.getEmail(), obj.getWeb(), obj.getFax(), Boolean.parseBoolean(obj.getNarodna_banka()));
+		service.update(Long.parseLong(obj.getId()), obj.getSifra(), obj.getPib(), obj.getNaziv(), obj.getAdresa(), obj.getTelefon(), obj.getEmail(), obj.getWeb(), obj.getFax(), Boolean.parseBoolean(obj.getNarodna_banka()));
 		return service.findById(Long.parseLong(obj.getId()));
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.DODAVANJE, produces = MimeTypes.APPLICATION_JSON)
 	public Banka dodaj(@RequestBody Banka obj) {
-		Banka banka = new Banka(obj.getPib(), obj.getNaziv(), obj.getAdresa(), obj.getTelefon(),
+		Banka banka = new Banka(obj.getSifra(), obj.getPib(), obj.getNaziv(), obj.getAdresa(), obj.getTelefon(),
 				obj.getEmail(), obj.getWeb(), obj.getFax(), obj.getNarodna_banka());
 		service.save(banka);
 		return banka;
