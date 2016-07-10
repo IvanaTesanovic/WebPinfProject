@@ -1,7 +1,9 @@
 package controller.api;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -23,6 +25,7 @@ import model.KursnaLista;
 import model.NaseljenoMesto;
 import model.RTGS;
 import model.Racun;
+import model.nalog.NalogZaPrenos;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -95,19 +98,25 @@ public class HomePageAPIController {
 		Iterator<String> itr =  request.getFileNames();
 	    MultipartFile mpf = request.getFile(itr.next());
 	    
-	    //ali je ovaj file prazan, obvs. treba da se setuju byte-ovi maleni
 	    File file = new File(System.getProperty("user.home"), mpf.getOriginalFilename());
+	    
 	    try {
-			BufferedWriter out = new BufferedWriter(new FileWriter(file));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+	    	BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(file));
+	    	stream.write(mpf.getBytes());
+	    	stream.close();
+	    	
+		    JAXBContext jaxbContext = JAXBContext.newInstance(NalogZaPrenos.class);
+	    	
+	    	Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+	    	NalogZaPrenos nalog = (NalogZaPrenos)jaxbUnmarshaller.unmarshal(file);
+	    	
+	    	System.out.println(nalog.getDuznik());
+	    	
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	    
-//	    JAXBContext jaxbContext = JAXBContext.newInstance(Customer.class);
-//
-//		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-//		Customer customer = (Customer) jaxbUnmarshaller.unmarshal(mpf);
+
 //		
 	}
 	
