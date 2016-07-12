@@ -16,6 +16,9 @@ import javax.persistence.Table;
 public class AnalitikaIzvoda extends AbstractEntity {
 
 	@Column(nullable = false)
+	private String id_poruke;
+	
+	@Column(nullable = false)
 	private String duznik;
 	
 	@Column(nullable = false)
@@ -80,18 +83,13 @@ public class AnalitikaIzvoda extends AbstractEntity {
 	
 	public AnalitikaIzvoda() {}
 	
-	
-	
-	public AnalitikaIzvoda(String duznik, String poverilac,
-			String svrha_placanja, Date datum_prijema, Date datum_valute,
-			String racun_duznika, String racun_poverioca,
-			String model_odobrenja, String model_zaduzenja,
-			String poziv_na_broj_odobrenja, String poziv_na_broj_zaduzenja,
-			Boolean hitno, Double iznos, Integer tip_greske, String status,
-			DnevnoStanjeRacuna id_dnevnog_stanja_racuna,
-			VrstePlacanja id_vrste_placanja, Valuta id_valute,
-			NaseljenoMesto id_naseljenog_mesta) {
+	public AnalitikaIzvoda(String id_poruke, String duznik, String poverilac, String svrha_placanja, Date datum_prijema,
+			Date datum_valute, String racun_duznika, String racun_poverioca, String model_odobrenja,
+			String model_zaduzenja, String poziv_na_broj_odobrenja, String poziv_na_broj_zaduzenja, Boolean hitno,
+			Double iznos, Integer tip_greske, String status, DnevnoStanjeRacuna id_dnevnog_stanja_racuna,
+			VrstePlacanja id_vrste_placanja, Valuta id_valute, NaseljenoMesto id_naseljenog_mesta) {
 		super();
+		this.id_poruke = id_poruke;
 		this.duznik = duznik;
 		this.poverilac = poverilac;
 		this.svrha_placanja = svrha_placanja;
@@ -113,7 +111,13 @@ public class AnalitikaIzvoda extends AbstractEntity {
 		this.id_naseljenog_mesta = id_naseljenog_mesta;
 	}
 
+	public String getId_poruke() {
+		return id_poruke;
+	}
 
+	public void setId_poruke(String id_poruke) {
+		this.id_poruke = id_poruke;
+	}
 
 	public String getDuznik() {
 		return duznik;

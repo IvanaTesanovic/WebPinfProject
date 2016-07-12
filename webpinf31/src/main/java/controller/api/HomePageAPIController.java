@@ -6,7 +6,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URISyntaxException;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -25,6 +29,7 @@ import model.KursnaLista;
 import model.NaseljenoMesto;
 import model.RTGS;
 import model.Racun;
+import model.SPTable;
 import model.nalog.NalogZaPrenos;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +46,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import api.constants.MimeTypes;
 import api.constants.RequestMappings;
 import api.constants.TableColumns;
+import connection.DBConnection;
 import service.AnalitikaIzvodaService;
 import service.BankaService;
 import service.DnevnaStanjaRacunaService;
@@ -51,6 +57,7 @@ import service.KursUValutiService;
 import service.KursnaListaService;
 import service.NaseljenoMestoService;
 import service.RacunService;
+import service.SPTableService;
 import util.Column;
 import service.RTGSService;
 
@@ -91,7 +98,10 @@ public class HomePageAPIController {
 	@Autowired
 	DnevnaStanjaRacunaService dnevnaStanjaRacunaService;
 	
-	/** TODO IMPORT **/
+	@Autowired
+	SPTableService sptableService;
+	
+	/** TODO IMPORT & POZIVANJE USKLADISTENE PROCEDURE **/
 	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.IMPORT, produces = MimeTypes.UPLOAD_FILE)
 	public void importNaloga(MultipartHttpServletRequest request) {
 		
@@ -110,15 +120,50 @@ public class HomePageAPIController {
 	    	Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 	    	NalogZaPrenos nalog = (NalogZaPrenos)jaxbUnmarshaller.unmarshal(file);
 	    	
-	    	System.out.println(nalog.getDuznik());
+	    	java.util.Date utilDate = nalog.getDatumValute().toGregorianCalendar().getTime();
+	    	java.sql.Date datumValute = new java.sql.Date(utilDate.getTime());
+	    	
+	    	/** tabela sadrzi trigger nad insertom koji poziva uskladistenu proceduru **/
+	    	sptableService.save(new SPTable(nalog.getIDPoruke(), nalog.getDuznik(), nalog.getPoverilac(), nalog.getSvrhaPlacanja(),
+	    			datumValute, nalog.getRacunDuznika().getBrojRacuna(),
+	    			String.valueOf(nalog.getRacunDuznika().getBrojModela()),
+	    			nalog.getRacunDuznika().getPozivNaBroj(), nalog.getRacunPoverioca().getBrojRacuna(),
+	    			String.valueOf(nalog.getRacunPoverioca().getBrojModela()), nalog.getRacunPoverioca().getPozivNaBroj(),
+	    			nalog.isHitno(), nalog.getOznakaValute(), nalog.getIznos(), true));
 	    	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	    
-
-//		
 	}
+	
+//		PreparedStatement proc_stmt;
+//		try {
+//			proc_stmt = DBConnection.getConnection().prepareStatement("exec Nalog ?,?,?,? ");
+//			/*@BROJ_RACUNA_DUZNIKA VARCHAR(255),
+//			@BROJ_RACUNA_POVERIOCA VARCHAR(255),	
+//			@IZNOS DECIMAL(15,2),
+//    		@OK BIT OUTPUT*/
+//			proc_stmt.setEscapeProcessing(true);
+//		    proc_stmt.setQueryTimeout(90);
+//			proc_stmt.setString(1, "123-2345456788989-33");
+//			proc_stmt.setString(2, "123-2343336788989-33");
+//			proc_stmt.setBigDecimal(3, new BigDecimal(10.00));
+//			proc_stmt.setBoolean(4, true);
+//		    proc_stmt.executeUpdate();
+//		    //DBConnection.getConnection().close();
+////		   if(rs.next())
+////			   System.out.println(rs.getString(1));
+//		    
+//		    /* cstmt.execute();
+//        rs = cstmt.getResultSet();
+//        if (rs.next()) {
+//            averageWeight = rs.getDouble(1);
+//        }*/
+//
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	
 	
 	/** TODO GET TABELE **/

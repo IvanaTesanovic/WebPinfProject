@@ -182,9 +182,7 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 	
 	$scope.importNaloga = function() {
         var file = $scope.myFile;
-        console.log('file is ' );
-        console.dir(file);
         HomePageService.importNaloga(file);
     };
-	
+    
 });

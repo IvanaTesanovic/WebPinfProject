@@ -34,8 +34,8 @@ public final class TableColumns {
 			break;
 			
 		case "racuni":
-			columns.addAll(Arrays.asList(new Column("id","int"), new Column("id_banke", "int"),new Column("id_klijenta", "int"),new Column("id_valute", "int"),
-					new Column("broj_racuna","string"),new Column("datum_otvaranja","date"), new Column("vazeci","boolean")));
+			columns.addAll(Arrays.asList(new Column("id","int"), new Column("broj_racuna","string"), new Column("datum_otvaranja","date"),
+					new Column("vazeci","boolean"), new Column("id_banke", "int"),new Column("id_klijenta", "int"),new Column("id_valute", "int")));
 		break;
 		
 		case "rtgs":
@@ -64,7 +64,7 @@ public final class TableColumns {
 			break;
 			
 		case "analitikeIzvoda":
-			columns.addAll(Arrays.asList(new Column("id","int"), new Column("id_dnevnog_stanja_racuna","int"),new Column("id_naseljenog_mesta","int"),
+			columns.addAll(Arrays.asList(new Column("id","int"), new Column("id_poruke","string"), new Column("id_dnevnog_stanja_racuna","int"),new Column("id_naseljenog_mesta","int"),
 					new Column("id_valute","int"), new Column("id_vrste_placanja","int"),
 					new Column("duznik","string"),new Column("poverilac","string"),new Column("svrha_placanja","string"),
 					new Column("datum_prijema","date"),new Column("datum_valute","date"), new Column("racun_duznika","string"),
