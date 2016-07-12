@@ -33,6 +33,7 @@ public final class RequestMappings {
 	public static final String IZMENA = "/izmena";
 	public static final String DODAVANJE = "/dodavanje";
 	public static final String PRETRAGA = "/pretraga";
+	public static final String UKIDANJE = "/ukidanje";
 	
 	public RequestMappings() {}
 	

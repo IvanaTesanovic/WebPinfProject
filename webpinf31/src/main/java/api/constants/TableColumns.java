@@ -64,13 +64,13 @@ public final class TableColumns {
 			break;
 			
 		case "analitikeIzvoda":
-			columns.addAll(Arrays.asList(new Column("id","int"), new Column("id_poruke","string"), new Column("id_dnevnog_stanja_racuna","int"),new Column("id_naseljenog_mesta","int"),
-					new Column("id_valute","int"), new Column("id_vrste_placanja","int"),
+			columns.addAll(Arrays.asList(new Column("id","int"), new Column("id_poruke","string"),
 					new Column("duznik","string"),new Column("poverilac","string"),new Column("svrha_placanja","string"),
 					new Column("datum_prijema","date"),new Column("datum_valute","date"), new Column("racun_duznika","string"),
 					new Column("racun_poverioca","string"), new Column("model_odobrenja","string"), new Column("model_zaduzenja","string"),
 					new Column("poziv_na_broj_odobrenja","string"), new Column("poziv_na_broj_zaduzenja","string"),
-					new Column("hitno","boolean"), new Column("iznos","double"), new Column("tip_greske","integer"), new Column("status","string")));
+					new Column("hitno","boolean"), new Column("iznos","double"), new Column("tip_greske","integer"), new Column("status","string"),  new Column("id_dnevnog_stanja_racuna","int"),new Column("id_naseljenog_mesta","int"),
+					new Column("id_valute","int"), new Column("id_vrste_placanja","int")));
 			break;
 			
 		case "dnevnaStanja":

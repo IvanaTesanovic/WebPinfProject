@@ -13,13 +13,21 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 	
 	$scope.error = "";
 	
+	$scope.ukidanjeVal = false;
+	$scope.racunZaUkidanje = {};
+	$scope.rezimUkidanja = "";
+	$scope.brojRacunaZaPrebacivanje = "";
+	$scope.errorPrebacivanje = "";
+	
 	$scope.init = function() {
 		//$scope.objIzm = { id: 54, naziv: "rrr", ptt_oznaka: "rrrr", id_drzave: {id: 3, naziv: "Srbija"} };
+		
 	};
 	
 	$scope.init();
 
 	$scope.openTable = function(tableName) {
+		$scope.otkaziUkidanje();
 		$scope.myFile = null;
 		$scope.error = "";
 		$scope.promeniRezim('nema');
@@ -54,6 +62,7 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 	};
 	
 	$scope.promeniRezim = function(rez) {
+		$scope.otkaziUkidanje();
 		$scope.error = "";
 		$scope.myFile = null;
 		if(rez == "nema")
@@ -63,6 +72,7 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 	};
 	
 	$scope.deleteRow = function(tIndex) {
+		$scope.otkaziUkidanje();
 		HomePageService.deleteRow($scope.nameTable, tIndex).
 		then(function(response) {
 			$scope.error = "";
@@ -79,6 +89,7 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 	};
 	
 	$scope.izmeni = function(obj) {
+		$scope.otkaziUkidanje();
 		console.log(obj);
 		$scope.rezim = 'izmena';
 		$scope.promeniRezim($scope.rezim);
@@ -183,6 +194,50 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 	$scope.importNaloga = function() {
         var file = $scope.myFile;
         HomePageService.importNaloga(file);
+    };
+    
+    
+    /* UKIDANJE RACUNA */
+    
+    $scope.ukidanjeForma = function(racun) {
+    	$scope.otkaziUkidanje();
+    	$scope.racunZaUkidanje = racun;
+    	$scope.ukidanjeVal = true;
+    };
+    
+    $scope.ukidanjeSaPrebacivanjem = function() {
+    	$scope.errorPrebacivanje = "";
+    	$scope.rezimUkidanja = "sa";
+    };
+    
+    $scope.ukidanjeBezPrebacivanja = function() {
+    	$scope.errorPrebacivanje = "";
+    	$scope.rezimUkidanja = "bez";
+    };
+    
+    $scope.ukidanje = function() {
+    	$scope.brojRacunaZaPrebacivanje = $('#ukidanjeSelect :selected').text();
+    	if($scope.brojRacunaZaPrebacivanje == "Odaberite racun na koji zelite da prebacite novac") {
+    		$scope.errorPrebacivanje = "Morate odabrati racun!";
+    	}
+    	else if($scope.rezimUkidanja == "bez") {
+    		$scope.errorPrebacivanje = "";
+    		HomePageService.ukidanje($scope.racunZaUkidanje.id, "nema", $scope.rezimUkidanja);
+    	}
+    	else if($scope.rezimUkidanja == "sa") {
+    		$scope.errorPrebacivanje = "";
+    		HomePageService.ukidanje($scope.racunZaUkidanje.id, $scope.brojRacunaZaPrebacivanje, $scope.rezimUkidanja);
+    	}
+    	$scope.otkaziUkidanje();
+    	$scope.nameTable = "";
+    };
+    
+    $scope.otkaziUkidanje = function() {
+    	$scope.errorPrebacivanje = "";
+    	$scope.brojRacunaZaPrebacivanje = "";
+    	$scope.rezimUkidanja = "";
+    	$scope.racunZaUkidanje = null;
+    	$scope.ukidanjeVal = false;
     };
     
 });

@@ -38,10 +38,11 @@
 			<td><a data-ng-click="izmeni(t)" class = "btn btn-success">Izmeni</a></td>
 			<td><a data-ng-click="next(t)" class = "btn btn-success">Child tabele</a></td>
 			<td data-ng-if='nameTable == "analitikeIzvoda"'><a data-ng-click="export(t)" class = "btn btn-success">Export</a></td>
-			<td data-ng-if='nameTable == "racuni"'><a data-ng-click="ukidanje(t)" class = "btn btn-success">Ukini</a></td>
+			<td data-ng-if='nameTable == "racuni"'><a data-ng-click="ukidanjeForma(t)" class = "btn btn-success">Ukidanje</a></td>
 		</tr>
 	</table>
 </div>
+<hr>
 <p>Trenutni rezim: {{rezim}}</p>
 <div>
 	<button class="btn btn-primary" id="dodavanje" data-ng-click="promeniRezim('dodavanje')" data-ng-disabled='nameTable == ""'>Dodavanje</button>
@@ -83,6 +84,36 @@
       {{error}}
 </div>
 
+<div data-ng-show="ukidanjeVal">
+<hr>
+
+<div data-ng-repeat="k in kolone" class="form-group">
+	<label class="col-lg-2 control-label">{{k.naziv.toUpperCase().split('_').join(' ')}}</label>&nbsp;
+	<label class="col-lg-2 control-label">{{getValue(racunZaUkidanje, k.naziv, k.tip)}}</label>
+</div>
+
+<br><button class="btn btn-primary" data-ng-click="ukidanjeBezPrebacivanja()">Odaberi ukidanje sa isplatom</button>&nbsp;
+<button class="btn btn-primary" data-ng-click="ukidanjeSaPrebacivanjem()">Odaberi ukidanje sa prebacivanjem</button>
+
+
+<div data-ng-if='rezimUkidanja == "sa"'>
+	<br>
+	<select id="ukidanjeSelect" class="form-control" style="width:27em">
+		<option>Odaberite racun na koji zelite da prebacite novac</option>
+		<option data-ng-repeat="t in table" value="{{t.id}}" data-ng-disabled="t.broj_racuna == racunZaUkidanje.broj_racuna">{{t.broj_racuna}}</option>
+	</select>
+</div>
+
+<p style="margin-top:0.5em;color:red;font-weight:bold">{{errorPrebacivanje}}</p>
+<div style="margin-top:0.5em" data-ng-if='rezimUkidanja != ""'>
+<button class="btn btn-success" data-ng-click="ukidanje()">Izvrsi ukidanje racuna</button>
+<button class="btn btn-success" data-ng-click="otkaziUkidanje()">Otkazi</button>
+</div>
+
+</div>
+
+<hr>
+
 <div style="margin-top:0.5em;">
 <label class="btn btn-primary">
 Odaberite nalog za placanje
@@ -94,6 +125,8 @@ Naziv: {{myFile.name}}
 <button style="margin-top:0.5em;" class="btn btn-success" data-ng-click="importNaloga()">Import naloga za placanje</button>
 </div>
 </div>
+
+<hr>
 
 </div>
 </body>

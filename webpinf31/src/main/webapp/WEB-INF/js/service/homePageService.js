@@ -9,6 +9,17 @@ app.factory("HomePageService", function($http) {
 	    getColumnNames: function(tableName, callback) {
 	    	$http.get('api/homepage/' + tableName + "/kolone").success(callback);
 	    },
+	    ukidanje: function(id, broj, rezim) {
+	    	$http({
+	    		method: 'POST',
+	    		url: 'api/actions/racuni/ukidanje/' + rezim + '/' + id,
+	    		data: broj,
+	    		headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "text/plain, application/json"
+                }
+	    	});
+	    },
 	    importNaloga: function(file) {
 	    	var fd = new FormData();
 	        fd.append('file', file);
