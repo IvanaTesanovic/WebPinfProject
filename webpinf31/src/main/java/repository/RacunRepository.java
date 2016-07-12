@@ -4,6 +4,6 @@ import model.Racun;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface RacunRepository extends CrudRepository<Racun, Long>{
-
+public interface RacunRepository extends CrudRepository<Racun, Long> {
+	
 }
