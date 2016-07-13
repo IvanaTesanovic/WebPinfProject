@@ -14,8 +14,8 @@ import javax.persistence.Table;
 @Table(name = "valuta")
 public class Valuta extends AbstractEntity {
 
-	@Column(nullable = true)
-	private String id_valute;
+	@Column(nullable = false, unique = true)
+	private String oznaka_valute;
 	
 	@Column(nullable = true)
 	private String naziv;
@@ -27,26 +27,22 @@ public class Valuta extends AbstractEntity {
 	@JoinColumn(name = "id_drzave")
 	private Drzava id_drzave;
 	
-	
 	public Valuta() {}
 
-	public Valuta(String id_valute, String naziv, Boolean domicilna,
-			Drzava id_drzave) {
+	public String getOznaka_valute() {
+		return oznaka_valute;
+	}
+
+	public void setOznaka_valute(String oznaka_valute) {
+		this.oznaka_valute = oznaka_valute;
+	}
+
+	public Valuta(String oznaka_valute, String naziv, Boolean domicilna, Drzava id_drzave) {
 		super();
-		this.id_valute = id_valute;
+		this.oznaka_valute = oznaka_valute;
 		this.naziv = naziv;
 		this.domicilna = domicilna;
 		this.id_drzave = id_drzave;
-	}
-
-
-
-	public String getId_valute() {
-		return id_valute;
-	}
-
-	public void setId_valute(String id_valute) {
-		this.id_valute = id_valute;
 	}
 
 	public String getNaziv() {
