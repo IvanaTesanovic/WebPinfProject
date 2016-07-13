@@ -13,8 +13,6 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 	
 	$scope.error = "";
 	
-	$scope.zoomFlag = 0;
-	
 	$scope.init = function() {
 		//$scope.objIzm = { id: 54, naziv: "rrr", ptt_oznaka: "rrrr", id_drzave: {id: 3, naziv: "Srbija"} };
 	};
@@ -35,14 +33,6 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 				$scope.kolone = data;
 		});
 	};
-	
-	$scope.zoom = function(tableName) {
-		$scope.zoomFlag = 1;
-		HomePageService.openTable(tableName, function(data) {
-			if(angular.isObject(data))
-				$scope.zoomVrednosti = data;
-		});
-	}
 
 	$scope.getValue = function(obj, kol, tip) {
 		//$scope.objIzm = obj;
@@ -118,13 +108,12 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 	};
 	
 	$scope.izvrsiAkciju = function() {
-		//ovde treba vratiti objekat na scope?		
+		//ovde treba vratiti objekat na scope?
 		var rez = $scope.rezim.toLowerCase();
 		var nt = $scope.nameTable;
 		var data = {};
 		var dataIzm = {};
 		var inputs = document.getElementsByTagName('input');
-		var combo = document.getElementsByTagName('option');
 		
 		for(var i = 0; i < inputs.length; i++) {
 			var id = inputs[i].getAttribute('id');
@@ -134,11 +123,7 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 				dataIzm[id] = val;
 			}
 			else if (klasa == 'dp' || klasa == 'dpbl') {
-				if (($('#zoomSelect :selected').text() != "") && (id.includes("id_"))) {
-					var val = $('#zoomSelect :selected').text().split(' ')[0];
-				} else {
-					val = inputs[i].value;
-				}
+				var val = inputs[i].value;
 				if(klasa == 'dpbl') {
 					console.log(val);
 					var newVal = val.toLowerCase();
