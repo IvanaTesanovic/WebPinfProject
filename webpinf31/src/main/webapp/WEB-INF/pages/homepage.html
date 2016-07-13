@@ -59,6 +59,13 @@
 				<label class="col-lg-2 control-label">{{k.naziv.toUpperCase().split('_').join(' ')}}</label>&nbsp;
 				<input data-ng-hide='k.tip == "boolean"' data-ng-disabled='k.naziv == "id" && rezim != "PRETRAGA"' class="dp" id="{{k.naziv}}"/>
 				<input data-ng-show='k.tip == "boolean"' class="dpbl" id="{{k.naziv}}"/>
+				<input type="button" data-ng-click="zoom(k.naziv.split('_')[1])" value="Zoom" data-ng-show='k.naziv.startsWith("id_")' class="btn"/>
+				
+				<div data-ng-show='zoomFlag == 1 && k.naziv.startsWith("id_")' style="display:inline-block;">	
+					<select id="zoomSelect" class="form-control" style="width:12em">
+						<option data-ng-repeat="z in zoomVrednosti" value="{{z.id}}">{{z.id + " " + z.naziv}}</option>
+					</select>
+				</div>
 			</div>
 			<button class="btn btn-success" type="submit">Izvrsi akciju</button>
 		</fieldset>
