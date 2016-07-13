@@ -36,7 +36,7 @@
 			<td data-ng-repeat = "kk in kolone" >{{getValue(t, kk.naziv, kk.tip)}}</td>
 			<td><a data-ng-click="deleteRow(t.id)" class = "btn btn-success">Obrisi</a></td>
 			<td><a data-ng-click="izmeni(t)" class = "btn btn-success">Izmeni</a></td>
-			<td><a data-ng-click="next(t)" class = "btn btn-success">Child tabele</a></td>
+			<td data-ng-repeat = "fk in foreignKeys">{{fk}}</td>
 			<td data-ng-if='nameTable == "analitikeIzvoda"'><a data-ng-click="export(t)" class = "btn btn-success">Export</a></td>
 		</tr>
 	</table>
@@ -81,6 +81,8 @@
 <div data-ng-hide='error == ""' class="alert" style="background-color:#f0ad4e;color:white;margin-top:0.5em;margin-bottom:0.5em;width:25em" role="alert">
       {{error}}
 </div>
+
+
 
 <div style="margin-top:0.5em;">
 <label class="btn btn-primary">

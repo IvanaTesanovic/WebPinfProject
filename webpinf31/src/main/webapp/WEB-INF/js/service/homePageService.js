@@ -9,6 +9,9 @@ app.factory("HomePageService", function($http) {
 	    getColumnNames: function(tableName, callback) {
 	    	$http.get('api/homepage/' + tableName + "/kolone").success(callback);
 	    },
+	    getForeignKeys: function(tableName, callback) {
+	    	$http.get('api/homepage/' + tableName + "/foreignKey").success(callback);
+	    },
 	    importNaloga: function(file) {
 	    	var fd = new FormData();
 	        fd.append('file', file);

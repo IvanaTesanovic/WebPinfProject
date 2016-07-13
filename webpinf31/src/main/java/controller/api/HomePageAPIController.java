@@ -1,6 +1,7 @@
 package controller.api;
 
 import java.io.BufferedWriter;
+import java.io.Console;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -28,6 +29,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -35,6 +37,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import api.constants.ForeignKeys;
 import api.constants.MimeTypes;
 import api.constants.RequestMappings;
 import api.constants.TableColumns;
@@ -236,6 +239,7 @@ public class HomePageAPIController {
 	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.NASELJENA_MESTA + RequestMappings.KOLONE, produces = MimeTypes.APPLICATION_JSON)
 	public ArrayList<Column> getMestaKolone() {
 		return TableColumns.getColumns("naseljenaMesta");
+		
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.BANKE + RequestMappings.KOLONE, produces = MimeTypes.APPLICATION_JSON)
@@ -283,6 +287,44 @@ public class HomePageAPIController {
 		return TableColumns.getColumns("dnevnaStanja");
 	}
 	/** END GET KOLONE **/
+	
+	/** TO DO GET FOREIGN KEYS**/
+	
+	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.NASELJENA_MESTA + RequestMappings.FOREIGN_KEY, produces = MimeTypes.APPLICATION_JSON)
+	public ArrayList<String> getFKNaseljenoMesto(){
+		return ForeignKeys.getForeignKeys("naseljenaMesta");
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.ANALITIKE_IZVODA + RequestMappings.FOREIGN_KEY, produces = MimeTypes.APPLICATION_JSON)
+	public ArrayList<String> getFKAnalitikeIzvoda(){
+		return ForeignKeys.getForeignKeys("analitikeIzvoda");
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.DNEVNA_STANJA + RequestMappings.FOREIGN_KEY, produces = MimeTypes.APPLICATION_JSON)
+	public ArrayList<String> getFKDnevnaStanja(){
+		return ForeignKeys.getForeignKeys("dnevnaStanja");
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.KLIRING + RequestMappings.FOREIGN_KEY, produces = MimeTypes.APPLICATION_JSON)
+	public ArrayList<String> getFKKliring(){
+		return ForeignKeys.getForeignKeys("kliring");
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.KURSNA_LISTA + RequestMappings.FOREIGN_KEY, produces = MimeTypes.APPLICATION_JSON)
+	public ArrayList<String> getFKKursnaLista(){
+		return ForeignKeys.getForeignKeys("kursnaLista");
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.KURSEVI + RequestMappings.FOREIGN_KEY, produces = MimeTypes.APPLICATION_JSON)
+	public ArrayList<String> getFKKursevi(){
+		return ForeignKeys.getForeignKeys("kursevi");
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = RequestMappings.RACUNI + RequestMappings.FOREIGN_KEY, produces = MimeTypes.APPLICATION_JSON)
+	public ArrayList<String> getFKRacuni(){
+		return ForeignKeys.getForeignKeys("racuni");
+	}
+	/** END GET FOREIGN KEYS**/
 	
 	
 	/** TODO DELETE TABLE ROWS **/
@@ -381,4 +423,5 @@ public class HomePageAPIController {
 	}
 	
 	/** END DELETE TABLE ROWS **/
+
 }

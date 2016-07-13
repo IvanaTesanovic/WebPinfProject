@@ -5,6 +5,8 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 	$scope.nameTable = "";
 	$scope.kolone = {};
 	$scope.koloneZaPrikaz = {};
+	$scope.foreignKeys = {};
+	
 	
 	$scope.idIzmene = "";
 	
@@ -32,6 +34,13 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 			if(angular.isObject(data))
 				$scope.kolone = data;
 		});
+		$scope.foreignKeys = [];
+		HomePageService.getForeignKeys(tableName, function(data){
+			if(angular.isObject(data))
+				$scope.foreignKeys = data;
+			
+		});
+		
 	};
 
 	$scope.getValue = function(obj, kol, tip) {
@@ -61,6 +70,7 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 		else 
 			$scope.rezim = rez.toUpperCase();
 	};
+	
 	
 	$scope.deleteRow = function(tIndex) {
 		HomePageService.deleteRow($scope.nameTable, tIndex).
@@ -165,8 +175,8 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 				$scope.table.push(obj);
 			}, function(error) {
 				$scope.error = "Nije moguce dodati ovaj objekat!";
-			});
-		}
+			});  
+		} 
 		else if(rez == 'pretraga') {
 			HomePageService.izvrsiAkciju(rez, nt, data).then(function(response) {
 				$scope.error = "";
@@ -186,5 +196,23 @@ app.controller("HomePageController", function($scope, $location, HomePageService
         console.dir(file);
         HomePageService.importNaloga(file);
     };
-	
+   
+/*	
+  //next	
+  	$scope.child = function(nameTable) {
+  		HomePageService.getForeignKeys(nameTable, function(data) {
+  						if(angular.isObject(data))
+  							$scope.foreignKeys = data;
+  						
+  					}); 
+  			for( var i = 1; i < scope.foreignKeys.length; i++){
+  				 if ($scope.foreignKeys[i] == nameTable){ 
+  					 $scope.openTable(nameTable);
+  			 }
+  			
+  		} 
+  		return $scope.openTable("drzave");
+  		
+  	};
+  	*/
 });
