@@ -49,6 +49,7 @@
 	<button class="btn btn-primary" id="dodavanje" data-ng-click="promeniRezim('dodavanje')" data-ng-disabled='nameTable == ""'>Dodavanje</button>
 	<button class="btn btn-primary" id="pretraga" data-ng-click="promeniRezim('pretraga')" data-ng-disabled='nameTable == ""'>Pretraga</button>
 	<button class="btn btn-primary" data-ng-click="promeniRezim('nema')" data-ng-disabled='nameTable == "" || rezim == "nema" || rezim == "Trenutno nije odabran nijedan rezim."'>Zatvori formu</button>
+	<button class="btn btn-danger" data-ng-if='zoomFlag==1'>Povratak</button>
 </div>
 
 <br>
@@ -64,11 +65,12 @@
 				<input data-ng-show='k.tip == "boolean"' class="dpbl" id="{{k.naziv}}"/>
 				<input type="button" data-ng-click="zoom(k.naziv.split('_')[1])" value="Zoom" data-ng-show='k.naziv.startsWith("id_")' class="btn"/>
 				
-				<div data-ng-show='zoomFlag == 1 && k.naziv.startsWith("id_")' style="display:inline-block;">	
+				<div data-ng-show='k.naziv.startsWith("id_")' style="display:inline-block;">	
 					<select id="zoomSelect" class="form-control" style="width:12em">
-						<option data-ng-repeat="z in zoomVrednosti" value="{{z.id}}">{{z.id + " " + z.naziv}}</option>
+						<option data-ng-repeat="z in drzaveCombo" value="{{z.id}}">{{z.id + " " + z.naziv}}</option>
 					</select>
 				</div>
+				
 			</div>
 			<button class="btn btn-success" type="submit">Izvrsi akciju</button>
 		</fieldset>
@@ -121,7 +123,6 @@
 </div>
 
 <hr>
->>>>>>> branch 'newMaster' of https://github.com/IvanaTesanovic/WebPinfProject
 
 <div style="margin-top:0.5em;">
 <label class="btn btn-primary">

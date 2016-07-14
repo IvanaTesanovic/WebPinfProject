@@ -22,6 +22,7 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 	$scope.brojRacunaZaPrebacivanje = "";
 	$scope.errorPrebacivanje = "";
 	
+	
 	$scope.init = function() {
 		//$scope.objIzm = { id: 54, naziv: "rrr", ptt_oznaka: "rrrr", id_drzave: {id: 3, naziv: "Srbija"} };
 		
@@ -47,17 +48,16 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 		HomePageService.getForeignKeys(tableName, function(data){
 			if(angular.isObject(data))
 				$scope.foreignKeys = data;
-			
 		});
-		
+
 	};
 	
 	$scope.zoom = function(tableName) {
 		$scope.zoomFlag = 1;
-		HomePageService.openTable(tableName, function(data) {
-			if(angular.isObject(data))
-				$scope.zoomVrednosti = data;
-		});
+//		HomePageService.openTable(tableName, function(data) {
+//			if(angular.isObject(data))
+//				$scope.drzaveCombo = data;
+//		});
 	}
 
 	$scope.getValue = function(obj, kol, tip) {
@@ -139,7 +139,7 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 	};
 	
 	$scope.izvrsiAkciju = function() {
-		//ovde treba vratiti objekat na scope?		
+		//ovde treba vratiti objekat na scope?
 		var rez = $scope.rezim.toLowerCase();
 		var nt = $scope.nameTable;
 		var data = {};
@@ -155,11 +155,11 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 				dataIzm[id] = val;
 			}
 			else if (klasa == 'dp' || klasa == 'dpbl') {
-				if (($('#zoomSelect :selected').text() != "") && (id.includes("id_"))) {
-					var val = $('#zoomSelect :selected').text().split(' ')[0];
-				} else {
-					val = inputs[i].value;
-				}
+				var val = inputs[i].value;
+				
+				if ($('#zoomSelect :selected').text() != "")  {
+					val = $('#zoomSelect :selected').text().split(' ')[0];
+				
 				if(klasa == 'dpbl') {
 					console.log(val);
 					var newVal = val.toLowerCase();
@@ -283,5 +283,5 @@ app.controller("HomePageController", function($scope, $location, HomePageService
     	$scope.racunZaUkidanje = null;
     	$scope.ukidanjeVal = false;
     };
-    
+	}
 });
