@@ -21,7 +21,8 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 	$scope.rezimUkidanja = "";
 	$scope.brojRacunaZaPrebacivanje = "";
 	$scope.errorPrebacivanje = "";
-	
+	$scope.prethodnaTabela = "";
+	$scope.prethodniRezim = "";
 	
 	$scope.init = function() {
 		//$scope.objIzm = { id: 54, naziv: "rrr", ptt_oznaka: "rrrr", id_drzave: {id: 3, naziv: "Srbija"} };
@@ -41,23 +42,77 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 				$scope.table = data;
 		});
 		HomePageService.getColumnNames(tableName, function(data) {
-			if(angular.isObject(data))
+			if(angular.isObject(data)) {
 				$scope.kolone = data;
+				getComboVrednosti();
+				console.log("vrednosti");
+				console.log($scope.comboVrednosti);
+			}
 		});
 		$scope.foreignKeys = [];
 		HomePageService.getForeignKeys(tableName, function(data){
 			if(angular.isObject(data))
 				$scope.foreignKeys = data;
 		});
-
 	};
 	
-	$scope.zoom = function(tableName) {
+	function getComboVrednosti() {
+		$scope.comboVrednosti = {};
+		for (var i = 0; i < $scope.kolone.length; i++) {
+			var kol = $scope.kolone[i].naziv;
+			if (kol.startsWith("id_")) {
+				console.log("kol");
+				console.log(kol);
+				
+				if (kol == "id_banke") {
+					HomePageService.openTable("banke", function(data) {
+						if(angular.isObject(data))
+							$scope.comboVrednosti[kol] = data;
+					});
+				}
+				else if (kol == "id_drzave") {
+					HomePageService.openTable("drzave", function(data) {
+						if(angular.isObject(data))
+							$scope.comboVrednosti[kol] = data;
+					});
+				} else if (kol == "id_naseljenog_mesta") {
+					HomePageService.openTable("naseljenaMesta", function(data) {
+						if(angular.isObject(data))
+							$scope.comboVrednosti[kol] = data;
+					});
+				} else if (kol == "id_delatnosti") {
+					$scope.comboVrednosti[kol] = [{id: "6002", label: "aaa"}, {id: "6003", label: "bbbb"}, {id: "6004", label: "cccc"}];
+				}
+				
+				
+				else {
+					$scope.comboVrednosti[kol] = [{id: "3453", label: "24321"}, {id: "35345", label: "sfgb"}, {id: "23411", label: "aaa"}];
+				}
+			}
+		}
+	}
+	
+	$scope.zoom = function(nameTable, prosliRezim, tableName) {
+		console.log("tabela back");
+		console.log(nameTable);
+		
+		console.log("rezim back");
+		console.log(prosliRezim);
+		
+		$scope.prethodnaTabela = nameTable;
+		$scope.prethodniRezim = prosliRezim;
 		$scope.zoomFlag = 1;
+		$scope.rezim = "ZOOM";
+		
+		$scope.openTable(tableName);
 //		HomePageService.openTable(tableName, function(data) {
 //			if(angular.isObject(data))
 //				$scope.drzaveCombo = data;
 //		});
+	}
+	
+	$scope.vratiZoomRezim = function() {
+		$scope.zoomFlag = 0;
 	}
 
 	$scope.getValue = function(obj, kol, tip) {
@@ -145,8 +200,8 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 		var data = {};
 		var dataIzm = {};
 		var inputs = document.getElementsByTagName('input');
-		var combo = document.getElementsByTagName('option');
-		
+		var combos = document.getElementsByTagName('select');
+
 		for(var i = 0; i < inputs.length; i++) {
 			var id = inputs[i].getAttribute('id');
 			var klasa = inputs[i].getAttribute('class');
@@ -156,10 +211,6 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 			}
 			else if (klasa == 'dp' || klasa == 'dpbl') {
 				var val = inputs[i].value;
-				
-				if ($('#zoomSelect :selected').text() != "")  {
-					val = $('#zoomSelect :selected').text().split(' ')[0];
-				
 				if(klasa == 'dpbl') {
 					console.log(val);
 					var newVal = val.toLowerCase();
@@ -175,6 +226,15 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 		        data[id] = val;
 			}
 		}
+		console.log(combos.length);
+		
+		for (var i=0; i<combos.length; i++) {
+			
+			var id = combos[i].getAttribute('id');
+			var val = combos[i].value;
+			data[id] = val;
+		}
+		
 		//u zavisnosti od rezima, handle-ujemo prikaz na homepage.html
 		if(rez == 'izmena') {
 			console.log("izmena");
@@ -283,5 +343,33 @@ app.controller("HomePageController", function($scope, $location, HomePageService
     	$scope.racunZaUkidanje = null;
     	$scope.ukidanjeVal = false;
     };
-	}
+    
+    $scope.getOptions = function(nazivKolone) {
+    	var retVal = [];
+    	var comboLabelColumn;
+    	var comboVrednosti = $scope.comboVrednosti[nazivKolone];
+    	console.log(comboVrednosti);
+    	
+    	if (nazivKolone == "id_banke") {
+    		comboLabelColumn = naziv;
+    	} else if (nazivKolone == "id_drzave") {
+    		comboLabelColumn = naziv;
+    	}
+    	
+    	for(var i=0; i<comboVrednosti.length; i++) {
+    		console.log("usao u for");
+    		console.log(comboVrednosti[i]);
+    		var obj = {
+    				id: comboVrednosti[i].id,
+    				label : comboVrednosti[i][comboLabelColumn]
+    		}
+    		console.log("obj");
+    		console.log(obj);
+    		retVal.push(obj);
+    	}
+    	console.log("retVal");
+    	console.log(retVal);
+    	return retVal;
+    }
+	
 });
