@@ -20,10 +20,27 @@ app.factory("HomePageService", function($http) {
                 }
 	    	});
 	    },
+	    jasperKonekcija: function() {
+	    	return $http({
+	    		method: 'GET',
+	    		url: 'http://localhost:8080/jasperserver/rest/login?j_username=jasperadmin&j_password=jasperadmin'
+	    	});
+	    },
+	    exportNaloga: function(table, tableName) {
+	    	return $http({
+	    		method: 'POST',
+	    		url: 'api/actions/' + tableName + '/export',
+	    		data: table,
+	    		headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "text/plain, application/json"
+                }
+	    	});
+	    },
 	    importNaloga: function(file) {
 	    	var fd = new FormData();
 	        fd.append('file', file);
-	    	$http({
+	    	 return $http({
 	    		method: 'POST',
 	    		url: 'api/homepage/import',
 	    		data: fd,

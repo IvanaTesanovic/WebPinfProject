@@ -37,8 +37,9 @@
 			<td><a data-ng-click="deleteRow(t.id)" class = "btn btn-success">Obrisi</a></td>
 			<td><a data-ng-click="izmeni(t)" class = "btn btn-success">Izmeni</a></td>
 			<td><a data-ng-click="next(t)" class = "btn btn-success">Child tabele</a></td>
-			<td data-ng-if='nameTable == "analitikeIzvoda"'><a data-ng-click="export(t)" class = "btn btn-success">Export</a></td>
+			<td data-ng-if='nameTable == "analitikeIzvoda" || nameTable == "rtgs" || nameTable == "kliring"'><a data-ng-click="exportNaloga(t)" class = "btn btn-success">Export</a></td>
 			<td data-ng-if='nameTable == "racuni"'><a data-ng-click="ukidanjeForma(t)" class = "btn btn-success">Ukidanje</a></td>
+			<td data-ng-if='nameTable == "banke"'><a data-ng-click="izvestajRacuni(t.sifra)" class = "btn btn-success">Izvestaj o racunima</a></td>
 		</tr>
 	</table>
 </div>
@@ -84,7 +85,7 @@
       {{error}}
 </div>
 
-<div data-ng-show="ukidanjeVal">
+<div data-ng-if="ukidanjeVal">
 <hr>
 
 <div data-ng-repeat="k in kolone" class="form-group">
@@ -108,9 +109,44 @@
 <div style="margin-top:0.5em" data-ng-if='rezimUkidanja != ""'>
 <button class="btn btn-success" data-ng-click="ukidanje()">Izvrsi ukidanje racuna</button>
 <button class="btn btn-success" data-ng-click="otkaziUkidanje()">Otkazi</button>
+<p style="margin-top:0.5em;color:red;font-weight:bold">{{errorUkidanje}}</p>
 </div>
 
 </div>
+
+
+<hr>
+
+
+<button class="btn btn-primary" data-ng-if="prikazAnalitike == false" data-ng-click="prikaziAnalitikuIzvestaj()">Generisanje izvestaja izvoda klijenta</button>
+<div data-ng-if="prikazAnalitike == true">
+
+<form name="izvestajForma" novalidate>
+	<label class="control-label">Od : (MM/DD/YYYY)</label>&nbsp;
+	<input id="datumOd" type="text" data-ng-model="dataIzvestaj.datum_od" required>
+	<br>
+	<label class="control-label">Do : (MM/DD/YYYY)</label>&nbsp;
+	<input id="datumDo" type="text" data-ng-model="dataIzvestaj.datum_do" required>
+	<br>
+	<label class="control-label">Klijent :</label>
+	<select id="selectIzvestaj" class="form-control" style="width:20em" data-ng-model="dataIzvestaj.id_klijenta_izvestaj" required>
+		<option data-ng-repeat="ki in klijentiIzvestaj" data-ng-if="ki.ime != null && ki.naziv == null" value={{ki.id}}>{{ki.ime}} {{ki.prezime}}</option>
+		<option data-ng-repeat="ki in klijentiIzvestaj" data-ng-if="ki.naziv != null && ki.ime == null" value={{ki.id}}>{{ki.naziv}}</option>
+	</select>
+	<br><button class="btn btn-success" data-ng-click="izvestajAnalitika(izvestajForma.$valid)">Prikazi izvestaj</button>
+	<button class="btn btn-success" data-ng-click="zatvoriPrikazAnalitike()">Zatvori</button>
+</form>
+<p style="margin-top:0.5em;color:red;font-weight:bold">{{errorAnalitikaIzvestaj}}</p>
+</div>
+
+<div data-ng-if="postojiIzvestaj == true">
+<hr>
+<div data-ng-bind-html="izvestajHtml"></div>
+<button style="margin-top:0.5em;" class="btn btn-success" data-ng-click="zatvoriIzvestaj()">Zatvori izvestaj</button>
+<p style="margin-top:0.5em;color:red;font-weight:bold">{{errorPrikazIzvestaja}}</p>
+<hr>
+</div>
+
 
 <hr>
 
@@ -125,6 +161,8 @@ Naziv: {{myFile.name}}
 <button style="margin-top:0.5em;" class="btn btn-success" data-ng-click="importNaloga()">Import naloga za placanje</button>
 </div>
 </div>
+
+<p data-ng-hide='importError == ""' class="alert" style="margin-bottom:-0.2em;margin-top:0.5em;color:red;font-weight:bold">{{importError}}</p>
 
 <hr>
 

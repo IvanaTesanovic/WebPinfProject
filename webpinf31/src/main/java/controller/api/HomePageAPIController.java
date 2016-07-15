@@ -16,6 +16,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
 import model.AnalitikaIzvoda;
@@ -32,6 +33,7 @@ import model.Racun;
 import model.SPTable;
 import model.nalog.NalogZaPrenos;
 
+import org.hibernate.exception.SQLGrammarException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -42,6 +44,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import api.constants.MimeTypes;
 import api.constants.RequestMappings;
@@ -103,7 +107,7 @@ public class HomePageAPIController {
 	
 	/** TODO IMPORT & POZIVANJE USKLADISTENE PROCEDURE **/
 	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.IMPORT, produces = MimeTypes.UPLOAD_FILE)
-	public void importNaloga(MultipartHttpServletRequest request) {
+	public String importNaloga(MultipartHttpServletRequest request) {
 		
 		Iterator<String> itr =  request.getFileNames();
 	    MultipartFile mpf = request.getFile(itr.next());
@@ -124,15 +128,32 @@ public class HomePageAPIController {
 	    	java.sql.Date datumValute = new java.sql.Date(utilDate.getTime());
 	    	
 	    	/** tabela sadrzi trigger nad insertom koji poziva uskladistenu proceduru **/
+
 	    	sptableService.save(new SPTable(nalog.getIDPoruke(), nalog.getDuznik(), nalog.getPoverilac(), nalog.getSvrhaPlacanja(),
 	    			datumValute, nalog.getRacunDuznika().getBrojRacuna(),
 	    			String.valueOf(nalog.getRacunDuznika().getBrojModela()),
 	    			nalog.getRacunDuznika().getPozivNaBroj(), nalog.getRacunPoverioca().getBrojRacuna(),
 	    			String.valueOf(nalog.getRacunPoverioca().getBrojModela()), nalog.getRacunPoverioca().getPozivNaBroj(),
 	    			nalog.isHitno(), nalog.getOznakaValute(), nalog.getIznos(), true));
+
+	    	return "";
 	    	
-		} catch (Exception e) {
-			e.printStackTrace();
+//	    catch(SQLGrammarException e) {
+//	    	System.out.println("-------------------------------------------------------------");
+//	    	System.out.println(e.getCause().getMessage());
+//	    	return e.getCause().getMessage();
+//	    }
+//	    catch(JAXBException e) {
+//	    	return e.getMessage();
+//	    }
+//	    catch(IOException e) {
+//	    	return e.getMessage();
+	    } catch (Exception e) {
+	    	if(e.getCause() instanceof SQLGrammarException) {
+	    		SQLServerException eee = (SQLServerException)e.getCause().getCause();
+	    		return eee.getMessage();
+	    	}
+	    	return e.getMessage();
 		}
 	}
 	

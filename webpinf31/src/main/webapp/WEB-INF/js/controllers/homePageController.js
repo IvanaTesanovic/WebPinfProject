@@ -1,4 +1,4 @@
-app.controller("HomePageController", function($scope, $location, HomePageService) {
+app.controller("HomePageController", function($scope, $location, $sce, $http, HomePageService) {
 	
 	$scope.rezim = "Trenutno nije odabran nijedan rezim.";
 	$scope.table = {};
@@ -12,12 +12,27 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 	$scope.valIzm = "";
 	
 	$scope.error = "";
+	$scope.importError = "";
 	
 	$scope.ukidanjeVal = false;
 	$scope.racunZaUkidanje = {};
 	$scope.rezimUkidanja = "";
 	$scope.brojRacunaZaPrebacivanje = "";
 	$scope.errorPrebacivanje = "";
+	$scope.errorUkidanje = "";
+	
+	$scope.izvestajHtml = {};
+	$scope.postojiIzvestaj = false;
+	$scope.klijentiIzvestaj = {};
+	$scope.prikazAnalitike = false;
+	$scope.errorAnalitikaIzvestaj = "";
+	$scope.errorPrikazIzvestaja = "";
+	
+//	$scope.datum_od = "";
+//	$scope.datum_do = "";
+//	$scope.id_klijenta_izvestaj = "";
+	
+	$scope.dataIzvestaj = {};
 	
 	$scope.init = function() {
 		//$scope.objIzm = { id: 54, naziv: "rrr", ptt_oznaka: "rrrr", id_drzave: {id: 3, naziv: "Srbija"} };
@@ -30,6 +45,7 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 		$scope.otkaziUkidanje();
 		$scope.myFile = null;
 		$scope.error = "";
+		$scope.importError = "";
 		$scope.promeniRezim('nema');
 		$scope.nameTable = tableName;
 		HomePageService.openTable(tableName, function(data) {
@@ -51,6 +67,8 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 			var dan = val.split("-")[2];
 			return dan+"-"+mes+"-"+god;
 		}
+		else if(kol === "id_poruke")
+			return obj[kol];
 		else if(kol.includes("id_"))
 			return obj[kol].id;
 		else if(obj[kol] === true)
@@ -64,6 +82,7 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 	$scope.promeniRezim = function(rez) {
 		$scope.otkaziUkidanje();
 		$scope.error = "";
+		$scope.importError = "";
 		$scope.myFile = null;
 		if(rez == "nema")
 			$scope.rezim = "Trenutno nije odabran nijedan rezim.";
@@ -108,7 +127,9 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 	$scope.getIzmValue = function(kol) {
 		var obj = $scope.objIzm;
 		console.log("izmvalue" + obj);
-		if(kol.includes("id_"))
+		if(kol === "id_poruke")
+			return obj[kol];
+		else if(kol.includes("id_"))
 			return obj[kol].id;
 		else if(obj[kol] === true)
 			return "DA";
@@ -193,11 +214,16 @@ app.controller("HomePageController", function($scope, $location, HomePageService
 	
 	$scope.importNaloga = function() {
         var file = $scope.myFile;
-        HomePageService.importNaloga(file);
+        HomePageService.importNaloga(file).then(function(response) {
+        	$scope.importError = response.data;
+        });
     };
     
+    $scope.exportNaloga = function(nalog) {
+    	HomePageService.exportNaloga(nalog, $scope.nameTable);
+    };
     
-    /* UKIDANJE RACUNA */
+    /** UKIDANJE RACUNA **/
     
     $scope.ukidanjeForma = function(racun) {
     	$scope.otkaziUkidanje();
@@ -207,11 +233,13 @@ app.controller("HomePageController", function($scope, $location, HomePageService
     
     $scope.ukidanjeSaPrebacivanjem = function() {
     	$scope.errorPrebacivanje = "";
+    	$scope.errorUkidanje = "";
     	$scope.rezimUkidanja = "sa";
     };
     
     $scope.ukidanjeBezPrebacivanja = function() {
     	$scope.errorPrebacivanje = "";
+    	$scope.errorUkidanje = "";
     	$scope.rezimUkidanja = "bez";
     };
     
@@ -226,18 +254,90 @@ app.controller("HomePageController", function($scope, $location, HomePageService
     	}
     	else if($scope.rezimUkidanja == "sa") {
     		$scope.errorPrebacivanje = "";
-    		HomePageService.ukidanje($scope.racunZaUkidanje.id, $scope.brojRacunaZaPrebacivanje, $scope.rezimUkidanja);
+    		HomePageService.ukidanje($scope.racunZaUkidanje.id, $scope.brojRacunaZaPrebacivanje, $scope.rezimUkidanja).then(function(response) {
+            	$scope.errorUkidanje = response.data;
+            });
     	}
     	$scope.otkaziUkidanje();
     	$scope.nameTable = "";
     };
     
     $scope.otkaziUkidanje = function() {
+    	$scope.errorUkidanje = "";
     	$scope.errorPrebacivanje = "";
     	$scope.brojRacunaZaPrebacivanje = "";
     	$scope.rezimUkidanja = "";
     	$scope.racunZaUkidanje = null;
     	$scope.ukidanjeVal = false;
+    };
+    
+    /** IZVESTAJI **/
+    
+    $scope.zatvoriIzvestaj = function() {
+    	$scope.postojiIzvestaj = false;
+    };
+    
+    $scope.izvestajRacuni = function(sifra) {
+    	HomePageService.jasperKonekcija().then(function (response) {
+            console.log("uspesno logovanje");
+            $http.get("http://localhost:8080/jasperserver/rest_v2/reports/reports/racuni.html?sifra_banke=" + sifra)
+                .then(function (response) {
+                	$scope.errorPrikazIzvestaja = "";
+                	$scope.postojiIzvestaj = true;
+                    console.log("uspesno ucitan izvestaj");
+                    $scope.izvestajHtml = $sce.trustAsHtml(response.data);
+                    console.log(response.data);
+                }, function (error) {
+                    console.log(error);
+                });
+        }, function (error) {
+            console.log(error);
+            $scope.errorPrikazIzvestaja = "Nije moguce prikazati izvestaj!";
+        });
+    };
+    
+    $scope.klijentiIzvestaj = function() {
+    	HomePageService.openTable('klijenti', function(data) {
+			if(angular.isObject(data))
+				$scope.klijentiIzvestaj = data;
+		});
+    };
+    
+    $scope.prikaziAnalitikuIzvestaj = function() {
+    	$scope.prikazAnalitike = true;
+    	$scope.klijentiIzvestaj();
+    };
+    
+    $scope.zatvoriPrikazAnalitike = function() {
+    	$scope.prikazAnalitike = false;
+    };
+    
+    $scope.izvestajAnalitika = function(isValid) {
+    	console.log($scope.dataIzvestaj);
+    	var dod = $scope.dataIzvestaj.datum_od;
+    	var ddo = $scope.dataIzvestaj.datum_do;
+    	var iki = $scope.dataIzvestaj.id_klijenta_izvestaj;
+    	if (isValid) {
+    		$scope.errorAnalitikaIzvestaj = "";
+	    	HomePageService.jasperKonekcija().then(function (response) {
+	            console.log("uspesno logovanje");
+	            $http.get("http://localhost:8080/jasperserver/rest_v2/reports/reports/analitika.html?datumod=" + dod + "&datumdo=" + ddo + "&idklijenta=" + iki)
+	                .then(function (response) {
+	                	$scope.errorPrikazIzvestaja = "";
+	                	$scope.postojiIzvestaj = true;
+	                    console.log("uspesno ucitan izvestaj");
+	                    $scope.izvestajHtml = $sce.trustAsHtml(response.data);
+	                    console.log(response.data);
+	                }, function (error) {
+	                    console.log(error);
+	                });
+	        }, function (error) {
+	            console.log(error);
+	            $scope.errorPrikazIzvestaja = "Nije moguce prikazati izvestaj!";
+	        });
+    	}
+    	else
+    		$scope.errorAnalitikaIzvestaj = "Morate popuniti sva polja!";
     };
     
 });

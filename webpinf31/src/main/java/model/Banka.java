@@ -39,10 +39,32 @@ public class Banka extends AbstractEntity {
 	@Column(nullable = false)
 	private Boolean narodna_banka;
 	
+	@Column(nullable = false)
+	private String obracunski_racun;
+	
+	@Column(nullable = false)
+	private String swift_kod;
+	
 	public Banka() {}
 	
+	public String getObracunski_racun() {
+		return obracunski_racun;
+	}
+
+	public void setObracunski_racun(String obracunski_racun) {
+		this.obracunski_racun = obracunski_racun;
+	}
+
+	public String getSwift_kod() {
+		return swift_kod;
+	}
+
+	public void setSwift_kod(String swift_kod) {
+		this.swift_kod = swift_kod;
+	}
+
 	public Banka(String sifra, String pib, String naziv, String adresa, String telefon, String email, String web,
-			String fax, Boolean narodna_banka) {
+			String fax, Boolean narodna_banka, String obracunski_racun, String swift_kod) {
 		super();
 		this.sifra = sifra;
 		this.pib = pib;
@@ -53,6 +75,8 @@ public class Banka extends AbstractEntity {
 		this.web = web;
 		this.fax = fax;
 		this.narodna_banka = narodna_banka;
+		this.obracunski_racun = obracunski_racun;
+		this.swift_kod = swift_kod;
 	}
 
 	public String getSifra() {

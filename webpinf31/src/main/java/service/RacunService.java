@@ -37,7 +37,7 @@ public class RacunService {
 		 return racunRepo.findOne(id);
 	 }
 	 public void update(Long id, String broj_racuna, Date datum_otvaranja, Boolean vazeci,
-			Banka id_banke, Valuta id_valute, Klijent id_klijenta){
+			Banka id_banke, Valuta id_valute, Klijent id_klijenta) {
 		 
 		 Racun racun = racunRepo.findOne(id);
 		 racun.setBroj_racuna(broj_racuna);

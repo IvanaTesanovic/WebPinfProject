@@ -33,7 +33,7 @@ public class BankaService {
 	}
 
 	public void update(Long id, String sifra, String pib, String naziv, String adresa, String telefon, String email, String web,
-			String fax, Boolean nb) {
+			String fax, Boolean nb, String obracunski, String swift) {
 		Banka banka = bankaRepo.findOne(id);
 		banka.setSifra(sifra);
 		banka.setAdresa(adresa);
@@ -44,6 +44,8 @@ public class BankaService {
 		banka.setPib(pib);
 		banka.setTelefon(telefon);
 		banka.setWeb(web);
+		banka.setObracunski_racun(obracunski);
+		banka.setSwift_kod(swift);
 		bankaRepo.save(banka);
 	}
 

@@ -14,11 +14,29 @@ public class BankaDTO {
 	private String web;
 	private String fax;
 	private String narodna_banka;
+	private String obracunski;
+	private String swift;
 	
 	public BankaDTO() {}
 
-	public BankaDTO(String id, String sifra, String pib, String naziv, String adresa, String telefon, String email, String web,
-			String fax, String narodna_banka) {
+	public String getObracunski() {
+		return obracunski;
+	}
+
+	public void setObracunski(String obracunski) {
+		this.obracunski = obracunski;
+	}
+
+	public String getSwift() {
+		return swift;
+	}
+
+	public void setSwift(String swift) {
+		this.swift = swift;
+	}
+
+	public BankaDTO(String id, String sifra, String pib, String naziv, String adresa, String telefon, String email,
+			String web, String fax, String narodna_banka, String obracunski, String swift) {
 		super();
 		this.id = id;
 		this.sifra = sifra;
@@ -30,6 +48,8 @@ public class BankaDTO {
 		this.web = web;
 		this.fax = fax;
 		this.narodna_banka = narodna_banka;
+		this.obracunski = obracunski;
+		this.swift = swift;
 	}
 
 	public String getSifra() {
