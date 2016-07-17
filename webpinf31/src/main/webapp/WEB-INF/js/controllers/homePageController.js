@@ -93,7 +93,20 @@ app.controller("HomePageController", function($scope, $location, $sce, $http, Ho
 							$scope.comboVrednosti[kol] = data;
 					});
 				} else if (kol == "id_delatnosti") {
-					$scope.comboVrednosti[kol] = [{id: "6002", label: "aaa"}, {id: "6003", label: "bbbb"}, {id: "6004", label: "cccc"}];
+					$scope.comboVrednosti[kol] = [{id: "6002", naziv: "aaa"}, {id: "6003", naziv: "bbbb"}, {id: "6004", naziv: "cccc"}];
+				} 
+				else if (kol == "id_racuna") {
+					HomePageService.openTable("racuni", function(data) {
+						if(angular.isObject(data))
+							$scope.comboVrednosti[kol] = data;
+					});
+				} else if (kol == "id_klijenta") {
+					HomePageService.openTable("klijenta", function(data) {
+						if(angular.isObject(data))
+							$scope.comboVrednosti[kol] = data;
+					});
+				} else if (kol == "id_valute") {
+					$scope.comboVrednosti[kol] = [{id: "RSD", naziv: "Dinar"}, {id: "EUR", naziv: "Euro"}, {id: "USD", naziv: "Dolar"}];
 				}
 				
 				
