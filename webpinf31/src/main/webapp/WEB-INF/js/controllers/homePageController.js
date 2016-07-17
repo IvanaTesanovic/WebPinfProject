@@ -5,6 +5,8 @@ app.controller("HomePageController", function($scope, $location, $sce, $http, Ho
 	$scope.nameTable = "";
 	$scope.kolone = {};
 	$scope.koloneZaPrikaz = {};
+	$scope.foreignKeys = {};
+	
 	
 	$scope.idIzmene = "";
 	
@@ -14,6 +16,7 @@ app.controller("HomePageController", function($scope, $location, $sce, $http, Ho
 	$scope.error = "";
 	$scope.importError = "";
 	
+	$scope.zoomFlag = 0;
 	$scope.ukidanjeVal = false;
 	$scope.racunZaUkidanje = {};
 	$scope.rezimUkidanja = "";
@@ -28,11 +31,9 @@ app.controller("HomePageController", function($scope, $location, $sce, $http, Ho
 	$scope.errorAnalitikaIzvestaj = "";
 	$scope.errorPrikazIzvestaja = "";
 	
-//	$scope.datum_od = "";
-//	$scope.datum_do = "";
-//	$scope.id_klijenta_izvestaj = "";
-	
 	$scope.dataIzvestaj = {};
+	$scope.prethodnaTabela = "";
+	$scope.prethodniRezim = "";
 	
 	$scope.init = function() {
 		//$scope.objIzm = { id: 54, naziv: "rrr", ptt_oznaka: "rrrr", id_drzave: {id: 3, naziv: "Srbija"} };
@@ -53,10 +54,78 @@ app.controller("HomePageController", function($scope, $location, $sce, $http, Ho
 				$scope.table = data;
 		});
 		HomePageService.getColumnNames(tableName, function(data) {
-			if(angular.isObject(data))
+			if(angular.isObject(data)) {
 				$scope.kolone = data;
+				getComboVrednosti();
+				console.log("vrednosti");
+				console.log($scope.comboVrednosti);
+			}
+		});
+		$scope.foreignKeys = [];
+		HomePageService.getForeignKeys(tableName, function(data){
+			if(angular.isObject(data))
+				$scope.foreignKeys = data;
 		});
 	};
+	
+	function getComboVrednosti() {
+		$scope.comboVrednosti = {};
+		for (var i = 0; i < $scope.kolone.length; i++) {
+			var kol = $scope.kolone[i].naziv;
+			if (kol.startsWith("id_")) {
+				console.log("kol");
+				console.log(kol);
+				
+				if (kol == "id_banke") {
+					HomePageService.openTable("banke", function(data) {
+						if(angular.isObject(data))
+							$scope.comboVrednosti[kol] = data;
+					});
+				}
+				else if (kol == "id_drzave") {
+					HomePageService.openTable("drzave", function(data) {
+						if(angular.isObject(data))
+							$scope.comboVrednosti[kol] = data;
+					});
+				} else if (kol == "id_naseljenog_mesta") {
+					HomePageService.openTable("naseljenaMesta", function(data) {
+						if(angular.isObject(data))
+							$scope.comboVrednosti[kol] = data;
+					});
+				} else if (kol == "id_delatnosti") {
+					$scope.comboVrednosti[kol] = [{id: "6002", label: "aaa"}, {id: "6003", label: "bbbb"}, {id: "6004", label: "cccc"}];
+				}
+				
+				
+				else {
+					$scope.comboVrednosti[kol] = [{id: "3453", label: "24321"}, {id: "35345", label: "sfgb"}, {id: "23411", label: "aaa"}];
+				}
+			}
+		}
+	}
+	
+	$scope.zoom = function(nameTable, prosliRezim, tableName) {
+		console.log("tabela back");
+		console.log(nameTable);
+		
+		console.log("rezim back");
+		console.log(prosliRezim);
+		
+		$scope.prethodnaTabela = nameTable;
+		$scope.prethodniRezim = prosliRezim;
+		$scope.zoomFlag = 1;
+		$scope.rezim = "ZOOM";
+		
+		$scope.openTable(tableName);
+//		HomePageService.openTable(tableName, function(data) {
+//			if(angular.isObject(data))
+//				$scope.drzaveCombo = data;
+//		});
+	}
+	
+	$scope.vratiZoomRezim = function() {
+		$scope.zoomFlag = 0;
+	}
 
 	$scope.getValue = function(obj, kol, tip) {
 		//$scope.objIzm = obj;
@@ -68,6 +137,8 @@ app.controller("HomePageController", function($scope, $location, $sce, $http, Ho
 			return dan+"-"+mes+"-"+god;
 		}
 		else if(kol === "id_poruke")
+			return obj[kol];
+		else if(kol === "id_delatnosti")
 			return obj[kol];
 		else if(kol.includes("id_"))
 			return obj[kol].id;
@@ -89,6 +160,8 @@ app.controller("HomePageController", function($scope, $location, $sce, $http, Ho
 		else 
 			$scope.rezim = rez.toUpperCase();
 	};
+	
+
 	
 	$scope.deleteRow = function(tIndex) {
 		$scope.otkaziUkidanje();
@@ -129,6 +202,8 @@ app.controller("HomePageController", function($scope, $location, $sce, $http, Ho
 		console.log("izmvalue" + obj);
 		if(kol === "id_poruke")
 			return obj[kol];
+		else if(kol === "id_delatnosti")
+			return obj[kol];
 		else if(kol.includes("id_"))
 			return obj[kol].id;
 		else if(obj[kol] === true)
@@ -146,7 +221,8 @@ app.controller("HomePageController", function($scope, $location, $sce, $http, Ho
 		var data = {};
 		var dataIzm = {};
 		var inputs = document.getElementsByTagName('input');
-		
+		var combos = document.getElementsByTagName('select');
+
 		for(var i = 0; i < inputs.length; i++) {
 			var id = inputs[i].getAttribute('id');
 			var klasa = inputs[i].getAttribute('class');
@@ -171,6 +247,15 @@ app.controller("HomePageController", function($scope, $location, $sce, $http, Ho
 		        data[id] = val;
 			}
 		}
+		console.log(combos.length);
+		
+		for (var i=0; i<combos.length; i++) {
+			
+			var id = combos[i].getAttribute('id');
+			var val = combos[i].value;
+			data[id] = val;
+		}
+		
 		//u zavisnosti od rezima, handle-ujemo prikaz na homepage.html
 		if(rez == 'izmena') {
 			console.log("izmena");
@@ -197,8 +282,8 @@ app.controller("HomePageController", function($scope, $location, $sce, $http, Ho
 				$scope.table.push(obj);
 			}, function(error) {
 				$scope.error = "Nije moguce dodati ovaj objekat!";
-			});
-		}
+			});  
+		} 
 		else if(rez == 'pretraga') {
 			HomePageService.izvrsiAkciju(rez, nt, data).then(function(response) {
 				$scope.error = "";
@@ -218,6 +303,7 @@ app.controller("HomePageController", function($scope, $location, $sce, $http, Ho
         	$scope.importError = response.data;
         });
     };
+
     
     $scope.exportNaloga = function(nalog) {
     	HomePageService.exportNaloga(nalog, $scope.nameTable);
@@ -340,4 +426,113 @@ app.controller("HomePageController", function($scope, $location, $sce, $http, Ho
     		$scope.errorAnalitikaIzvestaj = "Morate popuniti sva polja!";
     };
     
+    $scope.getOptions = function(nazivKolone) {
+    	var retVal = [];
+    	var comboLabelColumn;
+    	var comboVrednosti = $scope.comboVrednosti[nazivKolone];
+    	console.log(comboVrednosti);
+    	
+    	for(var i=0; i<comboVrednosti.length; i++) {
+    		console.log("usao u for");
+    		console.log(comboVrednosti[i]);
+    		if (nazivKolone == "id_drzave") {
+    			var obj = {
+        				id: comboVrednosti[i].id,
+        				label : comboVrednosti[i].naziv
+        		}
+//    			retVal.push(obj);
+    		} else if (nazivKolone == "id_delatnosti") {
+    			var obj = {
+        				id: comboVrednosti[i].id,
+        				label : comboVrednosti[i].naziv
+        		}
+//    			retVal.push(obj);
+    		} else if (nazivKolone == "id_naseljenog_mesta") {
+    			var obj = {
+        				id: comboVrednosti[i].id,
+        				label : comboVrednosti[i].naziv
+        		}
+//    			retVal.push(obj);
+    		} else if (nazivKolone == "id_racuna") {
+    			var obj = {
+        				id: comboVrednosti[i].id,
+        				label : comboVrednosti[i].broj_racuna
+        		}
+//    			retVal.push(obj);
+    		}  else if (nazivKolone == "id_klijenta") {
+    			var obj = {
+        				id: comboVrednosti[i].id,
+        				label : comboVrednosti[i].jmbg
+        		}
+//    			retVal.push(obj);
+    		} else if (nazivKolone == "id_poruke") {
+    			var obj = {
+        				id: comboVrednosti[i].id,
+        				label : comboVrednosti[i].label
+        		}
+//    			retVal.push(obj);
+    		} else if (nazivKolone == "id_banke") {
+    			var obj = {
+        				id: comboVrednosti[i].id,
+        				label : comboVrednosti[i].naziv
+        		}
+    		}
+    		
+    		
+    		retVal.push(obj);
+    	}
+    	console.log("retVal");
+    	console.log(retVal);
+    	return retVal;
+    };
+    
+  //NEXT 
+    $scope.update = function(tIndex){
+ 	   var val = "";
+ 	   if (($('#nextSelect :selected').text() != ""))
+ 			 val = $('#nextSelect :selected').text();
+ 	   var childTable = "";
+ 	   if (val == "Naseljeno mesto")
+ 		   childTable = "naseljenaMesta";
+ 	   
+ 	   else if (val == "Kursna lista")
+ 		   childTable = "kursnaLista";
+ 	   
+ 	   else if (val == "Banka")
+ 		   childTable = "banke";
+ 	   
+ 	   else if (val == "Racun")
+ 		   childTable = "racuni";
+ 	   
+ 	   else if (val == "Drzava")
+ 		   childTable = "drzave";
+ 	   
+ 	   else if (val == "Kurs u valuti")
+ 		   childTable = "kursevi";
+ 	   
+ 	   else if (val == "Klijent")
+ 		   childTable = "klijenti";
+ 	   
+ 	   else if (val == "Dnevno stanje racuna")
+ 		   childTable = "dnevnaStanja";
+ 	   
+ 	   else if ("Analitika izvoda")
+ 		   childTable = "analitikeIzvoda";
+ 		   
+ 	   console.log(val);
+ 	   HomePageService.next($scope.nameTable, tIndex).then(function(response){
+ 			HomePageService.getColumnNames(childTable, function(data) {
+ 				if(angular.isObject(data))
+ 					$scope.kolone = data;
+ 			});
+ 			$scope.foreignKeys = [];
+ 			HomePageService.getForeignKeys(childTable, function(data){
+ 				if(angular.isObject(data))
+ 					$scope.foreignKeys = data;
+ 			});
+ 		   $scope.table = response.data;
+ 		   console.log(response.data);
+ 	   });
+ 		};
+	
 });

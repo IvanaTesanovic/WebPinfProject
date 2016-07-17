@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,7 +15,9 @@ import api.constants.MimeTypes;
 import api.constants.RequestMappings;
 import dto.DrzavaDTO;
 import model.Drzava;
+import model.NaseljenoMesto;
 import service.DrzavaService;
+import service.NaseljenoMestoService;
 
 @RestController
 @RequestMapping(RequestMappings.ACTIONS_API + RequestMappings.DRZAVE)
@@ -21,6 +25,9 @@ public class DrzaveAPIController {
 	
 	@Autowired
 	DrzavaService service;
+	
+	@Autowired
+	NaseljenoMestoService nmService;
 	
 	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.IZMENA, produces = MimeTypes.APPLICATION_JSON)
 	public Drzava izmeni(@RequestBody Drzava obj) {
@@ -65,4 +72,19 @@ public class DrzaveAPIController {
 		
 		return rezultati;
 	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.NEXT + "/{id}")
+	public ArrayList<NaseljenoMesto> getChildsNM(@Validated @PathVariable final Long id){
+		ArrayList<NaseljenoMesto> naseljenaMesta = new ArrayList<NaseljenoMesto>();
+		ArrayList<NaseljenoMesto> lista = (ArrayList<NaseljenoMesto>) nmService.listAll();
+		
+		for (int i = 0; i < lista.size(); i++){
+			if (lista.get(i).getId_drzave().getId().equals(id)){
+				naseljenaMesta.add(lista.get(i));
+			}
+		}
+		return naseljenaMesta;
+	}
+	
+	
 }

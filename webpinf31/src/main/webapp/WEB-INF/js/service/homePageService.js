@@ -9,6 +9,9 @@ app.factory("HomePageService", function($http) {
 	    getColumnNames: function(tableName, callback) {
 	    	$http.get('api/homepage/' + tableName + "/kolone").success(callback);
 	    },
+	    getForeignKeys: function(tableName, callback) {
+	        $http.get('api/homepage/' + tableName + "/foreignKey").success(callback);
+	    },
 	    ukidanje: function(id, broj, rezim) {
 	    	$http({
 	    		method: 'POST',
@@ -25,6 +28,16 @@ app.factory("HomePageService", function($http) {
 	    		method: 'GET',
 	    		url: 'http://localhost:8080/jasperserver/rest/login?j_username=jasperadmin&j_password=jasperadmin'
 	    	});
+	    },
+	    next: function(tableName, rowId) {
+	    	   return $http({
+	    	    method: 'POST',
+	    	                url: 'api/actions/' + tableName + '/next/' + rowId,
+	    	                headers: {
+	    	                    "Content-Type": "application/json",
+	    	                    "Accept": "text/plain, application/json"
+	    	                }
+	    	   });
 	    },
 	    exportNaloga: function(table, tableName) {
 	    	return $http({

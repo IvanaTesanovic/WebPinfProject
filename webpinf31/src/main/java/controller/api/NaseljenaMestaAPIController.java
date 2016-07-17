@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import api.constants.RequestMappings;
 import dto.NaseljenoMestoDTO;
+import model.AnalitikaIzvoda;
 import model.NaseljenoMesto;
+import service.AnalitikaIzvodaService;
 import service.DrzavaService;
 import service.NaseljenoMestoService;
 
@@ -26,6 +30,9 @@ public class NaseljenaMestaAPIController {
 	
 	@Autowired
 	DrzavaService drzavaService;
+	
+	@Autowired
+	AnalitikaIzvodaService aiService;
 	
 	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.IZMENA)
 	public NaseljenoMesto izmeni(@RequestBody NaseljenoMestoDTO obj) {
@@ -74,6 +81,19 @@ public class NaseljenaMestaAPIController {
 		
 		return result;
 			
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = RequestMappings.NEXT + "/{id}")
+	public ArrayList<AnalitikaIzvoda> getChildsNM(@Validated @PathVariable final Long id){
+		ArrayList<AnalitikaIzvoda> analitike = new ArrayList<AnalitikaIzvoda>();
+		ArrayList<AnalitikaIzvoda> lista = (ArrayList<AnalitikaIzvoda>) aiService.listAll();
+		
+		for (int i = 0; i < lista.size(); i++){
+			if (lista.get(i).getId_naseljenog_mesta().getId().equals(id)){
+				analitike.add(lista.get(i));
+			}
+		}
+		return analitike;
 	}
 	
 }

@@ -26,7 +26,7 @@
 </div>
 
 <br>
-
+<br>
 <div data-ng-show="nameTable != ''">
 	<table class="table table-bordered table-hover">
 		<tr>
@@ -36,32 +36,48 @@
 			<td data-ng-repeat = "kk in kolone" >{{getValue(t, kk.naziv, kk.tip)}}</td>
 			<td><a data-ng-click="deleteRow(t.id)" class = "btn btn-success">Obrisi</a></td>
 			<td><a data-ng-click="izmeni(t)" class = "btn btn-success">Izmeni</a></td>
-			<td><a data-ng-click="next(t)" class = "btn btn-success">Child tabele</a></td>
 			<td data-ng-if='nameTable == "analitikeIzvoda" || nameTable == "rtgs" || nameTable == "kliring"'><a data-ng-click="exportNaloga(t)" class = "btn btn-success">Export</a></td>
+			<td> 
+				<select id="nextSelect" style="width:10em" > 
+					<option  data-ng-repeat = "fk in foreignKeys">{{fk}}</option>
+				</select>&nbsp;
+				<button data-ng-click="update(t.id)" class="btn btn-success">Idi na tabelu</button>
+			</td>
 			<td data-ng-if='nameTable == "racuni"'><a data-ng-click="ukidanjeForma(t)" class = "btn btn-success">Ukidanje</a></td>
 			<td data-ng-if='nameTable == "banke"'><a data-ng-click="izvestajRacuni(t.sifra)" class = "btn btn-success">Izvestaj o racunima</a></td>
 		</tr>
 	</table>
 </div>
 <hr>
+
 <p>Trenutni rezim: {{rezim}}</p>
 <div>
 	<button class="btn btn-primary" id="dodavanje" data-ng-click="promeniRezim('dodavanje')" data-ng-disabled='nameTable == ""'>Dodavanje</button>
 	<button class="btn btn-primary" id="pretraga" data-ng-click="promeniRezim('pretraga')" data-ng-disabled='nameTable == ""'>Pretraga</button>
 	<button class="btn btn-primary" data-ng-click="promeniRezim('nema')" data-ng-disabled='nameTable == "" || rezim == "nema" || rezim == "Trenutno nije odabran nijedan rezim."'>Zatvori formu</button>
+	<button class="btn btn-danger" data-ng-if='zoomFlag==1' data-ng-click="openTable(prethodnaTabela); promeniRezim(prethodniRezim); vratiZoomRezim()">Povratak</button>
 </div>
 
 <br>
 
-<div id="formaAkcijeDP" data-ng-show='rezim == "DODAVANJE" || rezim == "PRETRAGA"'>
+<div id="formaAkcijeDP" data-ng-if='rezim == "DODAVANJE" || rezim == "PRETRAGA"'>
 	<form class="form-horizontal" data-ng-submit="izvrsiAkciju()">
 		<fieldset>
 			<legend data-ng-show='rezim == "DODAVANJE"'>Forma za dodavanje</legend>
 			<legend data-ng-show='rezim == "PRETRAGA"'>Forma za pretragu</legend>
 			<div data-ng-repeat="k in kolone" data-ng-show='rezim == "DODAVANJE" || rezim == "PRETRAGA"' data-ng-hide='rezim == "DODAVANJE" && k.naziv == "id"' class="form-group">
 				<label class="col-lg-2 control-label">{{k.naziv.toUpperCase().split('_').join(' ')}}</label>&nbsp;
-				<input data-ng-hide='k.tip == "boolean"' data-ng-disabled='k.naziv == "id" && rezim != "PRETRAGA"' class="dp" id="{{k.naziv}}"/>
+				<input data-ng-hide='k.tip == "boolean" || k.naziv.startsWith("id_")' data-ng-disabled='k.naziv == "id" && rezim != "PRETRAGA"' class="dp" id="{{k.naziv}}"/>
 				<input data-ng-show='k.tip == "boolean"' class="dpbl" id="{{k.naziv}}"/>
+				<input type="button" data-ng-click="zoom(nameTable, rezim, k.naziv.split('_')[1])" value="..." data-ng-show='k.naziv.startsWith("id_")' class="btn"/>
+				
+				<div data-ng-if='k.naziv.startsWith("id_")' style="display:inline-block;">	
+					<select data-ng-options="item as item.label for item in getOptions(k.naziv) track by item.id" data-ng-model="selected" id="{{k.naziv}}" class="form-control" style="width:12em">
+					
+<!-- 						<option data-ng-repeat="z in drzaveCombo" value="{{z.id}}">{{z.id + " " + z.naziv}}</option> -->
+					</select>
+				</div>
+				
 			</div>
 			<button class="btn btn-success" type="submit">Izvrsi akciju</button>
 		</fieldset>
@@ -161,9 +177,7 @@ Naziv: {{myFile.name}}
 <button style="margin-top:0.5em;" class="btn btn-success" data-ng-click="importNaloga()">Import naloga za placanje</button>
 </div>
 </div>
-
 <p data-ng-hide='importError == ""' class="alert" style="margin-bottom:-0.2em;margin-top:0.5em;color:red;font-weight:bold">{{importError}}</p>
-
 <hr>
 
 </div>
