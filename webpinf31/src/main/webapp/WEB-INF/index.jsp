@@ -54,7 +54,5 @@
 	<!-- DIRECTIVES -->
 	<script type="text/javascript" src="<spring:url value='${version}/js/directives/fileModelDirective.js' />"></script>
 	
-<%-- 	<script type="text/javascript" src="<spring:url value='${version}/resources/css/bootstrap-filestyle.min.js' />"></script> --%>
-
 </body>
 </html>
